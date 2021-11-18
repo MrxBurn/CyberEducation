@@ -1,3 +1,7 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cyber_education/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -44,12 +48,89 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  String email = '';
+  String password = '';
+  String firstName = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
+      ),
+      body: Column(
+        children: <Widget>[
+          Center(
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: 30,
+              ),
+              child: SizedBox(
+                width: 300,
+                child: TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                  ),
+                  onChanged: (value) => email = value,
+                ),
+              ),
+            ),
+          ),
+          Center(
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: 20,
+              ),
+              child: SizedBox(
+                width: 300,
+                child: TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                  ),
+                  onChanged: (value) => password = value,
+                ),
+              ),
+            ),
+          ),
+          Center(
+              child: Padding(
+            padding: EdgeInsets.only(
+              top: 20,
+            ),
+            child: SizedBox(
+              width: 70,
+              height: 40,
+              child: ElevatedButton(
+                child: Text('Login'),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.orange),
+                ),
+                onPressed: () {
+                  //Login
+                },
+              ),
+            ),
+          )),
+          Center(
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: 20,
+              ),
+              child: TextButton(
+                child: Text('Not a user? Register!'),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Register()));
+                },
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
