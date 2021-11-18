@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cyber_education/homepage.dart';
 import 'package:cyber_education/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
         theme: ThemeData.dark(),
         home: FutureBuilder(
           future: _initialization,
@@ -47,9 +47,11 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  //Firebase
   FirebaseAuth _auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  //Variables
   String email = '';
   String password = '';
   String firstName = '';
