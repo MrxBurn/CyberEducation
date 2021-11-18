@@ -30,7 +30,11 @@ class MyApp extends StatelessWidget {
               print("Error");
             }
             if (snapshot.connectionState == ConnectionState.done) {
-              return Login();
+              if (FirebaseAuth.instance.currentUser != null) {
+                return Homepage();
+              } else {
+                return Login();
+              }
             }
 
             return CircularProgressIndicator();
@@ -55,6 +59,15 @@ class _LoginState extends State<Login> {
   String email = '';
   String password = '';
   String firstName = '';
+
+  Future<void> loginUser() async {
+    await _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +126,7 @@ class _LoginState extends State<Login> {
                       MaterialStateProperty.all<Color>(Colors.orange),
                 ),
                 onPressed: () {
-                  //Login
+                  loginUser();
                 },
               ),
             ),
