@@ -22,7 +22,7 @@ class _HomepageState extends State<Homepage> {
 
   //Variables
   int _selectedIndex = 0;
-  String firstName = '';
+  var firstName = '';
 
   //Controllers
 
@@ -48,13 +48,16 @@ class _HomepageState extends State<Homepage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-//Get specific field from a document
+  void initState() {
+    super.initState();
     userName.get().then((DocumentSnapshot ds) {
       firstName = ds['firstName'];
       print(firstName);
     });
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Homepage'),
@@ -84,6 +87,27 @@ class _HomepageState extends State<Homepage> {
       ),
       body: Column(
         children: [
+          FutureBuilder<DocumentSnapshot>(
+            future: userName.get(),
+            builder: (BuildContext context,
+                AsyncSnapshot<DocumentSnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return const Text("Something went wrong");
+              }
+
+              if (snapshot.hasData && !snapshot.data!.exists) {
+                return const Text("Document does not exist");
+              }
+
+              if (snapshot.connectionState == ConnectionState.done) {
+                Map<String, dynamic> data =
+                    snapshot.data!.data() as Map<String, dynamic>;
+                return Text("Welcome ${data['firstName']}");
+              }
+
+              return const Text("loading");
+            },
+          ),
           Padding(
               padding: const EdgeInsets.only(
                 top: 20,
