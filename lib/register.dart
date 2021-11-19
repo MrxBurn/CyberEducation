@@ -30,6 +30,8 @@ class _RegisterState extends State<Register> {
   String firstName = '';
   String uid = '';
 
+  final _formKey = GlobalKey<FormState>();
+
   Future<void> registerUser() async {
     await _auth.createUserWithEmailAndPassword(
       email: email,
@@ -51,86 +53,105 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Register'),
-      ),
-      body: Column(
-        children: [
-          Center(
-              child: Padding(
-            padding: EdgeInsets.only(
-              top: 30,
-            ),
-            child: SizedBox(
-              width: 300,
-              child: TextField(
-                controller: cFirstName,
-                autocorrect: false,
-                decoration: InputDecoration(
-                  hintText: 'First name',
+        appBar: AppBar(
+          title: const Text('Register'),
+        ),
+        body: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Center(
+                  child: Padding(
+                padding: EdgeInsets.only(
+                  top: 30,
                 ),
-                onChanged: (value) => firstName = value,
-              ),
-            ),
-          )),
-          Center(
-              child: Padding(
-            padding: EdgeInsets.only(
-              top: 20,
-            ),
-            child: SizedBox(
-              width: 300,
-              child: TextField(
-                controller: cEmail,
-                autocorrect: false,
-                decoration: InputDecoration(
-                  hintText: 'Email',
+                child: SizedBox(
+                  width: 300,
+                  child: TextFormField(
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'Enter your first name';
+                      }
+                    },
+                    controller: cFirstName,
+                    autocorrect: false,
+                    decoration: InputDecoration(
+                      hintText: 'First name',
+                    ),
+                    onChanged: (value) => firstName = value,
+                  ),
                 ),
-                onChanged: (value) => email = value,
-              ),
-            ),
-          )),
-          Center(
-              child: Padding(
-            padding: EdgeInsets.only(
-              top: 20,
-            ),
-            child: SizedBox(
-              width: 300,
-              child: TextField(
-                controller: cPassword,
-                autocorrect: false,
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: 'Password',
+              )),
+              Center(
+                  child: Padding(
+                padding: EdgeInsets.only(
+                  top: 20,
                 ),
-                onChanged: (value) => password = value,
-              ),
-            ),
-          )),
-          Center(
-            child: Padding(
-              padding: EdgeInsets.only(
-                top: 20,
-              ),
-              child: ElevatedButton(
-                child: const Text('Register'),
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.orange),
+                child: SizedBox(
+                  width: 300,
+                  child: TextFormField(
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'Enter your email';
+                      }
+                    },
+                    controller: cEmail,
+                    autocorrect: false,
+                    decoration: InputDecoration(
+                      hintText: 'Email',
+                    ),
+                    onChanged: (value) => email = value,
+                  ),
                 ),
-                onPressed: () async {
-                  await registerUser();
+              )),
+              Center(
+                  child: Padding(
+                padding: EdgeInsets.only(
+                  top: 20,
+                ),
+                child: SizedBox(
+                  width: 300,
+                  child: TextFormField(
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'Enter a password';
+                      }
+                    },
+                    controller: cPassword,
+                    autocorrect: false,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: 'Password',
+                    ),
+                    onChanged: (value) => password = value,
+                  ),
+                ),
+              )),
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: 20,
+                  ),
+                  child: ElevatedButton(
+                    child: const Text('Register'),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.orange),
+                    ),
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        await registerUser();
 
-                  cEmail.clear();
-                  cPassword.clear();
-                  cFirstName.clear();
-                },
-              ),
-            ),
-          )
-        ],
-      ),
-    );
+                        cEmail.clear();
+                        cPassword.clear();
+                        cFirstName.clear();
+                      }
+                    },
+                  ),
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }
