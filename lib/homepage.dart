@@ -1,9 +1,11 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cyber_education/main.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:webviewx/webviewx.dart';
+
 import 'quiz.dart';
 import 'retest.dart';
 
@@ -25,6 +27,7 @@ class _HomepageState extends State<Homepage> {
   var firstName = '';
 
   //Controllers
+  late WebViewXController webController;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -50,10 +53,6 @@ class _HomepageState extends State<Homepage> {
   @override
   void initState() {
     super.initState();
-    userName.get().then((DocumentSnapshot ds) {
-      firstName = ds['firstName'];
-      print(firstName);
-    });
   }
 
   @override
@@ -102,17 +101,27 @@ class _HomepageState extends State<Homepage> {
               if (snapshot.connectionState == ConnectionState.done) {
                 Map<String, dynamic> data =
                     snapshot.data!.data() as Map<String, dynamic>;
-                return Text("Welcome ${data['firstName']}");
+
+                return Padding(
+                    padding: const EdgeInsets.only(
+                      top: 20,
+                    ),
+                    child: Text(
+                      "Welcome ${data['firstName']}",
+                      style: const TextStyle(
+                        fontSize: 20,
+                      ),
+                    ));
               }
 
               return const Text("loading");
             },
           ),
           Padding(
-              padding: const EdgeInsets.only(
-                top: 20,
-              ),
-              child: Text(firstName)),
+            padding: EdgeInsets.only(
+              top: 30,
+            ),
+          )
         ],
       ),
     );
