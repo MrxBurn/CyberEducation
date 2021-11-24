@@ -103,9 +103,10 @@ class _HomepageState extends State<Homepage> {
             ],
           ),
         ),
-        body: Center(
-            child: SingleChildScrollView(
+        //BODY
+        body: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               FutureBuilder<DocumentSnapshot>(
                 future: userName.get(),
@@ -123,48 +124,51 @@ class _HomepageState extends State<Homepage> {
                     Map<String, dynamic> data =
                         snapshot.data!.data() as Map<String, dynamic>;
 
-                    return Padding(
-                        padding: EdgeInsets.only(
-                          top: 20,
-                          left: 10,
-                        ),
-                        child: Container(
-                            height: 150,
-                            width: 200,
-                            decoration: BoxDecoration(
-                                color: Colors.blueGrey,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15))),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                      padding: const EdgeInsets.only(
-                                        top: 20,
-                                        left: 10,
-                                      ),
-                                      child: Text(
-                                        "Welcome ${data['firstName']}",
-                                        style: const TextStyle(
-                                          fontSize: 20,
-                                        ),
-                                      )),
-                                  Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 10, left: 10),
-                                      child: Text(
-                                        "Score: ${data['score']}",
-                                        style: const TextStyle(
-                                          fontSize: 18,
-                                        ),
-                                      ))
-                                ])));
+                    return Center(
+                        child: Padding(
+                            padding: EdgeInsets.only(
+                              top: 10,
+                              left: 30,
+                            ),
+                            child: Container(
+                                height: 150,
+                                width: 200,
+                                decoration: BoxDecoration(
+                                    color: Colors.blueGrey,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15))),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                          padding: const EdgeInsets.only(
+                                            top: 20,
+                                            left: 10,
+                                          ),
+                                          child: Text(
+                                            "Welcome ${data['firstName']}",
+                                            style: const TextStyle(
+                                              fontSize: 20,
+                                            ),
+                                          )),
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 10, left: 10),
+                                          child: Text(
+                                            "Score: ${data['score']}",
+                                            style: const TextStyle(
+                                              fontSize: 18,
+                                            ),
+                                          ))
+                                    ]))));
                   }
                   return const Text("loading");
                 },
               ),
               //Useful websites part
-              Column(children: [
+              Center(
+                  child: Column(children: [
                 SizedBox(
                     width: 600,
                     child: Padding(
@@ -198,69 +202,75 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ),
                     ))
-              ]),
+              ])),
 
               //Most used cyber attacks section
-              SizedBox(
-                  width: 600,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 20, left: 30),
-                    child: Text(
-                      'The most used cyber attacks:',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                  )),
+              Center(
+                  child: SizedBox(
+                      width: 600,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 20, left: 30),
+                        child: Text(
+                          'The most used cyber attacks:',
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ))),
 
               //1st Expansion Tile
-              SizedBox(
-                  width: 600,
-                  child: Padding(
-                      padding: EdgeInsets.only(
-                        top: 20,
-                        left: 20,
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          child: ExpansionTile(
-                              collapsedBackgroundColor: Color(0xFF304e60),
-                              title: const Text('Malware Attacks'),
-                              leading: Image.asset(
-                                'images/malware.png',
-                              ),
-                              subtitle: const Text(
-                                  'Malware usage is up almost 800% since early 2020.'),
-                              trailing: Icon(
-                                _customTileExpanded
-                                    ? Icons.arrow_drop_down_circle
-                                    : Icons.arrow_drop_down,
-                              ),
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+
+              Center(
+                  child: SizedBox(
+                      width: 600,
+                      child: Padding(
+                          padding: EdgeInsets.only(
+                            top: 20,
+                            left: 20,
+                          ),
+                          child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                              child: ExpansionTile(
+                                  collapsedBackgroundColor: Color(0xFF304e60),
+                                  title: const Text('Malware Attacks'),
+                                  leading: Image.asset(
+                                    'images/malware.png',
+                                  ),
+                                  subtitle: const Text(
+                                      'Malware usage is up almost 800% since early 2020.'),
+                                  trailing: Icon(
+                                    _customTileExpanded
+                                        ? Icons.arrow_drop_down_circle
+                                        : Icons.arrow_drop_down,
+                                  ),
                                   children: [
-                                    Text(
-                                        "One of the most used type of malware is Ransomware.\n"
-                                        "Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid."),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Text('Example: '),
-                                    Image.asset('images/ransomware.png'),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Text(
-                                        "Ransomware is often spread through phishing emails that contain malicious attachments or through drive-by downloading. Drive-by downloading occurs when a user unknowingly visits an infected website and then malware is downloaded and installed without the user’s knowledge."
-                                        "Crypto ransomware, a malware variant that encrypts files, is spread through similar methods and has also been spread through social media, such as Web-based instant messaging applications."
-                                        " Additionally, newer methods of ransomware infection have been observed. For example, vulnerable Web servers have been exploited as an entry point to gain access to an organization’s network.")
-                                  ],
-                                )
-                              ])))),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                            "One of the most used type of malware is Ransomware.\n"
+                                            "Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid."),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        Text('Example: '),
+                                        Image.asset('images/ransomware.png'),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        Text(
+                                            "Ransomware is often spread through phishing emails that contain malicious attachments or through drive-by downloading. Drive-by downloading occurs when a user unknowingly visits an infected website and then malware is downloaded and installed without the user’s knowledge."
+                                            "Crypto ransomware, a malware variant that encrypts files, is spread through similar methods and has also been spread through social media, such as Web-based instant messaging applications."
+                                            " Additionally, newer methods of ransomware infection have been observed. For example, vulnerable Web servers have been exploited as an entry point to gain access to an organization’s network.")
+                                      ],
+                                    )
+                                  ]))))),
 
               //2nd Expansion Tile
-              SizedBox(
+              Center(
+                  child: SizedBox(
                 width: 600,
                 child: Padding(
                     padding: EdgeInsets.only(
@@ -304,9 +314,9 @@ class _HomepageState extends State<Homepage> {
                             ],
                           )
                         ])),
-              )
+              ))
             ],
           ),
-        )));
+        ));
   }
 }
