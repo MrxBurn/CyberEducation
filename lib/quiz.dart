@@ -14,9 +14,10 @@ class _QuizState extends State<Quiz> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-      title: const Text('CyberQuiz'),
-    ));
+      appBar: AppBar(
+        title: const Text('CyberQuiz'),
+      ),
+    );
   }
 }
 

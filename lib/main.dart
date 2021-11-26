@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cyber_education/homepage.dart';
 import 'package:cyber_education/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -23,6 +24,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark(),
+        scrollBehavior: ScrollConfiguration.of(context).copyWith(dragDevices: {
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.touch,
+        }),
         home: FutureBuilder(
           future: _initialization,
           builder: (context, snapshot) {
