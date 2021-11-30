@@ -1,5 +1,5 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
-
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print, prefer_final_fields
+//
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cyber_education/homepage.dart';
 import 'package:cyber_education/register.dart';

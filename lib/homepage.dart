@@ -5,7 +5,6 @@ import 'package:cyber_education/main.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:webviewx/webviewx.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'quiz.dart';
 import 'retest.dart';
@@ -304,7 +303,7 @@ class Menu extends StatelessWidget {
     var media = MediaQuery.of(context).size;
     return Container(
         decoration: BoxDecoration(
-            border: Border.all(color: Colors.blueGrey),
+            border: Border.all(color: Colors.blueGrey, width: 5),
             borderRadius: BorderRadius.all(Radius.circular(15))),
         child: ListView(
           padding: EdgeInsets.zero,
