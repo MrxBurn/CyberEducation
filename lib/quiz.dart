@@ -6,6 +6,8 @@ import 'homepage.dart';
 
 class Score {
   static int score = 0;
+  //Continua
+  static bool allQuestionsAnswered = false;
 }
 
 class Quiz extends StatefulWidget {
