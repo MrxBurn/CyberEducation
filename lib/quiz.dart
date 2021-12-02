@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, avoid_print, use_key_in_widget_constructors, import_of_legacy_library_into_null_safe
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'homepage.dart';
 
 class Score {
   static int score = 0;
-  //Continua
-  static bool allQuestionsAnswered = false;
 }
 
 class Quiz extends StatefulWidget {
@@ -18,6 +18,24 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  //Firebase
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  String userID = FirebaseAuth.instance.currentUser!.uid;
+  CollectionReference colRef = FirebaseFirestore.instance.collection('users');
+
+  void addNewScore() {
+    //add the score after quiz
+    colRef.doc(userID).update({
+      'score_quiz': Score.score,
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Score.score = 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +45,6 @@ class _QuizState extends State<Quiz> {
             onPressed: () {
               var route = ModalRoute.of(context);
               var name = route?.settings.name;
-
-              print(name.toString());
 
               if (name == null) {
                 Score.score = 0;
@@ -43,7 +59,19 @@ class _QuizState extends State<Quiz> {
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                Text('Score: ' + Score.score.toString()),
+                SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                    width: 600,
+                    child: Text(
+                      'The first 5 questions are testing to see if you have knowledge '
+                      'about any of the most used cyberattacks in the world'
+                      '\nIf your answer is correct, you will get 1 mark'
+                      '\n'
+                      '\nTotal Score of this quiz: 30',
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    )),
                 Questions(
                   'images/malware_quiz.jpeg',
                   '1. What is a malware?',
@@ -67,19 +95,167 @@ class _QuizState extends State<Quiz> {
                   false,
                   true,
                 ),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        Score.score;
-                      });
-                      print(Score.score);
-                    },
-                    child: Text('Submit'))
+                SizedBox(
+                  height: 150,
+                ),
+                Questions(
+                  'images/ransomware_quiz.png',
+                  '3. What type of attack is this?',
+                  'Phishing',
+                  'Ransomware',
+                  'Zero-day exploit',
+                  false,
+                  true,
+                  false,
+                ),
+                SizedBox(
+                  height: 150,
+                ),
+                Questions(
+                  'images/phishing_quiz.png',
+                  '4. What type of attack is this?',
+                  'Man in the middle attack',
+                  'SQL Injection',
+                  'Phishing',
+                  false,
+                  false,
+                  true,
+                ),
+                SizedBox(
+                  height: 150,
+                ),
+                Questions(
+                  'images/ddos_quiz.jpg',
+                  '5. What is a DDoS attack?',
+                  "Destroys people's internet connections",
+                  'Steals private data',
+                  'Corrupts or delets personal files',
+                  true,
+                  false,
+                  false,
+                ),
+                SizedBox(
+                  height: 150,
+                ),
+                Text(
+                  'Online Behaviour Questions',
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'Scale based answers, Strongly Disagree (1) to Agree (5)'
+                  '\n'
+                  '\nOption 1: 5 marks'
+                  '\nOption 2: 4 marks'
+                  '\nOption 3: 3 marks'
+                  '\nOption 4: 2 marks'
+                  '\nOption 5: 1 marks',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                OnlineBehaviour(
+                  '6. I tend to use similar passwords for multiple accounts',
+                  'Using the same password accross all online accounts, users give '
+                      'hackers easy access to their whole digital life. It is like leaving '
+                      'the keys under the doormat. If a hacker gains access to one user account,'
+                      ' he or she can easily take over all online account and impersonate them',
+                  false,
+                ),
+                SizedBox(
+                  height: 80,
+                ),
+                OnlineBehaviour(
+                  '7. I like posting stuff on social media to socialise with my friends',
+                  'While it may seem like'
+                      'the information is being share with your friends and family,'
+                      'it can also be share with hackers and scammers who troll the social media sites',
+                  false,
+                ),
+                SizedBox(
+                  height: 80,
+                ),
+                OnlineBehaviour(
+                  '8. I have a lot of accounts, thus I am using a notebook to write them down',
+                  'Anyone can take your notebook '
+                      'and access all of your personal data including bank account credentials'
+                      '.There are many programs out there that act as a safe "journal for passwords"',
+                  false,
+                ),
+                SizedBox(
+                  height: 80,
+                ),
+                OnlineBehaviour(
+                  '9. I tend to ignore requests from apps to access my location, files, camera etc.',
+                  'Ignoring these requests might be very dangerous'
+                      "as many online predators are in a continuous hunt of new people's location and their personal data."
+                      'E.g. They can check whether your are home or not and they can schedule a potential robbery',
+                  false,
+                ),
+                SizedBox(
+                  height: 80,
+                ),
+                OnlineBehaviour(
+                  '10. I accept all terms & conditions of all apps/websites without reading them',
+                  'All of us are guilty for this one because a lot of websites/apps have loads of pages '
+                      'talking about their conditions when accessing their services. If you ignore these they might'
+                      'use the data stored on you in bad ways such as selling it to other '
+                      'dodgy companies who might use your data in malicious ways',
+                  true,
+                ),
+                SizedBox(
+                    width: 110,
+                    height: 60,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        child: ElevatedButton(
+                            child: Text('Submit'),
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.orange)),
+                            onPressed: () {
+                              addNewScore();
+
+                              setState(() {});
+                              showDialog(
+                                  barrierDismissible: false,
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Well done!'),
+                                      content: Text(
+                                          'Score: ' + Score.score.toString()),
+                                      elevation: 24.0,
+                                      shape: RoundedRectangleBorder(),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Homepage()));
+                                            },
+                                            child: Text('OK'))
+                                      ],
+                                    );
+                                  });
+                            })))
               ],
             )));
   }
 }
 
+//Cyber attack related quiz
 class Questions extends StatefulWidget {
   final String imagePath;
   final String question;
@@ -185,16 +361,14 @@ class _QuestionsState extends State<Questions> {
                             setState(() {
                               if (widget.iscorrectAnswer1 == true) {
                                 createSnackBar('Correct!', Color(0xFFa4d2ac));
-
                                 disableButton();
-
                                 Score.score++;
                               } else {
+                                disableButton();
                                 createSnackBar(
                                     'Wrong Answer!', Color(0xFFEA4C46));
                               }
                             });
-                            print(widget.iscorrectAnswer1);
                           }
                         : null),
               ),
@@ -224,7 +398,7 @@ class _QuestionsState extends State<Questions> {
                             setState(() {
                               if (widget.iscorrectAnswer2 == true) {
                                 createSnackBar('Correct!', Color(0xFFa4d2ac));
-
+                                disableButton();
                                 Score.score++;
                               } else {
                                 disableButton();
@@ -262,6 +436,7 @@ class _QuestionsState extends State<Questions> {
                             if (widget.iscorrectAnswer3 == true) {
                               createSnackBar('Correct!', Color(0xFFa4d2ac));
                               Score.score++;
+                              disableButton();
                             } else {
                               disableButton();
                               createSnackBar(
@@ -273,6 +448,216 @@ class _QuestionsState extends State<Questions> {
             ),
           ),
         ),
+      ],
+    );
+  }
+}
+
+//Online Behaviours Quiz
+class OnlineBehaviour extends StatefulWidget {
+  final String behaviourQuestion;
+  final String explanation;
+  final bool lastQuestionAnswered;
+
+  bool buttonTapped = false;
+
+  bool questionsAnswered = false;
+
+  bool isButtonTapped1 = false;
+  bool isButtonTapped2 = false;
+  bool isButtonTapped3 = false;
+  bool isButtonTapped4 = false;
+  bool isButtonTapped5 = false;
+
+  OnlineBehaviour(
+    this.behaviourQuestion,
+    this.explanation,
+    this.lastQuestionAnswered,
+  );
+
+  @override
+  _OnlineBehaviourState createState() => _OnlineBehaviourState();
+}
+
+class _OnlineBehaviourState extends State<OnlineBehaviour> {
+  disableButton() {
+    setState(() {
+      widget.questionsAnswered = true;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          widget.behaviourQuestion,
+          style: TextStyle(fontSize: 30, color: Colors.white),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: widget.isButtonTapped1 == false
+                        ? MaterialStateProperty.all(Color(0xFF6b7a99))
+                        : MaterialStateProperty.all(
+                            Color.fromARGB(255, 93, 177, 90))),
+                onPressed: widget.questionsAnswered == false
+                    ? () {
+                        setState(() {
+                          widget.isButtonTapped1 = true;
+                          Score.score += 5;
+                          disableButton();
+                          widget.buttonTapped = true;
+                        });
+                        if (widget.buttonTapped == true) {
+                          disableButton();
+                        }
+                      }
+                    : null,
+                child: Text(
+                  '1',
+                  style: TextStyle(
+                    color: Color(0xFFe5e0e4),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+            ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: widget.isButtonTapped2 == false
+                        ? MaterialStateProperty.all(Color(0xFF92a7ba))
+                        : MaterialStateProperty.all(
+                            Color.fromARGB(255, 93, 177, 90))),
+                onPressed: widget.questionsAnswered == false
+                    ? () {
+                        setState(() {
+                          widget.isButtonTapped2 = true;
+                          Score.score += 4;
+                          disableButton();
+                          widget.buttonTapped = true;
+                        });
+
+                        if (widget.buttonTapped == true) {
+                          disableButton();
+                        }
+                      }
+                    : null,
+                child: Text(
+                  '2',
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold),
+                )),
+            ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: widget.isButtonTapped3 == false
+                        ? MaterialStateProperty.all(Color(0xFFb7d1e2))
+                        : MaterialStateProperty.all(
+                            Color.fromARGB(255, 93, 177, 90))),
+                onPressed: widget.questionsAnswered == false
+                    ? () {
+                        setState(() {
+                          widget.isButtonTapped3 = true;
+                          Score.score += 3;
+                          disableButton();
+                          widget.buttonTapped = true;
+                        });
+                        if (widget.buttonTapped == true) {
+                          disableButton();
+                        }
+                      }
+                    : null,
+                child: Text(
+                  '3',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+            ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: widget.isButtonTapped4 == false
+                        ? MaterialStateProperty.all(Color(0xFFd7dee4))
+                        : MaterialStateProperty.all(
+                            Color.fromARGB(255, 93, 177, 90))),
+                onPressed: widget.questionsAnswered == false
+                    ? () {
+                        setState(() {
+                          widget.isButtonTapped4 = true;
+                          Score.score += 2;
+                          disableButton();
+                          widget.buttonTapped = true;
+                        });
+                        if (widget.buttonTapped == true) {
+                          disableButton();
+                        }
+                      }
+                    : null,
+                child: Text(
+                  '4',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 78, 78, 78),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+            ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: widget.isButtonTapped5 == false
+                        ? MaterialStateProperty.all(Color(0xFFe8ecef))
+                        : MaterialStateProperty.all(
+                            Color.fromARGB(255, 93, 177, 90))),
+                onPressed: widget.questionsAnswered == false
+                    ? () {
+                        setState(() {
+                          widget.isButtonTapped5 = true;
+                          Score.score += 1;
+                          disableButton();
+                          widget.buttonTapped = true;
+                        });
+                        if (widget.buttonTapped == true) {
+                          disableButton();
+                        }
+                      }
+                    : null,
+                child: Text(
+                  '5',
+                  style: TextStyle(
+                    color: Color(0xFF45687b),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Center(
+            child: SizedBox(
+                width: 600,
+                child: Text(
+                  'Why is it a bad behaviour?',
+                  style: TextStyle(fontSize: 19, color: Colors.white),
+                ))),
+        SizedBox(
+          height: 10,
+        ),
+        Center(
+            child: SizedBox(
+                width: 600,
+                child: Text(
+                  widget.explanation,
+                  style: TextStyle(fontSize: 19, color: Colors.white),
+                )))
       ],
     );
   }

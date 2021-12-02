@@ -116,7 +116,16 @@ class _HomepageState extends State<Homepage> {
                                           padding: EdgeInsets.only(
                                               top: 10, left: 10),
                                           child: Text(
-                                            "Score: ${data['score']}",
+                                            " Quiz Score: ${data['score_quiz']}",
+                                            style: const TextStyle(
+                                              fontSize: 18,
+                                            ),
+                                          )),
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 10, left: 10),
+                                          child: Text(
+                                            " Test Score: ${data['score_test']}",
                                             style: const TextStyle(
                                               fontSize: 18,
                                             ),
