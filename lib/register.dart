@@ -16,7 +16,6 @@ class _RegisterState extends State<Register> {
   //Firebase
   final FirebaseAuth _auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  User? user = FirebaseAuth.instance.currentUser;
   CollectionReference ref = FirebaseFirestore.instance.collection('users');
 
   //Controllers
