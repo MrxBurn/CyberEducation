@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 
 import 'homepage.dart';
 
@@ -69,7 +70,7 @@ class _QuizState extends State<Quiz> {
                       'about any of the most used cyberattacks in the world'
                       '\nIf your answer is correct, you will get 1 mark'
                       '\n'
-                      '\nTotal Score of this quiz: 30',
+                      '\nTotal Score of this quiz: 35',
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     )),
                 Questions(
@@ -129,9 +130,74 @@ class _QuizState extends State<Quiz> {
                   '5. What is a DDoS attack?',
                   "Destroys people's internet connections",
                   'Steals private data',
-                  'Corrupts or delets personal files',
+                  'Corrupts or deletes personal files',
                   true,
                   false,
+                  false,
+                ),
+                SizedBox(
+                  height: 150,
+                ),
+                Questions(
+                  'images/ddos_quiz.jpg',
+                  '6. What should you do if you get a ransom attack?',
+                  "Ignore the threat",
+                  'Turn off all the infected systems and get specialist help',
+                  'Pay the ransom to get your files back',
+                  false,
+                  true,
+                  false,
+                ),
+                SizedBox(
+                  height: 150,
+                ),
+                Questions(
+                  'images/ddos_quiz.jpg',
+                  '7. What is a computer worm?',
+                  "Malware that replicates itself to spread to other computers",
+                  'Malware that downloads on a computer disguised as a legitimate program',
+                  "Injects malicious files into the computer's system files.",
+                  true,
+                  false,
+                  false,
+                ),
+                SizedBox(
+                  height: 150,
+                ),
+                Questions(
+                  'images/ddos_quiz.jpg',
+                  '8. What is the best way to defend yourself from computer viruses?',
+                  "Update apps, two-factor authentication, use a VPN",
+                  'Accept cookies, save all your passwords in one place',
+                  'Use similar password on all accounts',
+                  true,
+                  false,
+                  false,
+                ),
+                SizedBox(
+                  height: 150,
+                ),
+                Questions(
+                  'images/ddos_quiz.jpg',
+                  '9. What is a Firewall and why is it used?',
+                  "A system that controls incoming and outgoing network traffic",
+                  'Study of techniques for secure communication',
+                  'Computer program used to prevent, detect, and remove malware',
+                  true,
+                  false,
+                  false,
+                ),
+                SizedBox(
+                  height: 150,
+                ),
+                Questions(
+                  'images/ddos_quiz.jpg',
+                  '10. How to prevent a Brute Force Attack',
+                  "Install a VPN",
+                  'Make your passwords more complex',
+                  'Set up a proxy server',
+                  false,
+                  true,
                   false,
                 ),
                 SizedBox(
@@ -148,13 +214,10 @@ class _QuizState extends State<Quiz> {
                   height: 20,
                 ),
                 Text(
-                  'Scale based answers, Strongly Disagree (1) to Agree (5)'
+                  'Scale based answers, Strongly Disagree (5 marks) to Strongly Agree (1 mark)'
                   '\n'
-                  '\nOption 1: 5 marks'
-                  '\nOption 2: 4 marks'
-                  '\nOption 3: 3 marks'
-                  '\nOption 4: 2 marks'
-                  '\nOption 5: 1 marks',
+                  '\nIf you agree with the following statements you will get less marks'
+                  '\nIf you disagree with the statements, you get more marks',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
@@ -164,7 +227,7 @@ class _QuizState extends State<Quiz> {
                   height: 50,
                 ),
                 OnlineBehaviour(
-                  '6. I tend to use similar passwords for multiple accounts',
+                  '11. I tend to use similar passwords for multiple accounts',
                   'Using the same password accross all online accounts, users give '
                       'hackers easy access to their whole digital life. It is like leaving '
                       'the keys under the doormat. If a hacker gains access to one user account,'
@@ -175,7 +238,7 @@ class _QuizState extends State<Quiz> {
                   height: 80,
                 ),
                 OnlineBehaviour(
-                  '7. I like posting stuff on social media to socialise with my friends',
+                  '12. I like posting stuff on social media to socialise with my friends',
                   'While it may seem like'
                       'the information is being share with your friends and family,'
                       'it can also be share with hackers and scammers who troll the social media sites',
@@ -185,7 +248,7 @@ class _QuizState extends State<Quiz> {
                   height: 80,
                 ),
                 OnlineBehaviour(
-                  '8. I have a lot of accounts, thus I am using a notebook to write them down',
+                  '13. I have a lot of accounts, thus I am using a notebook to write them down',
                   'Anyone can take your notebook '
                       'and access all of your personal data including bank account credentials'
                       '.There are many programs out there that act as a safe "journal for passwords"',
@@ -195,7 +258,7 @@ class _QuizState extends State<Quiz> {
                   height: 80,
                 ),
                 OnlineBehaviour(
-                  '9. I tend to ignore requests from apps to access my location, files, camera etc.',
+                  '14. I tend to ignore requests from apps to access my location, files, camera etc.',
                   'Ignoring these requests might be very dangerous'
                       "as many online predators are in a continuous hunt of new people's location and their personal data."
                       'E.g. They can check whether your are home or not and they can schedule a potential robbery',
@@ -205,7 +268,7 @@ class _QuizState extends State<Quiz> {
                   height: 80,
                 ),
                 OnlineBehaviour(
-                  '10. I accept all terms & conditions of all apps/websites without reading them',
+                  '15. I accept all terms & conditions of all apps/websites without reading them',
                   'All of us are guilty for this one because a lot of websites/apps have loads of pages '
                       'talking about their conditions when accessing their services. If you ignore these they might'
                       'use the data stored on you in bad ways such as selling it to other '
@@ -226,14 +289,18 @@ class _QuizState extends State<Quiz> {
                               addNewScore();
 
                               setState(() {});
-                              showDialog(
+                              showAnimatedDialog(
+                                  animationType: DialogTransitionType.scale,
+                                  curve: Curves.fastOutSlowIn,
+                                  duration: Duration(seconds: 1),
                                   barrierDismissible: false,
                                   context: context,
                                   builder: (BuildContext context) {
                                     return AlertDialog(
                                       title: Text('Well done!'),
-                                      content: Text(
-                                          'Score: ' + Score.score.toString()),
+                                      content: Text('Score: ' +
+                                          Score.score.toString() +
+                                          ' /35'),
                                       elevation: 24.0,
                                       shape: RoundedRectangleBorder(),
                                       actions: [
@@ -497,147 +564,149 @@ class _OnlineBehaviourState extends State<OnlineBehaviour> {
         SizedBox(
           height: 20,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor: widget.isButtonTapped1 == false
-                        ? MaterialStateProperty.all(Color(0xFF6b7a99))
-                        : MaterialStateProperty.all(
-                            Color.fromARGB(255, 93, 177, 90))),
-                onPressed: widget.questionsAnswered == false
-                    ? () {
-                        setState(() {
-                          widget.isButtonTapped1 = true;
-                          Score.score += 5;
-                          disableButton();
-                          widget.buttonTapped = true;
-                        });
-                        if (widget.buttonTapped == true) {
-                          disableButton();
-                        }
-                      }
-                    : null,
-                child: Text(
-                  '1',
-                  style: TextStyle(
-                    color: Color(0xFFe5e0e4),
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
-            ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor: widget.isButtonTapped2 == false
-                        ? MaterialStateProperty.all(Color(0xFF92a7ba))
-                        : MaterialStateProperty.all(
-                            Color.fromARGB(255, 93, 177, 90))),
-                onPressed: widget.questionsAnswered == false
-                    ? () {
-                        setState(() {
-                          widget.isButtonTapped2 = true;
-                          Score.score += 4;
-                          disableButton();
-                          widget.buttonTapped = true;
-                        });
+        SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: widget.isButtonTapped1 == false
+                            ? MaterialStateProperty.all(Color(0xFF6b7a99))
+                            : MaterialStateProperty.all(
+                                Color.fromARGB(255, 93, 177, 90))),
+                    onPressed: widget.questionsAnswered == false
+                        ? () {
+                            setState(() {
+                              widget.isButtonTapped1 = true;
+                              Score.score += 5;
+                              disableButton();
+                              widget.buttonTapped = true;
+                            });
+                            if (widget.buttonTapped == true) {
+                              disableButton();
+                            }
+                          }
+                        : null,
+                    child: Text(
+                      'Strongly Disagree',
+                      style: TextStyle(
+                        color: Color(0xFFe5e0e4),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: widget.isButtonTapped2 == false
+                            ? MaterialStateProperty.all(Color(0xFF92a7ba))
+                            : MaterialStateProperty.all(
+                                Color.fromARGB(255, 93, 177, 90))),
+                    onPressed: widget.questionsAnswered == false
+                        ? () {
+                            setState(() {
+                              widget.isButtonTapped2 = true;
+                              Score.score += 4;
+                              disableButton();
+                              widget.buttonTapped = true;
+                            });
 
-                        if (widget.buttonTapped == true) {
-                          disableButton();
-                        }
-                      }
-                    : null,
-                child: Text(
-                  '2',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
-                )),
-            ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor: widget.isButtonTapped3 == false
-                        ? MaterialStateProperty.all(Color(0xFFb7d1e2))
-                        : MaterialStateProperty.all(
-                            Color.fromARGB(255, 93, 177, 90))),
-                onPressed: widget.questionsAnswered == false
-                    ? () {
-                        setState(() {
-                          widget.isButtonTapped3 = true;
-                          Score.score += 3;
-                          disableButton();
-                          widget.buttonTapped = true;
-                        });
-                        if (widget.buttonTapped == true) {
-                          disableButton();
-                        }
-                      }
-                    : null,
-                child: Text(
-                  '3',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
-            ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor: widget.isButtonTapped4 == false
-                        ? MaterialStateProperty.all(Color(0xFFd7dee4))
-                        : MaterialStateProperty.all(
-                            Color.fromARGB(255, 93, 177, 90))),
-                onPressed: widget.questionsAnswered == false
-                    ? () {
-                        setState(() {
-                          widget.isButtonTapped4 = true;
-                          Score.score += 2;
-                          disableButton();
-                          widget.buttonTapped = true;
-                        });
-                        if (widget.buttonTapped == true) {
-                          disableButton();
-                        }
-                      }
-                    : null,
-                child: Text(
-                  '4',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 78, 78, 78),
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
-            ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor: widget.isButtonTapped5 == false
-                        ? MaterialStateProperty.all(Color(0xFFe8ecef))
-                        : MaterialStateProperty.all(
-                            Color.fromARGB(255, 93, 177, 90))),
-                onPressed: widget.questionsAnswered == false
-                    ? () {
-                        setState(() {
-                          widget.isButtonTapped5 = true;
-                          Score.score += 1;
-                          disableButton();
-                          widget.buttonTapped = true;
-                        });
-                        if (widget.buttonTapped == true) {
-                          disableButton();
-                        }
-                      }
-                    : null,
-                child: Text(
-                  '5',
-                  style: TextStyle(
-                    color: Color(0xFF45687b),
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
-          ],
-        ),
+                            if (widget.buttonTapped == true) {
+                              disableButton();
+                            }
+                          }
+                        : null,
+                    child: Text(
+                      'Disagree',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                    )),
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: widget.isButtonTapped3 == false
+                            ? MaterialStateProperty.all(Color(0xFFb7d1e2))
+                            : MaterialStateProperty.all(
+                                Color.fromARGB(255, 93, 177, 90))),
+                    onPressed: widget.questionsAnswered == false
+                        ? () {
+                            setState(() {
+                              widget.isButtonTapped3 = true;
+                              Score.score += 3;
+                              disableButton();
+                              widget.buttonTapped = true;
+                            });
+                            if (widget.buttonTapped == true) {
+                              disableButton();
+                            }
+                          }
+                        : null,
+                    child: Text(
+                      'Neither agree or disagree',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 88, 88, 88),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: widget.isButtonTapped4 == false
+                            ? MaterialStateProperty.all(Color(0xFFd7dee4))
+                            : MaterialStateProperty.all(
+                                Color.fromARGB(255, 93, 177, 90))),
+                    onPressed: widget.questionsAnswered == false
+                        ? () {
+                            setState(() {
+                              widget.isButtonTapped4 = true;
+                              Score.score += 2;
+                              disableButton();
+                              widget.buttonTapped = true;
+                            });
+                            if (widget.buttonTapped == true) {
+                              disableButton();
+                            }
+                          }
+                        : null,
+                    child: Text(
+                      'Agree',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 78, 78, 78),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: widget.isButtonTapped5 == false
+                            ? MaterialStateProperty.all(Color(0xFFe8ecef))
+                            : MaterialStateProperty.all(
+                                Color.fromARGB(255, 93, 177, 90))),
+                    onPressed: widget.questionsAnswered == false
+                        ? () {
+                            setState(() {
+                              widget.isButtonTapped5 = true;
+                              Score.score += 1;
+                              disableButton();
+                              widget.buttonTapped = true;
+                            });
+                            if (widget.buttonTapped == true) {
+                              disableButton();
+                            }
+                          }
+                        : null,
+                    child: Text(
+                      'Strongly Agree',
+                      style: TextStyle(
+                        color: Color(0xFF45687b),
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
+              ],
+            )),
         SizedBox(
           height: 20,
         ),

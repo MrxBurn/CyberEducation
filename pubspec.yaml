@@ -39,6 +39,7 @@ dependencies:
   cloud_firestore: ^3.1.0
   webviewx: ^0.2.1
   url_launcher: ^6.0.15
+  flutter_animated_dialog: ^2.0.1
 
  
 

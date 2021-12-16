@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cyber_education/main.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:webviewx/webviewx.dart';
 
 import 'quiz.dart';
@@ -224,6 +225,38 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ),
                     ),
+                    Row(
+                      children: [
+                        AttackButton(
+                            buttonColor: Color(0xFF304e60),
+                            heading: Text('Malware attacks'),
+                            image: 'images/ransomware.png',
+                            smallImage: 'images/malware.png',
+                            subtitle: Text(
+                                'Malware usage is up almost 800% since early 2020.'),
+                            attackDefinition: Text(
+                                "One of the most used type of malware is Ransomware.\n"
+                                "Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid."),
+                            finalParagraph: Text(
+                                "Ransomware is often spread through phishing emails that contain malicious attachments or through drive-by downloading. Drive-by downloading occurs when a user unknowingly visits an infected website and then malware is downloaded and installed without the user’s knowledge."
+                                "Crypto ransomware, a malware variant that encrypts files, is spread through similar methods and has also been spread through social media, such as Web-based instant messaging applications."
+                                " Additionally, newer methods of ransomware infection have been observed. For example, vulnerable Web servers have been exploited as an entry point to gain access to an organization’s network.")),
+                        AttackButton(
+                            buttonColor: Color(0xFF304e60),
+                            heading: Text('Malware attacks'),
+                            image: 'images/ransomware.png',
+                            smallImage: 'images/malware.png',
+                            subtitle: Text(
+                                'Malware usage is up almost 800% since early 2020.'),
+                            attackDefinition: Text(
+                                "One of the most used type of malware is Ransomware.\n"
+                                "Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid."),
+                            finalParagraph: Text(
+                                "Ransomware is often spread through phishing emails that contain malicious attachments or through drive-by downloading. Drive-by downloading occurs when a user unknowingly visits an infected website and then malware is downloaded and installed without the user’s knowledge."
+                                "Crypto ransomware, a malware variant that encrypts files, is spread through similar methods and has also been spread through social media, such as Web-based instant messaging applications."
+                                " Additionally, newer methods of ransomware infection have been observed. For example, vulnerable Web servers have been exploited as an entry point to gain access to an organization’s network."))
+                      ],
+                    )
                   ],
                 )),
           ],
@@ -300,6 +333,100 @@ class AttackExpansionTile extends StatelessWidget {
                         ))
                   ]))),
     ));
+  }
+}
+
+class AttackButton extends StatelessWidget {
+  final String smallImage;
+  final String image;
+  final Text heading;
+  final Text subtitle;
+  final Text attackDefinition;
+  final Color buttonColor;
+
+  final Text finalParagraph;
+
+  AttackButton(
+      {Key? key,
+      required this.heading,
+      required this.image,
+      required this.smallImage,
+      required this.subtitle,
+      required this.attackDefinition,
+      required this.finalParagraph,
+      required this.buttonColor})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            child: SizedBox(
+                width: 250,
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(buttonColor)),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          smallImage,
+                          height: 60,
+                          width: 70,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        heading,
+                      ],
+                    ),
+                    onPressed: () {
+                      showAnimatedDialog(
+                        animationType: DialogTransitionType.scale,
+                        curve: Curves.fastOutSlowIn,
+                        duration: Duration(seconds: 1),
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            scrollable: true,
+                            title: Row(
+                              children: [
+                                IconButton(
+                                  alignment: Alignment.topLeft,
+                                  icon: Icon(
+                                    Icons.arrow_back,
+                                    color: Colors.deepOrange,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                heading
+                              ],
+                            ),
+                            content: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                subtitle,
+                                attackDefinition,
+                                Image.asset(image),
+                                finalParagraph,
+                              ],
+                            ),
+                            elevation: 24.0,
+                            shape: RoundedRectangleBorder(),
+                          );
+                        },
+                      );
+                    }))));
   }
 }
 
