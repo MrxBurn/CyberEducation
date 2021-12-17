@@ -139,7 +139,7 @@ class _QuizState extends State<Quiz> {
                   height: 150,
                 ),
                 Questions(
-                  'images/ddos_quiz.jpg',
+                  'images/ransomware_quiz2.png',
                   '6. What should you do if you get a ransom attack?',
                   "Ignore the threat",
                   'Turn off all the infected systems and get specialist help',
@@ -152,7 +152,7 @@ class _QuizState extends State<Quiz> {
                   height: 150,
                 ),
                 Questions(
-                  'images/ddos_quiz.jpg',
+                  'images/worm.png',
                   '7. What is a computer worm?',
                   "Malware that replicates itself to spread to other computers",
                   'Malware that downloads on a computer disguised as a legitimate program',
@@ -165,7 +165,7 @@ class _QuizState extends State<Quiz> {
                   height: 150,
                 ),
                 Questions(
-                  'images/ddos_quiz.jpg',
+                  'images/computer_virus.png',
                   '8. What is the best way to defend yourself from computer viruses?',
                   "Update apps, two-factor authentication, use a VPN",
                   'Accept cookies, save all your passwords in one place',
@@ -178,7 +178,7 @@ class _QuizState extends State<Quiz> {
                   height: 150,
                 ),
                 Questions(
-                  'images/ddos_quiz.jpg',
+                  'images/firewall.png',
                   '9. What is a Firewall and why is it used?',
                   "A system that controls incoming and outgoing network traffic",
                   'Study of techniques for secure communication',
@@ -191,7 +191,7 @@ class _QuizState extends State<Quiz> {
                   height: 150,
                 ),
                 Questions(
-                  'images/ddos_quiz.jpg',
+                  'images/brute_force.jpg',
                   '10. How to prevent a Brute Force Attack',
                   "Install a VPN",
                   'Make your passwords more complex',
