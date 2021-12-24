@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables
+// ignore_for_file: avoid_print, prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables, must_be_immutable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cyber_education/main.dart';
@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:webviewx/webviewx.dart';
+import 'package:flutter_animator/flutter_animator.dart';
 
 import 'quiz.dart';
-import 'retest.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -149,9 +149,10 @@ class _HomepageState extends State<Homepage> {
                         child: Padding(
                           padding: EdgeInsets.only(top: 20, left: 30),
                           child: Text(
-                            'Cyber attacks:',
+                            'Protect yourself online',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 35,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
                         )),
@@ -165,28 +166,41 @@ class _HomepageState extends State<Homepage> {
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               children: [
+                                media.width < 600
+                                    ? Padding(
+                                        padding: EdgeInsets.only(
+                                          left: 20,
+                                        ),
+                                        child: Container(
+                                            width: 60,
+                                            height: 60,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(15)),
+                                              color: Colors.blueGrey,
+                                            ),
+                                            child: Icon(Icons.arrow_forward)))
+                                    : Container(),
                                 Padding(
                                     padding: EdgeInsets.only(left: 20),
                                     child: AttackButton(
-                                        dialogColor: Color(0xFF2c456b),
-                                        buttonColor: Color(0xFF2c456b),
-                                        heading: Text('Malware attacks'),
-                                        image: 'images/ransomware.png',
-                                        smallImage: 'images/malware.png',
-                                        subtitle: Text(
-                                            'Malware usage is up almost 800% since early 2020.\n'),
-                                        attackDefinition: Text(
-                                            "One of the most used type of malware is Ransomware.\n"
-                                            "Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid.\n"),
-                                        finalParagraph: Text(
-                                            "\nRansomware is often spread through phishing emails that contain malicious attachments or through drive-by downloading. Drive-by downloading occurs when a user unknowingly visits an infected website and then malware is downloaded and installed without the user’s knowledge."
-                                            "Crypto ransomware, a malware variant that encrypts files, is spread through similar methods and has also been spread through social media, such as Web-based instant messaging applications."
-                                            " Additionally, newer methods of ransomware infection have been observed. For example, vulnerable Web servers have been exploited as an entry point to gain access to an organization’s network."))),
+                                      dialogColor: Color(0xFF383838),
+                                      buttonColor: Color(0xFF383838),
+                                      heading: Text('Malware attacks'),
+                                      image: 'images/ransomware.png',
+                                      smallImage: 'images/malware.png',
+                                      attackDefinition: Text(
+                                          "One of the most used type of malware is Ransomware. Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid.\n"),
+                                      finalParagraph: Text(
+                                          "\nRansomware is often spread through phishing emails that contain malicious attachments or through drive-by downloading. Drive-by downloading occurs when a user unknowingly visits an infected website and then malware is downloaded and installed without the user’s knowledge. Crypto ransomware, a malware variant that encrypts files, is spread through similar methods and has also been spread through social media, such as Web-based instant messaging applications. Additionally, newer methods of ransomware infection have been observed. For example, vulnerable Web servers have been exploited as an entry point to gain access to an organization’s network."),
+                                      subtitle: Text(
+                                          'Malware usage is up almost 800% since early 2020.\n'),
+                                    )),
                                 Padding(
                                     padding: EdgeInsets.only(left: 10),
                                     child: AttackButton(
-                                        dialogColor: Color(0xFF2a4158),
-                                        buttonColor: Color(0xFF2a4158),
+                                        dialogColor: Color(0xFF383838),
+                                        buttonColor: Color(0xFF383838),
                                         heading: Text('Phishing'),
                                         image: 'images/amazon.png',
                                         smallImage: 'images/phishing.png',
@@ -205,8 +219,8 @@ class _HomepageState extends State<Homepage> {
                                 Padding(
                                     padding: EdgeInsets.only(left: 10),
                                     child: AttackButton(
-                                        dialogColor: Color(0xFF597387),
-                                        buttonColor: Color(0xFF597387),
+                                        dialogColor: Color(0xFF383838),
+                                        buttonColor: Color(0xFF383838),
                                         heading: Text('DDoS'),
                                         image: 'images/ddos.png',
                                         smallImage: 'images/ddosGood.png',
@@ -246,10 +260,62 @@ class _HomepageState extends State<Homepage> {
                                         finalParagraph: Text(
                                             "\nYou can avoid being infected by a worm using common anti-malware advice. Use antivirus software,"
                                             "keep your computer up to date, and never open links or files which you don't completely trust. "),
-                                        buttonColor: Color(0xFF53aeb7),
-                                        dialogColor: Color(0xFF53aeb7)))
+                                        buttonColor: Color(0xFF383838),
+                                        dialogColor: Color(0xFF383838)))
                               ],
-                            )))
+                            ))),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: ScrollConfiguration(
+                          behavior: ScrollConfiguration.of(context)
+                              .copyWith(scrollbars: false),
+                          child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                            top: 20,
+                                            left: 20,
+                                          ),
+                                          child: CyberTips(
+                                            image: 'images/update.jpg',
+                                            backColor: Color(0xFF333333),
+                                            title: 'Up-to-date devices!',
+                                            content: 'update_device',
+                                          )),
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                            top: 20,
+                                            left: 20,
+                                          ),
+                                          child: CyberTips(
+                                            image: 'images/password.jpeg',
+                                            backColor: Color(0xFF333333),
+                                            title: 'Use strong passwords!',
+                                            content: 'password',
+                                          )),
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                            top: 20,
+                                            left: 20,
+                                          ),
+                                          child: CyberTips(
+                                            image: 'images/wifi.png',
+                                            backColor: Color(0xFF333333),
+                                            title: 'Public Wi-Fi!',
+                                            content: 'wifi',
+                                          )),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  )
+                                ],
+                              ))),
+                    ),
                   ],
                 )),
           ],
@@ -287,13 +353,13 @@ class AttackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(15)),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
             child: SizedBox(
                 width: 250,
                 child: ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(buttonColor)),
+                    style: ElevatedButton.styleFrom(
+                      primary: buttonColor,
+                    ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -351,11 +417,95 @@ class AttackButton extends StatelessWidget {
                                 finalParagraph,
                               ],
                             ),
-                            elevation: 24.0,
+                            elevation: 50.0,
                           );
                         },
                       );
                     }))));
+  }
+}
+
+class CyberTips extends StatefulWidget {
+  final String image;
+  final String content;
+  final String title;
+  final Color backColor;
+
+  CyberTips({
+    Key? key,
+    required this.image,
+    required this.content,
+    required this.backColor,
+    required this.title,
+  }) : super(key: key);
+
+  DocumentReference docRef =
+      FirebaseFirestore.instance.collection('content').doc('tips');
+
+  @override
+  _CyberTipsState createState() => _CyberTipsState();
+}
+
+class _CyberTipsState extends State<CyberTips> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        padding: EdgeInsets.only(
+          top: 30,
+          left: 10,
+        ),
+        width: 370,
+        height: 600,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(15)),
+          boxShadow: [
+            BoxShadow(
+                color: Color(0xFF555555).withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 10,
+                offset: Offset(0, 0)),
+          ],
+          color: widget.backColor,
+        ),
+        child: Column(
+          children: [
+            Center(
+              child: Text(
+                widget.title,
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            Image.asset(
+              widget.image,
+              width: 250,
+              height: 200,
+            ),
+            FutureBuilder<DocumentSnapshot>(
+                future: widget.docRef.get(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<DocumentSnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return const Text("Something went wrong");
+                  }
+
+                  if (snapshot.hasData && !snapshot.data!.exists) {
+                    return const Text("Document does not exist");
+                  }
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    Map<String, dynamic> data =
+                        snapshot.data!.data() as Map<String, dynamic>;
+                    return Text(
+                      data[widget.content],
+                      style: TextStyle(fontSize: 20),
+                    );
+                  }
+
+                  return Text('Fetching data');
+                }),
+          ],
+        ));
   }
 }
 
@@ -368,8 +518,9 @@ class Menu extends StatelessWidget {
     var media = MediaQuery.of(context).size;
     return Container(
         decoration: BoxDecoration(
-            border: Border.all(color: Colors.blueGrey, width: 5),
-            borderRadius: BorderRadius.all(Radius.circular(15))),
+            border: Border(
+          right: BorderSide(width: 3, color: Colors.blueGrey),
+        )),
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -401,15 +552,6 @@ class Menu extends StatelessWidget {
                 // Update the state of the app.
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => Quiz()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.edit),
-              title: const Text('Test your cyber skills'),
-              onTap: () {
-                // Update the state of the app.
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => ReTest()));
               },
             ),
             ListTile(

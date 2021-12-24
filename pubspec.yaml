@@ -40,6 +40,7 @@ dependencies:
   webviewx: ^0.2.1
   url_launcher: ^6.0.15
   flutter_animated_dialog: ^2.0.1
+  flutter_animator: ^3.2.0
 
  
 
@@ -76,6 +77,7 @@ flutter:
               
   assets:     
     - assets/images/
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
