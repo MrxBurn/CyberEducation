@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:webviewx/webviewx.dart';
-import 'package:flutter_animator/flutter_animator.dart';
+import 'package:animate_do/animate_do.dart';
 
 import 'quiz.dart';
 
@@ -162,11 +162,13 @@ class _HomepageState extends State<Homepage> {
                     Align(
                         alignment: Alignment.topLeft,
                         child: SingleChildScrollView(
+                            physics: BouncingScrollPhysics(
+                                parent: AlwaysScrollableScrollPhysics()),
                             controller: scrollController,
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               children: [
-                                media.width < 600
+                                media.width < 1300
                                     ? Padding(
                                         padding: EdgeInsets.only(
                                           left: 20,
@@ -179,7 +181,10 @@ class _HomepageState extends State<Homepage> {
                                                   Radius.circular(15)),
                                               color: Colors.blueGrey,
                                             ),
-                                            child: Icon(Icons.arrow_forward)))
+                                            child: Pulse(
+                                                infinite: true,
+                                                child:
+                                                    Icon(Icons.arrow_forward))))
                                     : Container(),
                                 Padding(
                                     padding: EdgeInsets.only(left: 20),
@@ -261,60 +266,142 @@ class _HomepageState extends State<Homepage> {
                                             "\nYou can avoid being infected by a worm using common anti-malware advice. Use antivirus software,"
                                             "keep your computer up to date, and never open links or files which you don't completely trust. "),
                                         buttonColor: Color(0xFF383838),
-                                        dialogColor: Color(0xFF383838)))
+                                        dialogColor: Color(0xFF383838))),
+                                Padding(
+                                    padding: EdgeInsets.only(left: 10),
+                                    child: AttackButton(
+                                        heading: Text('Computer Worm'),
+                                        image: 'images/brute_large.png',
+                                        smallImage: 'images/brute_small.png',
+                                        subtitle: Text(
+                                            "A brute force attack uses trial-and-error to guess login info, encryption keys, or find a hidden web page. Hackers work through all possible combinations hoping to guess correctly."),
+                                        attackDefinition: Text(
+                                            "These attacks are done by ‘brute force’ meaning they use excessive forceful attempts to try and ‘force’ their way into your private account(s)."
+                                            "This is an old attack method, but it's"
+                                            "still effective and popular with hackers. Because"
+                                            "depending on the length and complexity of the password,"
+                                            "cracking it can take anywhere from a few seconds to many years."),
+                                        finalParagraph: Text(
+                                            "How to protect yourself from this attack?"
+                                            "\nUse an advanced username and password. "
+                                            "Protect yourself with credentials that are stronger "
+                                            "than admin and password1234 to keep out these attackers. "
+                                            "The stronger this combination is, the harder it will be"
+                                            " for anyone to penetrate it."
+                                            " \nRemove any unused accounts with high-level permissions. These are the cyber"
+                                            "equivalent of doors with weak locks that make breaking in easy."
+                                            "Unmaintained accounts are a vulnerability you can’t risk."
+                                            "Throw them away as soon as possible. "),
+                                        buttonColor: Color(0xFF383838),
+                                        dialogColor: Color(0xFF383838))),
+                                SizedBox(
+                                  height: 100,
+                                ),
                               ],
                             ))),
+
                     Align(
                       alignment: Alignment.topLeft,
-                      child: ScrollConfiguration(
-                          behavior: ScrollConfiguration.of(context)
-                              .copyWith(scrollbars: false),
-                          child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Column(
+                      child: SingleChildScrollView(
+                          physics: BouncingScrollPhysics(
+                              parent: AlwaysScrollableScrollPhysics()),
+                          scrollDirection: Axis.horizontal,
+                          child: Column(
+                            children: [
+                              Row(
                                 children: [
-                                  Row(
-                                    children: [
-                                      Padding(
-                                          padding: EdgeInsets.only(
-                                            top: 20,
-                                            left: 20,
+                                  Padding(
+                                      padding: EdgeInsets.only(
+                                        left: 20,
+                                      ),
+                                      child: Container(
+                                          width: 60,
+                                          height: 60,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(15)),
+                                            color: Colors.blueGrey,
                                           ),
-                                          child: CyberTips(
-                                            image: 'images/update.jpg',
-                                            backColor: Color(0xFF333333),
-                                            title: 'Up-to-date devices!',
-                                            content: 'update_device',
-                                          )),
-                                      Padding(
-                                          padding: EdgeInsets.only(
-                                            top: 20,
-                                            left: 20,
-                                          ),
-                                          child: CyberTips(
-                                            image: 'images/password.jpeg',
-                                            backColor: Color(0xFF333333),
-                                            title: 'Use strong passwords!',
-                                            content: 'password',
-                                          )),
-                                      Padding(
-                                          padding: EdgeInsets.only(
-                                            top: 20,
-                                            left: 20,
-                                          ),
-                                          child: CyberTips(
-                                            image: 'images/wifi.png',
-                                            backColor: Color(0xFF333333),
-                                            title: 'Public Wi-Fi!',
-                                            content: 'wifi',
-                                          )),
-                                    ],
-                                  ),
+                                          child: Pulse(
+                                              infinite: true,
+                                              child:
+                                                  Icon(Icons.arrow_forward)))),
+                                  Padding(
+                                      padding: EdgeInsets.only(
+                                        top: 20,
+                                        left: 20,
+                                      ),
+                                      child: CyberTips(
+                                        image: 'images/update.jpg',
+                                        backColor: Color(0xFFa29884),
+                                        title: 'Up-to-date devices!',
+                                        content: 'update_device',
+                                      )),
+                                  Padding(
+                                      padding: EdgeInsets.only(
+                                        top: 20,
+                                        left: 20,
+                                      ),
+                                      child: CyberTips(
+                                        image: 'images/password.jpeg',
+                                        backColor: Color(0xFFa29884),
+                                        title: 'Use strong passwords!',
+                                        content: 'password',
+                                      )),
+                                  Padding(
+                                      padding: EdgeInsets.only(
+                                        top: 20,
+                                        left: 20,
+                                      ),
+                                      child: CyberTips(
+                                        image: 'images/wifi.png',
+                                        backColor: Color(0xFFa29884),
+                                        title: 'Public Wi-Fi!',
+                                        content: 'wifi',
+                                      )),
+                                  Padding(
+                                      padding: EdgeInsets.only(
+                                        top: 20,
+                                        left: 20,
+                                      ),
+                                      child: CyberTips(
+                                        image: 'images/backup.jpg',
+                                        backColor: Color(0xFFa29884),
+                                        title: 'Back-up Data!',
+                                        content: 'backup',
+                                      )),
+                                  Padding(
+                                      padding: EdgeInsets.only(
+                                        top: 20,
+                                        left: 20,
+                                      ),
+                                      child: CyberTips(
+                                        image: 'images/family.jpg',
+                                        backColor: Color(0xFFa29884),
+                                        title: 'Educate your family!',
+                                        content: 'family',
+                                      )),
+                                  Padding(
+                                      padding: EdgeInsets.only(
+                                        top: 20,
+                                        left: 20,
+                                      ),
+                                      child: CyberTips(
+                                        image: 'images/personal.png',
+                                        backColor: Color(0xFFa29884),
+                                        title: 'Sharing personal data!',
+                                        content: 'personal_information',
+                                      )),
                                   SizedBox(
-                                    height: 30,
-                                  )
+                                    width: 20,
+                                  ),
                                 ],
-                              ))),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              )
+                            ],
+                          )),
                     ),
                   ],
                 )),
@@ -407,16 +494,18 @@ class AttackButton extends StatelessWidget {
                                 heading
                               ],
                             ),
-                            content: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                subtitle,
-                                attackDefinition,
-                                Image.asset(image),
-                                finalParagraph,
-                              ],
-                            ),
+                            content: SizedBox(
+                                width: 700,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    subtitle,
+                                    attackDefinition,
+                                    Image.asset(image),
+                                    finalParagraph,
+                                  ],
+                                )),
                             elevation: 50.0,
                           );
                         },
@@ -457,14 +546,15 @@ class _CyberTipsState extends State<CyberTips> {
         width: 370,
         height: 600,
         decoration: BoxDecoration(
+          border: Border.all(width: 1.5, color: Color(0xFFdbe1e4)),
           borderRadius: BorderRadius.all(Radius.circular(15)),
-          boxShadow: [
-            BoxShadow(
-                color: Color(0xFF555555).withOpacity(0.5),
-                spreadRadius: 2,
-                blurRadius: 10,
-                offset: Offset(0, 0)),
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //       color: Colors.grey.withOpacity(0.5),
+          //       spreadRadius: 4,
+          //       blurRadius: 10,
+          //       offset: Offset(0, 0)),
+          // ],
           color: widget.backColor,
         ),
         child: Column(

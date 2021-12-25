@@ -41,6 +41,7 @@ dependencies:
   url_launcher: ^6.0.15
   flutter_animated_dialog: ^2.0.1
   flutter_animator: ^3.2.0
+  animate_do: ^2.0.0
 
  
 
