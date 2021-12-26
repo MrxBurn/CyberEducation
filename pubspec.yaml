@@ -105,3 +105,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  fonts:
+    - family: Mechanismo
+      fonts:
+        - asset: assets/fonts/mechanismo.otf
+    - family: Robotronika
+      fonts:
+        - asset: assets/fonts/robotronika.ttf

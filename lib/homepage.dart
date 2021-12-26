@@ -69,80 +69,13 @@ class _HomepageState extends State<Homepage> {
                 child: Column(
                   children: [
                     Center(
-                      child: FutureBuilder<DocumentSnapshot>(
-                        future: userName.get(),
-                        builder: (BuildContext context,
-                            AsyncSnapshot<DocumentSnapshot> snapshot) {
-                          if (snapshot.hasError) {
-                            return const Text("Something went wrong");
-                          }
-
-                          if (snapshot.hasData && !snapshot.data!.exists) {
-                            return const Text("Document does not exist");
-                          }
-
-                          if (snapshot.connectionState ==
-                              ConnectionState.done) {
-                            Map<String, dynamic> data =
-                                snapshot.data!.data() as Map<String, dynamic>;
-
-                            return Align(
-                              alignment: Alignment.topLeft,
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                  top: 10,
-                                  left: 30,
-                                ),
-                                child: Container(
-                                  height: 150,
-                                  width: 200,
-                                  decoration: BoxDecoration(
-                                      color: Colors.blueGrey,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(15))),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                          padding: const EdgeInsets.only(
-                                            top: 20,
-                                            left: 10,
-                                          ),
-                                          child: Text(
-                                            "Welcome ${data['firstName']}",
-                                            style: const TextStyle(
-                                              fontSize: 20,
-                                            ),
-                                          )),
-                                      Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 10, left: 10),
-                                          child: Text(
-                                            " Quiz Score: ${data['score_quiz']}",
-                                            style: const TextStyle(
-                                              fontSize: 18,
-                                            ),
-                                          )),
-                                      Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 10, left: 10),
-                                          child: Text(
-                                            " Test Score: ${data['score_test']}",
-                                            style: const TextStyle(
-                                              fontSize: 18,
-                                            ),
-                                          ))
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          }
-                          return const Text("Fetching Data..");
-                        },
-                      ),
-                    ),
+                        child: Text(
+                      'Cyber Education',
+                      style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          fontSize: 50,
+                          fontFamily: 'Mechanismo'),
+                    )),
                     // Most used cyber attacks section
                     Align(
                         alignment: Alignment.topLeft,
@@ -151,8 +84,8 @@ class _HomepageState extends State<Homepage> {
                           child: Text(
                             'Protect yourself online',
                             style: TextStyle(
+                              fontFamily: 'Mechanismo',
                               fontSize: 35,
-                              decoration: TextDecoration.underline,
                             ),
                           ),
                         )),
@@ -190,7 +123,7 @@ class _HomepageState extends State<Homepage> {
                                     padding: EdgeInsets.only(left: 20),
                                     child: AttackButton(
                                       dialogColor: Color(0xFF383838),
-                                      buttonColor: Color(0xFF383838),
+                                      buttonColor: Color(0xffbb243c),
                                       heading: Text('Malware attacks'),
                                       image: 'images/ransomware.png',
                                       smallImage: 'images/malware.png',
@@ -205,7 +138,7 @@ class _HomepageState extends State<Homepage> {
                                     padding: EdgeInsets.only(left: 10),
                                     child: AttackButton(
                                         dialogColor: Color(0xFF383838),
-                                        buttonColor: Color(0xFF383838),
+                                        buttonColor: Color(0xff144c64),
                                         heading: Text('Phishing'),
                                         image: 'images/amazon.png',
                                         smallImage: 'images/phishing.png',
@@ -225,7 +158,7 @@ class _HomepageState extends State<Homepage> {
                                     padding: EdgeInsets.only(left: 10),
                                     child: AttackButton(
                                         dialogColor: Color(0xFF383838),
-                                        buttonColor: Color(0xFF383838),
+                                        buttonColor: Color(0xff35746c),
                                         heading: Text('DDoS'),
                                         image: 'images/ddos.png',
                                         smallImage: 'images/ddosGood.png',
@@ -252,7 +185,7 @@ class _HomepageState extends State<Homepage> {
                                     child: AttackButton(
                                         heading: Text('Computer Worm'),
                                         image: 'images/worm_large.png',
-                                        smallImage: 'images/worm_small.jpg',
+                                        smallImage: 'images/worm_small.png',
                                         subtitle: Text(
                                             'A computer worm is a standalone malware computer program that replicates itself in order to spread to other computers.\n'),
                                         attackDefinition: Text(
@@ -265,12 +198,12 @@ class _HomepageState extends State<Homepage> {
                                         finalParagraph: Text(
                                             "\nYou can avoid being infected by a worm using common anti-malware advice. Use antivirus software,"
                                             "keep your computer up to date, and never open links or files which you don't completely trust. "),
-                                        buttonColor: Color(0xFF383838),
-                                        dialogColor: Color(0xFF383838))),
+                                        buttonColor: Color(0xff88bcbc),
+                                        dialogColor: Color(0xff637f80))),
                                 Padding(
                                     padding: EdgeInsets.only(left: 10),
                                     child: AttackButton(
-                                        heading: Text('Computer Worm'),
+                                        heading: Text('Brute Force Attack'),
                                         image: 'images/brute_large.png',
                                         smallImage: 'images/brute_small.png',
                                         subtitle: Text(
@@ -292,8 +225,8 @@ class _HomepageState extends State<Homepage> {
                                             "equivalent of doors with weak locks that make breaking in easy."
                                             "Unmaintained accounts are a vulnerability you can’t risk."
                                             "Throw them away as soon as possible. "),
-                                        buttonColor: Color(0xFF383838),
-                                        dialogColor: Color(0xFF383838))),
+                                        buttonColor: Color(0xffab933c),
+                                        dialogColor: Color(0xff53aeb7))),
                                 SizedBox(
                                   height: 100,
                                 ),
@@ -310,32 +243,35 @@ class _HomepageState extends State<Homepage> {
                             children: [
                               Row(
                                 children: [
-                                  Padding(
-                                      padding: EdgeInsets.only(
-                                        left: 20,
-                                      ),
-                                      child: Container(
-                                          width: 60,
-                                          height: 60,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(15)),
-                                            color: Colors.blueGrey,
+                                  media.width < 1300
+                                      ? Padding(
+                                          padding: EdgeInsets.only(
+                                            left: 20,
                                           ),
-                                          child: Pulse(
-                                              infinite: true,
-                                              child:
-                                                  Icon(Icons.arrow_forward)))),
+                                          child: Container(
+                                              width: 60,
+                                              height: 60,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(15)),
+                                                color: Colors.blueGrey,
+                                              ),
+                                              child: Pulse(
+                                                  infinite: true,
+                                                  child: Icon(
+                                                      Icons.arrow_forward))))
+                                      : Container(),
                                   Padding(
                                       padding: EdgeInsets.only(
                                         top: 20,
                                         left: 20,
                                       ),
                                       child: CyberTips(
-                                        image: 'images/update.jpg',
-                                        backColor: Color(0xFFa29884),
+                                        image: 'images/update.png',
+                                        backColor: Color(0xFF383c40),
                                         title: 'Up-to-date devices!',
                                         content: 'update_device',
+                                        colorTop: Color(0xffdc8665),
                                       )),
                                   Padding(
                                       padding: EdgeInsets.only(
@@ -343,8 +279,9 @@ class _HomepageState extends State<Homepage> {
                                         left: 20,
                                       ),
                                       child: CyberTips(
-                                        image: 'images/password.jpeg',
-                                        backColor: Color(0xFFa29884),
+                                        colorTop: Color(0xff138085),
+                                        image: 'images/password.png',
+                                        backColor: Color(0xFF383c40),
                                         title: 'Use strong passwords!',
                                         content: 'password',
                                       )),
@@ -354,8 +291,9 @@ class _HomepageState extends State<Homepage> {
                                         left: 20,
                                       ),
                                       child: CyberTips(
+                                        colorTop: Color(0xff544667),
                                         image: 'images/wifi.png',
-                                        backColor: Color(0xFFa29884),
+                                        backColor: Color(0xFF383c40),
                                         title: 'Public Wi-Fi!',
                                         content: 'wifi',
                                       )),
@@ -365,8 +303,9 @@ class _HomepageState extends State<Homepage> {
                                         left: 20,
                                       ),
                                       child: CyberTips(
-                                        image: 'images/backup.jpg',
-                                        backColor: Color(0xFFa29884),
+                                        colorTop: Color(0xffce7672),
+                                        image: 'images/backup.png',
+                                        backColor: Color(0xFF383c40),
                                         title: 'Back-up Data!',
                                         content: 'backup',
                                       )),
@@ -376,8 +315,9 @@ class _HomepageState extends State<Homepage> {
                                         left: 20,
                                       ),
                                       child: CyberTips(
-                                        image: 'images/family.jpg',
-                                        backColor: Color(0xFFa29884),
+                                        colorTop: Color(0xffeeb462),
+                                        image: 'images/family.png',
+                                        backColor: Color(0xFF383c40),
                                         title: 'Educate your family!',
                                         content: 'family',
                                       )),
@@ -387,8 +327,9 @@ class _HomepageState extends State<Homepage> {
                                         left: 20,
                                       ),
                                       child: CyberTips(
+                                        colorTop: Color(0xffccabda),
                                         image: 'images/personal.png',
-                                        backColor: Color(0xFFa29884),
+                                        backColor: Color(0xFF383c40),
                                         title: 'Sharing personal data!',
                                         content: 'personal_information',
                                       )),
@@ -519,9 +460,11 @@ class CyberTips extends StatefulWidget {
   final String content;
   final String title;
   final Color backColor;
+  final Color colorTop;
 
   CyberTips({
     Key? key,
+    required this.colorTop,
     required this.image,
     required this.content,
     required this.backColor,
@@ -540,13 +483,13 @@ class _CyberTipsState extends State<CyberTips> {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.only(
-          top: 30,
-          left: 10,
+          top: 0,
+          left: 0,
         ),
         width: 370,
         height: 600,
         decoration: BoxDecoration(
-          border: Border.all(width: 1.5, color: Color(0xFFdbe1e4)),
+          border: Border.all(width: 1, color: Color(0xFFdbe1e4)),
           borderRadius: BorderRadius.all(Radius.circular(15)),
           // boxShadow: [
           //   BoxShadow(
@@ -560,40 +503,65 @@ class _CyberTipsState extends State<CyberTips> {
         child: Column(
           children: [
             Center(
-              child: Text(
-                widget.title,
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
+                child: Container(
+                    width: 500,
+                    height: 250,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      color: widget.colorTop,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.white.withOpacity(0.4),
+                            spreadRadius: 2,
+                            blurRadius: 3,
+                            offset: Offset(0, 4)),
+                      ],
+                    ),
+                    child: Column(children: [
+                      Padding(
+                          padding: EdgeInsets.only(top: 10),
+                          child: Text(
+                            widget.title,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              decoration: TextDecoration.underline,
+                            ),
+                          )),
+                      Image.asset(
+                        widget.image,
+                        width: 250,
+                        height: 200,
+                      ),
+                    ]))),
+            SizedBox(
+              height: 20,
             ),
-            Image.asset(
-              widget.image,
-              width: 250,
-              height: 200,
-            ),
-            FutureBuilder<DocumentSnapshot>(
-                future: widget.docRef.get(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<DocumentSnapshot> snapshot) {
-                  if (snapshot.hasError) {
-                    return const Text("Something went wrong");
-                  }
+            Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: FutureBuilder<DocumentSnapshot>(
+                  future: widget.docRef.get(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<DocumentSnapshot> snapshot) {
+                    if (snapshot.hasError) {
+                      return const Text("Something went wrong");
+                    }
 
-                  if (snapshot.hasData && !snapshot.data!.exists) {
-                    return const Text("Document does not exist");
-                  }
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    Map<String, dynamic> data =
-                        snapshot.data!.data() as Map<String, dynamic>;
-                    return Text(
-                      data[widget.content],
-                      style: TextStyle(fontSize: 20),
-                    );
-                  }
+                    if (snapshot.hasData && !snapshot.data!.exists) {
+                      return const Text("Document does not exist");
+                    }
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      Map<String, dynamic> data =
+                          snapshot.data!.data() as Map<String, dynamic>;
+                      return Text(
+                        data[widget.content],
+                        style: TextStyle(fontSize: 20),
+                      );
+                    }
 
-                  return Text('Fetching data');
-                }),
+                    return Text('Fetching data');
+                  }),
+            )
           ],
         ));
   }
@@ -601,7 +569,11 @@ class _CyberTipsState extends State<CyberTips> {
 
 //Hamburger Menu
 class Menu extends StatelessWidget {
-  const Menu({Key? key}) : super(key: key);
+  DocumentReference userName = FirebaseFirestore.instance
+      .collection('users')
+      .doc(FirebaseAuth.instance.currentUser!.uid);
+
+  Menu({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -614,6 +586,77 @@ class Menu extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
+            DrawerHeader(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  FutureBuilder<DocumentSnapshot>(
+                    future: userName.get(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<DocumentSnapshot> snapshot) {
+                      if (snapshot.hasError) {
+                        return const Text("Something went wrong");
+                      }
+
+                      if (snapshot.hasData && !snapshot.data!.exists) {
+                        return const Text("Document does not exist");
+                      }
+
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        Map<String, dynamic> data =
+                            snapshot.data!.data() as Map<String, dynamic>;
+
+                        return Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              top: 0,
+                              left: 0,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 20,
+                                      left: 10,
+                                    ),
+                                    child: Text(
+                                      "Welcome ${data['firstName']}",
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                      ),
+                                    )),
+                                Padding(
+                                    padding: EdgeInsets.only(top: 10, left: 10),
+                                    child: Text(
+                                      "1st score: ${data['score_quiz']}",
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    )),
+                                Padding(
+                                    padding: EdgeInsets.only(top: 10, left: 10),
+                                    child: Text(
+                                      "2nd score: ${data['score_test']}",
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    ))
+                              ],
+                            ),
+                          ),
+                        );
+                      }
+                      return const Text("Fetching Data..");
+                    },
+                  ),
+                ],
+              ),
+              decoration: BoxDecoration(
+                color: Color(0xff6e7f80),
+              ),
+            ),
             Padding(
                 padding: EdgeInsets.only(
                   top: 30,
