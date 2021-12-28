@@ -28,7 +28,7 @@ class _QuizState extends State<Quiz> {
 
   //Variables
   double heightBehaviour = 800;
-  double heightQuestions = 400;
+  double heightQuestions = 40;
 
   bool _customTileExpanded = false;
 
@@ -49,6 +49,8 @@ class _QuizState extends State<Quiz> {
 
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
+
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -70,17 +72,21 @@ class _QuizState extends State<Quiz> {
             decoration: BoxDecoration(
                 image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: AssetImage('images/quiz_background.gif'))),
+                    image: AssetImage('assets/images/quiz_background.jpg'))),
             child: SingleChildScrollView(
                 controller: Score.scrollController,
-                physics: NeverScrollableScrollPhysics(),
-                child: Column(
+                physics: media.width > 600 && media.height > 400
+                    ? NeverScrollableScrollPhysics()
+                    : BouncingScrollPhysics(
+                        parent: AlwaysScrollableScrollPhysics()),
+                child: ListView(
+                  shrinkWrap: true,
                   children: [
                     SizedBox(
                       height: 20,
                     ),
                     SizedBox(
-                        width: 600,
+                        width: 400,
                         child: ClipRRect(
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                           child: ExpansionTile(
@@ -91,7 +97,7 @@ class _QuizState extends State<Quiz> {
                               style:
                                   TextStyle(fontSize: 25, color: Colors.white),
                             ),
-                            leading: Image.asset('images/stop.png'),
+                            leading: Image.asset('assets/images/stop.png'),
                             subtitle: Text(
                               'Scoring system',
                               style: TextStyle(color: Colors.white),
@@ -122,7 +128,7 @@ class _QuizState extends State<Quiz> {
                       height: 30,
                     ),
                     Questions(
-                      'images/malware_quiz.jpeg',
+                      'assets/images/malware_quiz.jpeg',
                       '1. What is a malware?',
                       'Designed to damage computers, servers or any other devices',
                       "Used to get user's credentials",
@@ -138,7 +144,7 @@ class _QuizState extends State<Quiz> {
                       height: heightQuestions,
                     ),
                     Questions(
-                      'images/cyberattack.jpg',
+                      'assets/images/cyberattack.jpg',
                       '2. What is the most used cyber-attack?',
                       'DDoS',
                       'Ransomware',
@@ -154,7 +160,7 @@ class _QuizState extends State<Quiz> {
                       height: heightQuestions,
                     ),
                     Questions(
-                      'images/ransomware_quiz.png',
+                      'assets/images/ransomware_quiz.png',
                       '3. What type of attack is this?',
                       'Phishing',
                       'Ransomware',
@@ -170,7 +176,7 @@ class _QuizState extends State<Quiz> {
                       height: heightQuestions,
                     ),
                     Questions(
-                        'images/phishing_quiz.png',
+                        'assets/images/phishing_quiz.png',
                         '4. What type of attack is this?',
                         'Man in the middle attack',
                         'SQL Injection',
@@ -185,7 +191,7 @@ class _QuizState extends State<Quiz> {
                       height: heightQuestions,
                     ),
                     Questions(
-                        'images/ddos_quiz.jpg',
+                        'assets/images/ddos_quiz.jpg',
                         '5. What is a DDoS attack?',
                         "Destroys people's internet connections",
                         'Steals private data',
@@ -200,7 +206,7 @@ class _QuizState extends State<Quiz> {
                       height: heightQuestions,
                     ),
                     Questions(
-                        'images/ransomware_quiz2.png',
+                        'assets/images/ransomware_quiz2.png',
                         '6. What should you do if you get a ransom attack?',
                         "Ignore the threat",
                         'Turn off all the infected systems and get specialist help',
@@ -215,7 +221,7 @@ class _QuizState extends State<Quiz> {
                       height: heightQuestions,
                     ),
                     Questions(
-                        'images/worm.png',
+                        'assets/images/worm.png',
                         '7. What is a computer worm?',
                         "Malware that replicates itself to spread to other computers",
                         'Malware that downloads on a computer disguised as a legitimate program',
@@ -230,7 +236,7 @@ class _QuizState extends State<Quiz> {
                       height: heightQuestions,
                     ),
                     Questions(
-                        'images/computer_virus.png',
+                        'assets/images/computer_virus.png',
                         '8. What is the best way to defend yourself from computer viruses?',
                         "Update apps, two-factor authentication, use a VPN",
                         'Accept cookies, save all your passwords in one place',
@@ -245,7 +251,7 @@ class _QuizState extends State<Quiz> {
                       height: heightQuestions,
                     ),
                     Questions(
-                        'images/firewall.png',
+                        'assets/images/firewall.png',
                         '9. What is a Firewall and why is it used?',
                         "A system that controls incoming and outgoing network traffic",
                         'Study of techniques for secure communication',
@@ -260,7 +266,7 @@ class _QuizState extends State<Quiz> {
                       height: heightQuestions,
                     ),
                     Questions(
-                        'images/brute_force.jpg',
+                        'assets/images/brute_force.jpg',
                         '10. How to prevent a Brute Force Attack',
                         "Install a VPN",
                         'Make your passwords more complex',
@@ -452,8 +458,10 @@ class _QuestionsState extends State<Questions> {
 
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
+
     void scrollPage() {
-      Score.scrollController.animateTo(widget.offset,
+      Score.scrollController.animateTo(media.height,
           duration: Duration(seconds: 1), curve: Curves.easeInOut);
     }
 
@@ -461,7 +469,7 @@ class _QuestionsState extends State<Questions> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Container(
             alignment: Alignment.center,
-            height: 100,
+            height: media.width > 600 ? 100 : 50,
             child: Text(
               text,
               style: TextStyle(fontSize: 30, color: Colors.white),
@@ -476,8 +484,8 @@ class _QuestionsState extends State<Questions> {
     }
 
     return Container(
-        width: 700,
-        height: 1000,
+        width: 500,
+        height: media.width >= 600 ? 800 : 300,
         decoration: BoxDecoration(
           border: Border.all(width: 1, color: Color(0xFFdbe1e4)),
           borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -493,7 +501,7 @@ class _QuestionsState extends State<Questions> {
                     ),
                     child: Container(
                         width: 700,
-                        height: 600,
+                        height: media.width >= 600 ? 500 : 200,
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
