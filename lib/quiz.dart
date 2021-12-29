@@ -28,7 +28,7 @@ class _QuizState extends State<Quiz> {
 
   //Variables
   double heightBehaviour = 800;
-  double heightQuestions = 40;
+  double heightQuestions = 400;
 
   bool _customTileExpanded = false;
 
@@ -85,45 +85,48 @@ class _QuizState extends State<Quiz> {
                     SizedBox(
                       height: 20,
                     ),
-                    SizedBox(
-                        width: 400,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          child: ExpansionTile(
-                            backgroundColor: Color(0xffde956d),
-                            collapsedBackgroundColor: Color(0xfff7a579),
-                            title: Text(
-                              'Rules!',
-                              style:
-                                  TextStyle(fontSize: 25, color: Colors.white),
-                            ),
-                            leading: Image.asset('assets/images/stop.png'),
-                            subtitle: Text(
-                              'Scoring system',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            trailing: Icon(_customTileExpanded
-                                ? Icons.arrow_drop_down_circle
-                                : Icons.arrow_drop_down),
-                            children: [
-                              SizedBox(
-                                height: 10,
+                    Align(
+                        alignment: Alignment.topCenter,
+                        child: SizedBox(
+                            width: 400,
+                            child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                              child: ExpansionTile(
+                                backgroundColor: Color(0xffde956d),
+                                collapsedBackgroundColor: Color(0xfff7a579),
+                                title: Text(
+                                  'Rules!',
+                                  style: TextStyle(
+                                      fontSize: 25, color: Colors.white),
+                                ),
+                                leading: Image.asset('assets/images/stop.png'),
+                                subtitle: Text(
+                                  'Scoring system',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                trailing: Icon(_customTileExpanded
+                                    ? Icons.arrow_drop_down_circle
+                                    : Icons.arrow_drop_down),
+                                children: [
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Padding(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        'The first 5 questions are testing to see if you have knowledge'
+                                        ' about any of the most used cyberattacks in the world.'
+                                        ' \nIf your answer is correct, you will get 1 mark'
+                                        ' \nTotal Score of this quiz: 35'
+                                        '\n',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                        ),
+                                      ))
+                                ],
                               ),
-                              Padding(
-                                  padding: EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    'The first 5 questions are testing to see if you have knowledge'
-                                    ' about any of the most used cyberattacks in the world.'
-                                    ' \nIf your answer is correct, you will get 1 mark'
-                                    ' \nTotal Score of this quiz: 35'
-                                    '\n',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                    ),
-                                  ))
-                            ],
-                          ),
-                        )),
+                            ))),
                     SizedBox(
                       height: 30,
                     ),
@@ -483,176 +486,180 @@ class _QuestionsState extends State<Questions> {
       ));
     }
 
-    return Container(
-        width: 500,
-        height: media.width >= 600 ? 800 : 300,
-        decoration: BoxDecoration(
-          border: Border.all(width: 1, color: Color(0xFFdbe1e4)),
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-          color: widget.colorBot,
-        ),
-        child: Column(
-          children: [
-            Align(
-                alignment: Alignment.topCenter,
-                child: Padding(
-                    padding: EdgeInsets.only(
-                      top: 0,
-                    ),
-                    child: Container(
-                        width: 700,
-                        height: media.width >= 600 ? 500 : 200,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.white.withOpacity(0.4),
-                                spreadRadius: 2,
-                                blurRadius: 3,
-                                offset: Offset(0, 4)),
-                          ],
-                          border:
-                              Border.all(width: 1, color: Color(0xFFdbe1e4)),
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          color: widget.colorTop,
+    return Align(
+        alignment: Alignment.topCenter,
+        child: Container(
+            width: 500,
+            height: media.width >= 600 ? 800 : 300,
+            decoration: BoxDecoration(
+              border: Border.all(width: 1, color: Color(0xFFdbe1e4)),
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              color: widget.colorBot,
+            ),
+            child: Column(
+              children: [
+                Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                        padding: EdgeInsets.only(
+                          top: 0,
                         ),
-                        child: Column(children: [
-                          Text(
-                            widget.question,
+                        child: Container(
+                            width: 700,
+                            height: media.width >= 600 ? 500 : 200,
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.white.withOpacity(0.4),
+                                    spreadRadius: 2,
+                                    blurRadius: 3,
+                                    offset: Offset(0, 4)),
+                              ],
+                              border: Border.all(
+                                  width: 1, color: Color(0xFFdbe1e4)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                              color: widget.colorTop,
+                            ),
+                            child: Column(children: [
+                              Text(
+                                widget.question,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 38,
+                                ),
+                              ),
+                              Image.asset(
+                                widget.imagePath,
+                                height: 400,
+                                width: 500,
+                              ),
+                            ])))),
+                Padding(
+                    padding: EdgeInsets.only(
+                      top: 40,
+                    ),
+                    child: SizedBox(
+                      width: 300,
+                      height: 60,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                Color(0xFF304e60),
+                              ),
+                            ),
+                            child: Text(
+                              widget.answer1,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
+                            onPressed: widget.questionsAnswered == false
+                                ? () {
+                                    setState(() {
+                                      if (widget.iscorrectAnswer1 == true) {
+                                        scrollPage();
+                                        createSnackBar(
+                                            'Correct!', Color(0xFFa4d2ac));
+                                        disableButton();
+                                        Score.score++;
+                                      } else {
+                                        scrollPage();
+                                        disableButton();
+                                        createSnackBar(
+                                            'Wrong Answer!', Color(0xFFEA4C46));
+                                      }
+                                    });
+                                  }
+                                : null),
+                      ),
+                    )),
+                Padding(
+                    padding: EdgeInsets.only(
+                      top: 10,
+                    ),
+                    child: SizedBox(
+                      width: 300,
+                      height: 60,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Color(0xFF565462))),
+                            child: Text(
+                              widget.answer2,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
+                            onPressed: widget.questionsAnswered == false
+                                ? () {
+                                    setState(() {
+                                      if (widget.iscorrectAnswer2 == true) {
+                                        scrollPage();
+                                        createSnackBar(
+                                            'Correct!', Color(0xFFa4d2ac));
+                                        disableButton();
+                                        Score.score++;
+                                      } else {
+                                        scrollPage();
+                                        disableButton();
+                                        createSnackBar(
+                                            'Wrong answer!', Color(0xFFEA4C46));
+                                      }
+                                    });
+                                  }
+                                : null),
+                      ),
+                    )),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: 10,
+                  ),
+                  child: SizedBox(
+                    width: 300,
+                    height: 60,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      child: ElevatedButton(
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Color(0xFF84693b))),
+                          child: Text(
+                            widget.answer3,
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 38,
+                              fontSize: 15,
                             ),
                           ),
-                          Image.asset(
-                            widget.imagePath,
-                            height: 400,
-                            width: 500,
-                          ),
-                        ])))),
-            Padding(
-                padding: EdgeInsets.only(
-                  top: 40,
-                ),
-                child: SizedBox(
-                  width: 300,
-                  height: 60,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                            Color(0xFF304e60),
-                          ),
-                        ),
-                        child: Text(
-                          widget.answer1,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                        ),
-                        onPressed: widget.questionsAnswered == false
-                            ? () {
-                                setState(() {
-                                  if (widget.iscorrectAnswer1 == true) {
-                                    scrollPage();
-                                    createSnackBar(
-                                        'Correct!', Color(0xFFa4d2ac));
-                                    disableButton();
-                                    Score.score++;
-                                  } else {
-                                    scrollPage();
-                                    disableButton();
-                                    createSnackBar(
-                                        'Wrong Answer!', Color(0xFFEA4C46));
-                                  }
-                                });
-                              }
-                            : null),
-                  ),
-                )),
-            Padding(
-                padding: EdgeInsets.only(
-                  top: 10,
-                ),
-                child: SizedBox(
-                  width: 300,
-                  height: 60,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    child: ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Color(0xFF565462))),
-                        child: Text(
-                          widget.answer2,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                        ),
-                        onPressed: widget.questionsAnswered == false
-                            ? () {
-                                setState(() {
-                                  if (widget.iscorrectAnswer2 == true) {
-                                    scrollPage();
-                                    createSnackBar(
-                                        'Correct!', Color(0xFFa4d2ac));
-                                    disableButton();
-                                    Score.score++;
-                                  } else {
-                                    scrollPage();
-                                    disableButton();
-                                    createSnackBar(
-                                        'Wrong answer!', Color(0xFFEA4C46));
-                                  }
-                                });
-                              }
-                            : null),
-                  ),
-                )),
-            Padding(
-              padding: EdgeInsets.only(
-                top: 10,
-              ),
-              child: SizedBox(
-                width: 300,
-                height: 60,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                  child: ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Color(0xFF84693b))),
-                      child: Text(
-                        widget.answer3,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
-                      ),
-                      onPressed: widget.questionsAnswered == false
-                          ? () {
-                              setState(() {
-                                if (widget.iscorrectAnswer3 == true) {
-                                  scrollPage();
-                                  createSnackBar('Correct!', Color(0xFFa4d2ac));
-                                  Score.score++;
-                                  disableButton();
-                                } else {
-                                  scrollPage();
-                                  disableButton();
-                                  createSnackBar(
-                                      'Wrong Answer!', Color(0xFFEA4C46));
+                          onPressed: widget.questionsAnswered == false
+                              ? () {
+                                  setState(() {
+                                    if (widget.iscorrectAnswer3 == true) {
+                                      scrollPage();
+                                      createSnackBar(
+                                          'Correct!', Color(0xFFa4d2ac));
+                                      Score.score++;
+                                      disableButton();
+                                    } else {
+                                      scrollPage();
+                                      disableButton();
+                                      createSnackBar(
+                                          'Wrong Answer!', Color(0xFFEA4C46));
+                                    }
+                                  });
                                 }
-                              });
-                            }
-                          : null),
+                              : null),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ],
-        ));
+              ],
+            )));
   }
 }
 
