@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cyber_education/main.dart';
+import 'package:cyber_education/rules.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
@@ -655,7 +656,7 @@ class Menu extends StatelessWidget {
               onTap: () {
                 // Update the state of the app.
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Quiz()));
+                    context, MaterialPageRoute(builder: (context) => Rules()));
               },
             ),
             ListTile(

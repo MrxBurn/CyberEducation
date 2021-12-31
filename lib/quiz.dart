@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, avoid_print, use_key_in_widget_constructors, import_of_legacy_library_into_null_safe
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cyber_education/rules.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
@@ -30,7 +31,8 @@ class _QuizState extends State<Quiz> {
   double heightBehaviour = 800;
   double heightQuestions = 400;
 
-  bool _customTileExpanded = false;
+  final bool _customTileExpanded = false;
+  bool isRulesTileExpanded = false;
 
   ScrollController scrollController = ScrollController();
 
@@ -52,6 +54,15 @@ class _QuizState extends State<Quiz> {
     var media = MediaQuery.of(context).size;
 
     return Scaffold(
+        floatingActionButton: IconButton(
+          iconSize: 500,
+          icon: Image.asset(
+            'assets/images/stop.png',
+          ),
+          onPressed: () {
+            print(QuizNumber.isFirstQuiz);
+          },
+        ),
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back_rounded),
@@ -75,12 +86,9 @@ class _QuizState extends State<Quiz> {
                     image: AssetImage('assets/images/quiz_background.jpg'))),
             child: SingleChildScrollView(
                 controller: Score.scrollController,
-                physics: media.width > 600 && media.height > 400
-                    ? NeverScrollableScrollPhysics()
-                    : BouncingScrollPhysics(
-                        parent: AlwaysScrollableScrollPhysics()),
-                child: ListView(
-                  shrinkWrap: true,
+                physics: BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics()),
+                child: Column(
                   children: [
                     SizedBox(
                       height: 20,
@@ -93,6 +101,14 @@ class _QuizState extends State<Quiz> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
                               child: ExpansionTile(
+                                onExpansionChanged: (value) {
+                                  setState(() {
+                                    //Use set state to get the boolean actively changed
+                                    isRulesTileExpanded = value;
+                                  });
+
+                                  print(isRulesTileExpanded);
+                                },
                                 backgroundColor: Color(0xffde956d),
                                 collapsedBackgroundColor: Color(0xfff7a579),
                                 title: Text(
@@ -131,34 +147,44 @@ class _QuizState extends State<Quiz> {
                       height: 30,
                     ),
                     Questions(
-                      'assets/images/malware_quiz.jpeg',
-                      '1. What is a malware?',
-                      'Designed to damage computers, servers or any other devices',
-                      "Used to get user's credentials",
-                      "It's used to destroy networks",
-                      true,
-                      false,
-                      false,
-                      Color(0xFF383c40),
-                      Color(0xff5e517d),
-                      1500,
-                    ),
+                        'assets/images/malware_quiz.jpeg',
+                        '1. What is a malware?',
+                        'Designed to damage computers, servers or any other devices',
+                        "Used to get user's credentials",
+                        "It's used to destroy networks",
+                        true,
+                        false,
+                        false,
+                        Color(0xFF383c40),
+                        Color(0xff5e517d),
+                        media.width > 600
+                            ? isRulesTileExpanded == false
+                                ? media.height * 1.2
+                                : media.height * 1.3
+                            : isRulesTileExpanded == false
+                                ? media.height * 1.5
+                                : media.height * 1.6),
                     SizedBox(
-                      height: heightQuestions,
+                      height: 600,
                     ),
                     Questions(
-                      'assets/images/cyberattack.jpg',
-                      '2. What is the most used cyber-attack?',
-                      'DDoS',
-                      'Ransomware',
-                      'Phishing',
-                      false,
-                      false,
-                      true,
-                      Color(0xFF383c40),
-                      Color(0xffe9755c),
-                      2900,
-                    ),
+                        'assets/images/cyberattack.jpg',
+                        '2. What is the most used cyber-attack?',
+                        'DDoS',
+                        'Ransomware',
+                        'Phishing',
+                        false,
+                        false,
+                        true,
+                        Color(0xFF383c40),
+                        Color(0xffe9755c),
+                        media.width > 600
+                            ? isRulesTileExpanded == false
+                                ? media.height * 2.1
+                                : media.height * 2.1
+                            : isRulesTileExpanded == false
+                                ? media.height * 1.7
+                                : media.height * 2),
                     SizedBox(
                       height: heightQuestions,
                     ),
@@ -173,7 +199,7 @@ class _QuizState extends State<Quiz> {
                       false,
                       Color(0xFF383c40),
                       Color(0xff061f3e),
-                      4300,
+                      media.height * 3.1,
                     ),
                     SizedBox(
                       height: heightQuestions,
@@ -189,7 +215,7 @@ class _QuizState extends State<Quiz> {
                         true,
                         Color(0xFF383c40),
                         Color(0xfff2ad73),
-                        5700),
+                        media.height * 4.1),
                     SizedBox(
                       height: heightQuestions,
                     ),
@@ -204,7 +230,7 @@ class _QuizState extends State<Quiz> {
                         false,
                         Color(0xFF383c40),
                         Color(0xffcf857e),
-                        7100),
+                        media.height * 5.1),
                     SizedBox(
                       height: heightQuestions,
                     ),
@@ -219,7 +245,7 @@ class _QuizState extends State<Quiz> {
                         false,
                         Color(0xFF383c40),
                         Color(0xff2d6974),
-                        8500),
+                        media.height * 6.1),
                     SizedBox(
                       height: heightQuestions,
                     ),
@@ -464,8 +490,10 @@ class _QuestionsState extends State<Questions> {
     var media = MediaQuery.of(context).size;
 
     void scrollPage() {
-      Score.scrollController.animateTo(media.height,
+      Score.scrollController.animateTo(widget.offset,
           duration: Duration(seconds: 1), curve: Curves.easeInOut);
+
+      print(widget.offset);
     }
 
     void createSnackBar(String text, Color c) {
@@ -490,7 +518,7 @@ class _QuestionsState extends State<Questions> {
         alignment: Alignment.topCenter,
         child: Container(
             width: 500,
-            height: media.width >= 600 ? 800 : 300,
+            height: media.width < 600 ? 600 : 900,
             decoration: BoxDecoration(
               border: Border.all(width: 1, color: Color(0xFFdbe1e4)),
               borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -506,7 +534,7 @@ class _QuestionsState extends State<Questions> {
                         ),
                         child: Container(
                             width: 700,
-                            height: media.width >= 600 ? 500 : 200,
+                            height: media.width >= 600 ? 500 : 350,
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
@@ -526,14 +554,17 @@ class _QuestionsState extends State<Questions> {
                                 widget.question,
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 38,
+                                  fontSize: media.width > 600 ? 30 : 25,
                                 ),
                               ),
-                              Image.asset(
-                                widget.imagePath,
-                                height: 400,
-                                width: 500,
-                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 15),
+                                child: Image.asset(
+                                  widget.imagePath,
+                                  height: media.width > 600 ? 300 : 200,
+                                  width: media.width > 600 ? 400 : 300,
+                                ),
+                              )
                             ])))),
                 Padding(
                     padding: EdgeInsets.only(
