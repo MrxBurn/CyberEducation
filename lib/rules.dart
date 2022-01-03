@@ -2,10 +2,7 @@
 
 import 'package:cyber_education/quiz.dart';
 import 'package:flutter/material.dart';
-
-class QuizNumber {
-  static bool isFirstQuiz = false;
-}
+import 'homepage.dart';
 
 class Rules extends StatefulWidget {
   Rules({Key? key}) : super(key: key);
@@ -58,9 +55,12 @@ class _RulesState extends State<Rules> {
                               child: Text(
                                 'The first 5 questions are testing to see if you have knowledge'
                                 ' about any of the most used cyberattacks in the world.'
-                                ' \nIf your answer is correct, you will get 1 mark'
-                                ' \nTotal Score of this quiz: 35'
-                                '\n',
+                                ' \nIf your answer is correct, you will get 1 mark\n'
+                                '\nOnline Behaviour Questions '
+                                '\nScale based answers, Strongly Disagree (5 marks) to Strongly Agree (1 mark)'
+                                '\nIf you agree with the behaviour statements you will get less marks'
+                                '\nIf you disagree with the statements, you get more marks\n'
+                                '\nTotal Score of this quiz: 35',
                                 style: TextStyle(
                                   fontSize: 18,
                                 ),
@@ -74,35 +74,46 @@ class _RulesState extends State<Rules> {
           ),
           Text(
             'Is this your first quiz?',
-            style: TextStyle(color: Colors.white, fontSize: 30),
+            style: TextStyle(color: Colors.white, fontSize: 40),
           ),
           SizedBox(
             height: 15,
           ),
-          ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.orange)),
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Quiz()));
-                QuizNumber.isFirstQuiz = true;
-              },
-              child: Text(
-                'Yes',
-                style: TextStyle(color: Colors.white, fontSize: 25),
-              )),
+          SizedBox(
+              height: 50,
+              width: 210,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.orange)),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Quiz()));
+                    QuizNumber.isFirstQuiz = true;
+                  },
+                  child: Text(
+                    'Yes',
+                    style: TextStyle(color: Colors.white, fontSize: 25),
+                  ))),
           SizedBox(
             height: 20,
           ),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Quiz()));
-              },
-              child: Text(
-                'No',
-                style: TextStyle(color: Colors.white, fontSize: 25),
-              )),
+          SizedBox(
+            width: 210,
+            height: 50,
+            child: ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Color(0xff6e7f80))),
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Quiz()));
+                },
+                child: Text(
+                  'No',
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                )),
+          )
         ],
       ),
     );

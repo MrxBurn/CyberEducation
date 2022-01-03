@@ -2,13 +2,16 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cyber_education/main.dart';
-import 'package:cyber_education/rules.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:webviewx/webviewx.dart';
 
 import 'quiz.dart';
+
+class QuizNumber {
+  static bool isFirstQuiz = false;
+}
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -655,8 +658,116 @@ class Menu extends StatelessWidget {
               title: const Text('Quiz'),
               onTap: () {
                 // Update the state of the app.
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Rules()));
+                showAnimatedDialog(
+                  animationType: DialogTransitionType.scale,
+                  curve: Curves.fastOutSlowIn,
+                  duration: Duration(seconds: 1),
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      actions: [
+                        TextButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: Text(
+                              'Go back',
+                              style: TextStyle(color: Colors.white),
+                            ))
+                      ],
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                      scrollable: true,
+                      title:
+                          //Rules Expansion Tile
+
+                          Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                'The first 5 questions are testing to see if you have knowledge'
+                                ' about any of the most used cyberattacks in the world.'
+                                ' \nIf your answer is correct, you will get 1 mark\n'
+                                '\nOnline Behaviour Questions '
+                                '\nScale based answers, Strongly Disagree (5 marks) to Strongly Agree (1 mark)'
+                                '\nIf you agree with the behaviour statements you will get less marks'
+                                '\nIf you disagree with the statements, you get more marks\n'
+                                '\nTotal Score of this quiz: 35',
+                                style: TextStyle(
+                                  fontSize: media.width > 600 ? 18 : 15,
+                                ),
+                              )),
+                      content: SizedBox(
+                          width: 700,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 30,
+                              ),
+                              Text(
+                                'Is this your first quiz?',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: media.width > 600 ? 40 : 20),
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Center(
+                                  child: SizedBox(
+                                      height: media.width > 600 ? 50 : 30,
+                                      width: media.width > 600 ? 210 : 100,
+                                      child: ElevatedButton(
+                                          style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty.all(
+                                                      Colors.orange)),
+                                          onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Quiz()));
+
+                                            QuizNumber.isFirstQuiz = true;
+                                          },
+                                          child: Text(
+                                            'Yes',
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 25),
+                                          )))),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Center(
+                                  child: SizedBox(
+                                width: media.width > 600 ? 210 : 100,
+                                height: media.width > 600 ? 50 : 30,
+                                child: ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Color(0xff6e7f80))),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Quiz()));
+                                      QuizNumber.isFirstQuiz = false;
+                                    },
+                                    child: Text(
+                                      'No',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 25),
+                                    )),
+                              ))
+                            ],
+                          )),
+                      elevation: 50.0,
+                    );
+                  },
+                );
               },
             ),
             ListTile(
