@@ -501,7 +501,7 @@ class _QuestionsState extends State<Questions> {
             width: 500,
             height: media.width < 600 ? 600 : 900,
             decoration: BoxDecoration(
-              border: Border.all(width: 1, color: Color(0xFFdbe1e4)),
+              border: Border.all(width: 0, color: Colors.black),
               borderRadius: BorderRadius.all(Radius.circular(15)),
               color: widget.colorBot,
             ),
@@ -519,25 +519,26 @@ class _QuestionsState extends State<Questions> {
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
-                                    color: Colors.white.withOpacity(0.4),
+                                    color: Colors.black.withOpacity(0.4),
                                     spreadRadius: 2,
                                     blurRadius: 3,
                                     offset: Offset(0, 4)),
                               ],
-                              border: Border.all(
-                                  width: 1, color: Color(0xFFdbe1e4)),
+                              border: Border.all(width: 0, color: Colors.black),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
                               color: widget.colorTop,
                             ),
                             child: Column(children: [
-                              Text(
-                                widget.question,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: media.width > 600 ? 30 : 25,
-                                ),
-                              ),
+                              Padding(
+                                  padding: EdgeInsets.only(top: 15),
+                                  child: Text(
+                                    widget.question,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: media.width > 600 ? 30 : 25,
+                                    ),
+                                  )),
                               Padding(
                                 padding: EdgeInsets.only(top: 15),
                                 child: Image.asset(

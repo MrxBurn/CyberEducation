@@ -47,7 +47,7 @@ class _HomepageState extends State<Homepage> {
     var media = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Homepage'),
+          title: const Text('Home'),
         ),
         drawer: media.width < 600
             ? Drawer(
@@ -56,50 +56,67 @@ class _HomepageState extends State<Homepage> {
             : null,
 
         //BODY
-        body: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            media.width > 600
-                ? Flexible(
-                    child: Menu(),
-                    flex: 1,
-                  )
-                : Container(),
-            Flexible(
-              fit: FlexFit.loose,
-              flex: 3,
-              child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    children: [
-                      Center(
-                          child: Text(
-                        'Cyber Education',
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            fontSize: 50,
-                            fontFamily: 'Mechanismo'),
-                      )),
-                      // Most used cyber attacks section
-                      Align(
-                          alignment: Alignment.topLeft,
-                          child: Padding(
-                            padding: EdgeInsets.only(top: 20, left: 30),
-                            child: Text(
-                              'Protect yourself online',
-                              style: TextStyle(
-                                fontFamily: 'Mechanismo',
-                                fontSize: 35,
-                              ),
-                            ),
+        body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage('assets/images/home.jpg'),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                media.width > 600
+                    ? Flexible(
+                        child: Menu(),
+                        flex: 1,
+                      )
+                    : Container(),
+                Flexible(
+                  fit: FlexFit.loose,
+                  flex: 4,
+                  child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        children: [
+                          Center(
+                              child: Text(
+                            'Cyber Education',
+                            style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontSize: 50,
+                                fontFamily: 'Mechanismo'),
                           )),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Align(
-                          alignment: Alignment.topLeft,
-                          child: SingleChildScrollView(
+                          // Most used cyber attacks section
+                          Align(
+                              alignment: Alignment.center,
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 15, left: 0),
+                                child: Text(
+                                  '"Protect yourself online"',
+                                  style: TextStyle(
+                                    fontFamily: 'Mechanismo',
+                                    fontSize: 25,
+                                  ),
+                                ),
+                              )),
+                          SizedBox(
+                            height: 60,
+                          ),
+                          Align(
+                              alignment: Alignment.topLeft,
+                              child: Padding(
+                                  padding: EdgeInsets.only(left: 20),
+                                  child: Text(
+                                    'Attacks',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                        fontFamily: 'Mechanismo'),
+                                  ))),
+
+                          SingleChildScrollView(
                               physics: BouncingScrollPhysics(
                                   parent: AlwaysScrollableScrollPhysics()),
                               controller: scrollController,
@@ -189,7 +206,7 @@ class _HomepageState extends State<Homepage> {
                                               "\nYou can avoid being infected by a worm using common anti-malware advice. Use antivirus software,"
                                               "keep your computer up to date, and never open links or files which you don't completely trust. "),
                                           buttonColor: Color(0xff88bcbc),
-                                          dialogColor: Color(0xff637f80))),
+                                          dialogColor: Color(0xFF383838))),
                                   Padding(
                                       padding: EdgeInsets.only(left: 10),
                                       child: AttackButton(
@@ -218,113 +235,129 @@ class _HomepageState extends State<Homepage> {
                                               "Unmaintained accounts are a vulnerability you can’t risk."
                                               "Throw them away as soon as possible. "),
                                           buttonColor: Color(0xffab933c),
-                                          dialogColor: Color(0xff53aeb7))),
+                                          dialogColor: Color(0xFF383838))),
                                   SizedBox(
-                                    height: 100,
+                                    height: 150,
                                   ),
                                 ],
-                              ))),
+                              )),
 
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: SingleChildScrollView(
-                            physics: BouncingScrollPhysics(
-                                parent: AlwaysScrollableScrollPhysics()),
-                            scrollDirection: Axis.horizontal,
-                            child: Column(
-                              children: [
-                                Row(
+                          Align(
+                              alignment: Alignment.topLeft,
+                              child: Padding(
+                                  padding: EdgeInsets.only(left: 20),
+                                  child: Text(
+                                    'Tips',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontFamily: 'Mechanismo'),
+                                  ))),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: SingleChildScrollView(
+                                physics: BouncingScrollPhysics(
+                                    parent: AlwaysScrollableScrollPhysics()),
+                                scrollDirection: Axis.horizontal,
+                                child: Column(
                                   children: [
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 20,
-                                          left: 20,
+                                    Row(
+                                      children: [
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                              top: 20,
+                                              left: 20,
+                                            ),
+                                            child: CyberTips(
+                                              image: 'assets/images/update.png',
+                                              backColor: Color(0xFF383c40),
+                                              title: 'Up-to-date devices!',
+                                              content: 'update_device',
+                                              colorTop: Color(0xffdc8665),
+                                            )),
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                              top: 20,
+                                              left: 20,
+                                            ),
+                                            child: CyberTips(
+                                              colorTop: Color(0xff138085),
+                                              image:
+                                                  'assets/images/password.png',
+                                              backColor: Color(0xFF383c40),
+                                              title: 'Use strong passwords!',
+                                              content: 'password',
+                                            )),
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                              top: 20,
+                                              left: 20,
+                                            ),
+                                            child: CyberTips(
+                                              colorTop: Color(0xff544667),
+                                              image: 'assets/images/wifi.png',
+                                              backColor: Color(0xFF383c40),
+                                              title: 'Public Wi-Fi!',
+                                              content: 'wifi',
+                                            )),
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                              top: 20,
+                                              left: 20,
+                                            ),
+                                            child: CyberTips(
+                                              colorTop: Color(0xffce7672),
+                                              image: 'assets/images/backup.png',
+                                              backColor: Color(0xFF383c40),
+                                              title: 'Back-up Data!',
+                                              content: 'backup',
+                                            )),
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                              top: 20,
+                                              left: 20,
+                                            ),
+                                            child: CyberTips(
+                                              colorTop: Color(0xffeeb462),
+                                              image: 'assets/images/family.png',
+                                              backColor: Color(0xFF383c40),
+                                              title: 'Educate your family!',
+                                              content: 'family',
+                                            )),
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                              top: 20,
+                                              left: 20,
+                                            ),
+                                            child: CyberTips(
+                                              colorTop: Color(0xffccabda),
+                                              image:
+                                                  'assets/images/personal.png',
+                                              backColor: Color(0xFF383c40),
+                                              title: 'Sharing personal data!',
+                                              content: 'personal_information',
+                                            )),
+                                        SizedBox(
+                                          width: 20,
                                         ),
-                                        child: CyberTips(
-                                          image: 'assets/images/update.png',
-                                          backColor: Color(0xFF383c40),
-                                          title: 'Up-to-date devices!',
-                                          content: 'update_device',
-                                          colorTop: Color(0xffdc8665),
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 20,
-                                          left: 20,
-                                        ),
-                                        child: CyberTips(
-                                          colorTop: Color(0xff138085),
-                                          image: 'assets/images/password.png',
-                                          backColor: Color(0xFF383c40),
-                                          title: 'Use strong passwords!',
-                                          content: 'password',
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 20,
-                                          left: 20,
-                                        ),
-                                        child: CyberTips(
-                                          colorTop: Color(0xff544667),
-                                          image: 'assets/images/wifi.png',
-                                          backColor: Color(0xFF383c40),
-                                          title: 'Public Wi-Fi!',
-                                          content: 'wifi',
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 20,
-                                          left: 20,
-                                        ),
-                                        child: CyberTips(
-                                          colorTop: Color(0xffce7672),
-                                          image: 'assets/images/backup.png',
-                                          backColor: Color(0xFF383c40),
-                                          title: 'Back-up Data!',
-                                          content: 'backup',
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 20,
-                                          left: 20,
-                                        ),
-                                        child: CyberTips(
-                                          colorTop: Color(0xffeeb462),
-                                          image: 'assets/images/family.png',
-                                          backColor: Color(0xFF383c40),
-                                          title: 'Educate your family!',
-                                          content: 'family',
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 20,
-                                          left: 20,
-                                        ),
-                                        child: CyberTips(
-                                          colorTop: Color(0xffccabda),
-                                          image: 'assets/images/personal.png',
-                                          backColor: Color(0xFF383c40),
-                                          title: 'Sharing personal data!',
-                                          content: 'personal_information',
-                                        )),
-                                    SizedBox(
-                                      width: 20,
+                                      ],
                                     ),
+                                    SizedBox(
+                                      height: 30,
+                                    )
                                   ],
-                                ),
-                                SizedBox(
-                                  height: 30,
-                                )
-                              ],
-                            )),
-                      ),
-                    ],
-                  )),
+                                )),
+                          ),
+                        ],
+                      )),
+                )
+              ],
             )
-          ],
-        )
-        //add old body here
-        );
+            //add old body here
+            ));
   }
 }
 
@@ -464,7 +497,7 @@ class _CyberTipsState extends State<CyberTips> {
         width: 350,
         height: 650,
         decoration: BoxDecoration(
-          border: Border.all(width: 1, color: Color(0xFFdbe1e4)),
+          border: Border.all(width: 0, color: Colors.black),
           borderRadius: BorderRadius.all(Radius.circular(15)),
           // boxShadow: [
           //   BoxShadow(
@@ -486,7 +519,7 @@ class _CyberTipsState extends State<CyberTips> {
                       color: widget.colorTop,
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.white.withOpacity(0.4),
+                            color: Colors.black.withOpacity(0.5),
                             spreadRadius: 2,
                             blurRadius: 3,
                             offset: Offset(0, 4)),
@@ -534,7 +567,7 @@ class _CyberTipsState extends State<CyberTips> {
                       );
                     }
 
-                    return Text('Fetching data');
+                    return Text('...');
                   }),
             )
           ],
@@ -553,235 +586,270 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
-    return Container(
-        decoration: BoxDecoration(
-            border: Border(
-          right: BorderSide(width: 3, color: Colors.blueGrey),
-        )),
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  FutureBuilder<DocumentSnapshot>(
-                    future: userName.get(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<DocumentSnapshot> snapshot) {
-                      if (snapshot.hasError) {
-                        return const Text("Something went wrong");
-                      }
+    return ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+        child: Container(
+            decoration: BoxDecoration(color: Color(0xFF383838)),
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                DrawerHeader(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FutureBuilder<DocumentSnapshot>(
+                        future: userName.get(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<DocumentSnapshot> snapshot) {
+                          if (snapshot.hasError) {
+                            return const Text("Something went wrong");
+                          }
 
-                      if (snapshot.hasData && !snapshot.data!.exists) {
-                        return const Text("Document does not exist");
-                      }
+                          if (snapshot.hasData && !snapshot.data!.exists) {
+                            return const Text("Document does not exist");
+                          }
 
-                      if (snapshot.connectionState == ConnectionState.done) {
-                        Map<String, dynamic> data =
-                            snapshot.data!.data() as Map<String, dynamic>;
+                          if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            Map<String, dynamic> data =
+                                snapshot.data!.data() as Map<String, dynamic>;
 
-                        return Align(
-                          alignment: Alignment.topLeft,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              top: 0,
-                              left: 0,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                    padding: const EdgeInsets.only(
-                                      top: 20,
-                                      left: 10,
-                                    ),
-                                    child: Text(
-                                      "Welcome ${data['firstName']}",
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                      ),
-                                    )),
-                                Padding(
-                                    padding: EdgeInsets.only(top: 10, left: 10),
-                                    child: Text(
-                                      "1st score: ${data['score_quiz']}",
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                      ),
-                                    )),
-                                Padding(
-                                    padding: EdgeInsets.only(top: 10, left: 10),
-                                    child: Text(
-                                      "2nd score: ${data['score_test']}",
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                      ),
-                                    ))
-                              ],
-                            ),
-                          ),
-                        );
-                      }
-                      return const Text("Fetching Data..");
-                    },
-                  ),
-                ],
-              ),
-              decoration: BoxDecoration(
-                color: Color(0xff6e7f80),
-              ),
-            ),
-            Padding(
-                padding: EdgeInsets.only(
-                  top: 30,
-                ),
-                child: ListTile(
-                  leading: Icon(Icons.home_filled),
-                  title: const Text('Home'),
-                  onTap: () {
-                    var route = ModalRoute.of(context);
-                    var name = route?.settings.name;
-
-                    if (media.width < 600) {
-                      Navigator.pop(context);
-                    }
-
-                    if (name != null && name != '/') {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Homepage()));
-                    }
-                  },
-                )),
-            ListTile(
-              leading: Icon(Icons.quiz_rounded),
-              title: const Text('Quiz'),
-              onTap: () {
-                // Update the state of the app.
-                showAnimatedDialog(
-                  animationType: DialogTransitionType.scale,
-                  curve: Curves.fastOutSlowIn,
-                  duration: Duration(seconds: 1),
-                  barrierDismissible: false,
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      actions: [
-                        TextButton(
-                            onPressed: () => Navigator.of(context).pop(),
-                            child: Text(
-                              'Go back',
-                              style: TextStyle(color: Colors.white),
-                            ))
-                      ],
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      scrollable: true,
-                      title:
-                          //Rules Expansion Tile
-
-                          Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text(
-                                'The first 5 questions are testing to see if you have knowledge'
-                                ' about any of the most used cyberattacks in the world.'
-                                ' \nIf your answer is correct, you will get 1 mark\n'
-                                '\nOnline Behaviour Questions '
-                                '\nScale based answers, Strongly Disagree (5 marks) to Strongly Agree (1 mark)'
-                                '\nIf you agree with the behaviour statements you will get less marks'
-                                '\nIf you disagree with the statements, you get more marks\n'
-                                '\nTotal Score of this quiz: 35',
-                                style: TextStyle(
-                                  fontSize: media.width > 600 ? 18 : 15,
+                            return Align(
+                              alignment: Alignment.topLeft,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  top: 0,
+                                  left: 0,
                                 ),
-                              )),
-                      content: SizedBox(
-                          width: 700,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 30,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 20,
+                                          left: 10,
+                                        ),
+                                        child: Text(
+                                          "Welcome ${data['firstName']}",
+                                          style: const TextStyle(
+                                            fontSize: 20,
+                                          ),
+                                        )),
+                                    Padding(
+                                        padding:
+                                            EdgeInsets.only(top: 10, left: 10),
+                                        child: Text(
+                                          "1st score: ${data['score_quiz']}",
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                        )),
+                                    Padding(
+                                        padding:
+                                            EdgeInsets.only(top: 10, left: 10),
+                                        child: Text(
+                                          "2nd score: ${data['score_test']}",
+                                          style: const TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                        ))
+                                  ],
+                                ),
                               ),
-                              Text(
-                                'Is this your first quiz?',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: media.width > 600 ? 40 : 20),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Center(
-                                  child: SizedBox(
-                                      height: media.width > 600 ? 50 : 30,
-                                      width: media.width > 600 ? 210 : 100,
-                                      child: ElevatedButton(
-                                          style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty.all(
-                                                      Colors.orange)),
-                                          onPressed: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Quiz()));
+                            );
+                          }
+                          return const Text("...");
+                        },
+                      ),
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                    color: Color(0xff6e7f80),
+                  ),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                Padding(
+                    padding: EdgeInsets.only(
+                      top: 30,
+                    ),
+                    child: ListTile(
+                      leading: Icon(Icons.home_filled),
+                      title: const Text('Home'),
+                      onTap: () {
+                        var route = ModalRoute.of(context);
+                        var name = route?.settings.name;
 
-                                            QuizNumber.isFirstQuiz = true;
-                                          },
-                                          child: Text(
-                                            'Yes',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 25),
-                                          )))),
-                              SizedBox(
-                                height: 20,
-                              ),
+                        if (media.width < 600) {
+                          Navigator.pop(context);
+                        }
+
+                        if (name != null && name != '/') {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Homepage()));
+                        }
+                      },
+                    )),
+                ListTile(
+                  leading: Icon(Icons.quiz_rounded),
+                  title: const Text('Quiz'),
+                  onTap: () {
+                    // Update the state of the app.
+                    showAnimatedDialog(
+                      animationType: DialogTransitionType.scale,
+                      curve: Curves.fastOutSlowIn,
+                      duration: Duration(seconds: 1),
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          scrollable: true,
+                          title: Row(
+                            children: [
+                              IconButton(
+                                  iconSize: 20,
+                                  onPressed: () => Navigator.pop(context),
+                                  color: Colors.deepOrange,
+                                  icon: Icon(
+                                    Icons.arrow_back,
+                                  )),
                               Center(
-                                  child: SizedBox(
-                                width: media.width > 600 ? 210 : 100,
-                                height: media.width > 600 ? 50 : 30,
-                                child: ElevatedButton(
-                                    style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                Color(0xff6e7f80))),
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => Quiz()));
-                                      QuizNumber.isFirstQuiz = false;
-                                    },
-                                    child: Text(
-                                      'No',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 25),
-                                    )),
-                              ))
+                                  child: TextButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      child: Text(
+                                        'Return',
+                                        style: TextStyle(
+                                            fontSize: 15, color: Colors.white),
+                                      ))),
                             ],
-                          )),
-                      elevation: 50.0,
+                          ),
+                          content: SizedBox(
+                              width: 700,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        'assets/images/stop.png',
+                                        width: 80,
+                                        height: 60,
+                                      ),
+                                      Text(
+                                        'Rules',
+                                        style: TextStyle(
+                                            fontSize:
+                                                media.width > 600 ? 25 : 20),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        'The first 5 questions are testing to see if you have knowledge'
+                                        ' about any of the most used cyberattacks in the world.'
+                                        ' \nIf your answer is correct, you will get 1 mark\n'
+                                        '\nOnline Behaviour Questions '
+                                        '\nScale based answers, Strongly Disagree (5 marks) to Strongly Agree (1 mark)'
+                                        '\nIf you agree with the behaviour statements you will get less marks'
+                                        '\nIf you disagree with the statements, you get more marks\n'
+                                        '\nTotal Score of this quiz: 35',
+                                        style: TextStyle(
+                                          fontSize: media.width > 600 ? 18 : 15,
+                                        ),
+                                      )),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Center(
+                                      child: Text(
+                                    'Is this your first quiz?',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: media.width > 600 ? 40 : 20),
+                                  )),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Center(
+                                      child: SizedBox(
+                                          height: media.width > 600 ? 50 : 30,
+                                          width: media.width > 600 ? 210 : 100,
+                                          child: ElevatedButton(
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Colors.orange)),
+                                              onPressed: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            Quiz()));
+
+                                                QuizNumber.isFirstQuiz = true;
+                                              },
+                                              child: Text(
+                                                'Yes',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 25),
+                                              )))),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Center(
+                                      child: SizedBox(
+                                    width: media.width > 600 ? 210 : 100,
+                                    height: media.width > 600 ? 50 : 30,
+                                    child: ElevatedButton(
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    Color(0xff6e7f80))),
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Quiz()));
+                                          QuizNumber.isFirstQuiz = false;
+                                        },
+                                        child: Text(
+                                          'No',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 25),
+                                        )),
+                                  ))
+                                ],
+                              )),
+                          elevation: 50.0,
+                        );
+                      },
                     );
                   },
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.account_circle_rounded),
-              title: const Text('Sign Out'),
-              onTap: () {
-                // Update the state of the app.
-                FirebaseAuth.instance.signOut();
+                ),
+                ListTile(
+                  leading: Icon(Icons.account_circle_rounded),
+                  title: const Text('Sign Out'),
+                  onTap: () {
+                    // Update the state of the app.
+                    FirebaseAuth.instance.signOut();
 
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Login()));
-              },
-            ),
-          ],
-        ));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Login()));
+                  },
+                ),
+              ],
+            )));
   }
 }

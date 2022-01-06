@@ -91,6 +91,9 @@ class _LoginState extends State<Login> {
           key: _formKey,
           child: Column(
             children: <Widget>[
+              SizedBox(
+                height: 50,
+              ),
               Center(
                 child: Padding(
                   padding: EdgeInsets.only(
@@ -169,7 +172,10 @@ class _LoginState extends State<Login> {
                     top: 20,
                   ),
                   child: TextButton(
-                    child: Text('Not a user? Register!'),
+                    child: Text(
+                      'Not a user? Register!',
+                      style: TextStyle(color: Colors.grey),
+                    ),
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Register()));
