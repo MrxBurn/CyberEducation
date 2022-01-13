@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:webviewx/webviewx.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'quiz.dart';
 
@@ -28,6 +29,8 @@ class _HomepageState extends State<Homepage> {
 
   //Variables
 
+  int buttonTap = 0;
+
   var firstName = '';
 
   bool isNewRouteSameAsCurrent = false;
@@ -36,6 +39,19 @@ class _HomepageState extends State<Homepage> {
   late WebViewXController webController;
 
   ScrollController scrollController = ScrollController();
+
+  GlobalKey key1 = GlobalKey();
+  GlobalKey key2 = GlobalKey();
+
+  GlobalKey key3 = GlobalKey();
+  GlobalKey key4 = GlobalKey();
+  GlobalKey key5 = GlobalKey();
+  GlobalKey key6 = GlobalKey();
+
+  scroll(GlobalKey pKey) {
+    Scrollable.ensureVisible(pKey.currentContext!,
+        duration: Duration(seconds: 2), curve: Curves.fastOutSlowIn);
+  }
 
   @override
   void initState() {
@@ -47,9 +63,6 @@ class _HomepageState extends State<Homepage> {
     var media = MediaQuery.of(context).size;
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Home'),
-        ),
         drawer: media.width < 600
             ? Drawer(
                 child: Menu(),
@@ -60,21 +73,21 @@ class _HomepageState extends State<Homepage> {
         body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage('assets/images/home.jpg'),
+                fit: BoxFit.cover,
+                image: AssetImage('assets/images/background.jpg'),
               ),
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                media.width > 600
-                    ? Flexible(
-                        child: Menu(),
-                        flex: 1,
-                      )
-                    : Container(),
-                Flexible(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  media.width > 600
+                      ? Flexible(
+                          child: Menu(),
+                          flex: 1,
+                        )
+                      : Container(),
+                  Flexible(
                     fit: FlexFit.loose,
                     flex: 4,
                     child: SingleChildScrollView(
@@ -85,7 +98,7 @@ class _HomepageState extends State<Homepage> {
                           'Cyber Education',
                           style: TextStyle(
                               decoration: TextDecoration.underline,
-                              fontSize: 50,
+                              fontSize: media.width > 600 ? 50 : 35,
                               fontFamily: 'Mechanismo'),
                         )),
                         // Most used cyber attacks section
@@ -97,7 +110,7 @@ class _HomepageState extends State<Homepage> {
                                 '"Protect yourself online"',
                                 style: TextStyle(
                                   fontFamily: 'Mechanismo',
-                                  fontSize: 25,
+                                  fontSize: media.width > 600 ? 25 : 20,
                                 ),
                               ),
                             )),
@@ -107,302 +120,991 @@ class _HomepageState extends State<Homepage> {
                         Align(
                             alignment: Alignment.topLeft,
                             child: Padding(
-                                padding: EdgeInsets.only(left: 20),
-                                child: Text(
-                                  'Attacks',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                      fontFamily: 'Mechanismo'),
-                                ))),
-                        Align(
-                            alignment: Alignment.topLeft,
-                            child: SingleChildScrollView(
-                                physics: BouncingScrollPhysics(
-                                    parent: AlwaysScrollableScrollPhysics()),
-                                controller: scrollController,
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                        padding: EdgeInsets.only(left: 20),
-                                        child: AttackButton(
-                                          dialogColor: Color(0xFF383838),
-                                          buttonColor: Color(0xffbb243c),
-                                          heading: Text('Malware attacks'),
-                                          image: 'assets/images/ransomware.png',
-                                          smallImage:
-                                              'assets/images/malware.png',
-                                          attackDefinition: Text(
-                                              "One of the most used type of malware is Ransomware. Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid.\n"),
-                                          finalParagraph: Text(
-                                              "\nRansomware is often spread through phishing emails that contain malicious attachments or through drive-by downloading. Drive-by downloading occurs when a user unknowingly visits an infected website and then malware is downloaded and installed without the user’s knowledge. Crypto ransomware, a malware variant that encrypts files, is spread through similar methods and has also been spread through social media, such as Web-based instant messaging applications. Additionally, newer methods of ransomware infection have been observed. For example, vulnerable Web servers have been exploited as an entry point to gain access to an organization’s network."),
-                                          subtitle: Text(
-                                              'Malware usage is up almost 800% since early 2020.\n'),
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.only(left: 10),
-                                        child: AttackButton(
-                                            dialogColor: Color(0xFF383838),
-                                            buttonColor: Color(0xff144c64),
-                                            heading: Text('Phishing'),
-                                            image: 'assets/images/amazon.png',
-                                            smallImage:
-                                                'assets/images/phishing.PNG',
-                                            subtitle: Text(
-                                                'Phishing attacks are the most common cause of data breaches globally and have'
-                                                ' been the root cause of notable instances of cybercrime in the last decade.\n'),
-                                            attackDefinition: Text(
-                                                'Phishing attacks attempt to steal information from users or trick them into downloading malware by'
-                                                'sending malicious emails or text messages (SMS) that look like real requests but are, in fact, a Scam.\n'),
-                                            finalParagraph: Text(
-                                                '\nIt occurs when an attacker, masquerading as a trusted entity, dupes a victim into opening '
-                                                'an email, instant message, or text message. The recipient is then tricked into clicking a malicious link, '
-                                                'which can lead to the installation of malware, the freezing of the system as part of a ransomware attack '
-                                                'or the revealing of sensitive information.'
-                                                'An attack can have devastating results. For individuals, this includes unauthorized purchases, the stealing of funds, or identify theft.'))),
-                                    Padding(
-                                        padding: EdgeInsets.only(left: 10),
-                                        child: AttackButton(
-                                            dialogColor: Color(0xFF383838),
-                                            buttonColor: Color(0xff35746c),
-                                            heading: Text('DDoS'),
-                                            image: 'assets/images/ddos.png',
-                                            smallImage:
-                                                'assets/images/ddosGood.png',
-                                            subtitle: Text(
-                                                'DDoS attacks are carried out with networks of Internet-connected machines.\n'
-                                                'These networks consist of computers and other devices (such as IoT devices)which have been infected with malware, allowing them to be controlled remotely by an attacker.'),
-                                            attackDefinition: Text(
-                                                '\nDistributed denial of service (DDoS) attacks disrupt the traffic'
-                                                'to a website, application, server, service, or network by overwhelming it with a flood of traffic from compromised computer networks'
-                                                '(botnets) that prevents real users from accessing it. In 2018, GitHub experienced the largest DDoS'
-                                                'attack ever when it was hit with 1.35 terabits of traffic per second and was offline for almost 20 minutes as a result.'
-                                                'DDoS attacks are common and increased by 50% in 2020 compared to 2019, with a large surge occurring in early 2020 during the pandemic, according to security company Kaspersky.\n'),
-                                            finalParagraph: Text(
-                                                '\nThe most obvious symptom of a DDoS attack is a site or service '
-                                                'performance issues, further investigation is usually required. Traffic analytics tools '
-                                                'can help you spot some of these telltale signs of a DDoS attack:'
-                                                '\n 1. Suspicious amounts of traffic originating from a single IP address or IP range'
-                                                '\n 2. A flood of traffic from users who share a single behavioral profile, such as device type, geolocation, or web browser version'
-                                                '\n 3. An unexplained surge in requests to a single page or endpoint'
-                                                '\n 4. Odd traffic patterns such as spikes at odd hours of the day or patterns that appear to be unnatural (e.g. a spike every 10 minutes)'
-                                                '\n 5. There are other, more specific signs of DDoS attack that can vary depending on the type of attack.'))),
-                                    Padding(
-                                        padding: EdgeInsets.only(left: 10),
-                                        child: AttackButton(
-                                            heading: Text('Computer Worm'),
-                                            image:
-                                                'assets/images/worm_large.png',
-                                            smallImage:
-                                                'assets/images/worm_small.png',
-                                            subtitle: Text(
-                                                'A computer worm is a standalone malware computer program that replicates itself in order to spread to other computers.\n'),
-                                            attackDefinition: Text(
-                                                'It often uses a computer network to spread itself, relying on security failures on the target computer to access it. It will use this machine as a host to scan and infect other computers. When these new worm-invaded computers are controlled,'
-                                                ' the worm will continue to scan and infect other computers using these computers as hosts, and this behavior will continue.'
-                                                ' Computer worms use recursive methods to copy themselves without host programs and distribute themselves based on the law of exponential growth, thus controlling and infecting more and more computers in a short time.'
-                                                ' Worms almost always cause at least some harm to the network, even if only by consuming bandwidth, whereas viruses almost always corrupt or modify files on a targeted computer.'
-                                                'Many worms are designed only to spread, and do not attempt to change the systems they pass through. However, as the Morris worm and Mydoom showed, even these "payload-free" worms can cause major'
-                                                'disruption by increasing network traffic and other unintended effects.\n'),
-                                            finalParagraph: Text(
-                                                "\nYou can avoid being infected by a worm using common anti-malware advice. Use antivirus software,"
-                                                "keep your computer up to date, and never open links or files which you don't completely trust. "),
-                                            buttonColor: Color(0xff88bcbc),
-                                            dialogColor: Color(0xFF383838))),
-                                    Padding(
-                                        padding: EdgeInsets.only(left: 10),
-                                        child: AttackButton(
-                                            heading: Text('Brute Force Attack'),
-                                            image:
-                                                'assets/images/brute_large.png',
-                                            smallImage:
-                                                'assets/images/brute_small.png',
-                                            subtitle: Text(
-                                                "A brute force attack uses trial-and-error to guess login info, encryption keys, or find a hidden web page. Hackers work through all possible combinations hoping to guess correctly."),
-                                            attackDefinition: Text(
-                                                "These attacks are done by ‘brute force’ meaning they use excessive forceful attempts to try and ‘force’ their way into your private account(s)."
-                                                "This is an old attack method, but it's"
-                                                "still effective and popular with hackers. Because"
-                                                "depending on the length and complexity of the password,"
-                                                "cracking it can take anywhere from a few seconds to many years."),
-                                            finalParagraph: Text(
-                                                "How to protect yourself from this attack?"
-                                                "\nUse an advanced username and password. "
-                                                "Protect yourself with credentials that are stronger "
-                                                "than admin and password1234 to keep out these attackers. "
-                                                "The stronger this combination is, the harder it will be"
-                                                " for anyone to penetrate it."
-                                                " \nRemove any unused accounts with high-level permissions. These are the cyber"
-                                                "equivalent of doors with weak locks that make breaking in easy."
-                                                "Unmaintained accounts are a vulnerability you can’t risk."
-                                                "Throw them away as soon as possible. "),
-                                            buttonColor: Color(0xffab933c),
-                                            dialogColor: Color(0xFF383838))),
-                                    SizedBox(
-                                      height: 150,
-                                    ),
-                                  ],
-                                ))),
-
-                        Align(
-                            alignment: Alignment.topLeft,
-                            child: Padding(
-                                padding: EdgeInsets.only(left: 20),
-                                child: Text(
-                                  'Tips',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontFamily: 'Mechanismo'),
-                                ))),
-                        SizedBox(
-                          height: 20,
-                        ),
-
-                        SingleChildScrollView(
-                            physics: BouncingScrollPhysics(
-                                parent: AlwaysScrollableScrollPhysics()),
-                            scrollDirection: Axis.horizontal,
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 20,
-                                          left: 20,
-                                        ),
-                                        child: CyberTips(
-                                          image: 'assets/images/update.png',
-                                          backColor: Color(0xFF383c40),
-                                          title: 'Up-to-date devices!',
-                                          content: 'update_device',
-                                          colorTop: Color(0xffdc8665),
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 20,
-                                          left: 20,
-                                        ),
-                                        child: CyberTips(
-                                          colorTop: Color(0xff138085),
-                                          image: 'assets/images/password.png',
-                                          backColor: Color(0xFF383c40),
-                                          title: 'Use strong passwords!',
-                                          content: 'password',
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 20,
-                                          left: 20,
-                                        ),
-                                        child: CyberTips(
-                                          colorTop: Color(0xff544667),
-                                          image: 'assets/images/wifi.png',
-                                          backColor: Color(0xFF383c40),
-                                          title: 'Public Wi-Fi!',
-                                          content: 'wifi',
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 20,
-                                          left: 20,
-                                        ),
-                                        child: CyberTips(
-                                          colorTop: Color(0xffce7672),
-                                          image: 'assets/images/backup.png',
-                                          backColor: Color(0xFF383c40),
-                                          title: 'Back-up Data!',
-                                          content: 'backup',
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 20,
-                                          left: 20,
-                                        ),
-                                        child: CyberTips(
-                                          colorTop: Color(0xffeeb462),
-                                          image: 'assets/images/family.png',
-                                          backColor: Color(0xFF383c40),
-                                          title: 'Educate your family!',
-                                          content: 'family',
-                                        )),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                          top: 20,
-                                          left: 20,
-                                        ),
-                                        child: CyberTips(
-                                          colorTop: Color(0xffccabda),
-                                          image: 'assets/images/personal.png',
-                                          backColor: Color(0xFF383c40),
-                                          title: 'Sharing personal data!',
-                                          content: 'personal_information',
-                                        )),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                  ],
+                                padding: EdgeInsets.only(
+                                  left: 20,
                                 ),
-                                SizedBox(
-                                  height: 30,
-                                ),
-                              ],
-                            )),
+                                child: Container(
+                                    width: media.width / 1.2,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(15)),
+                                        color:
+                                            Color(0xff6e7f80).withOpacity(0.8),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color:
+                                                  Colors.black.withOpacity(0.5),
+                                              spreadRadius: 2,
+                                              blurRadius: 3,
+                                              offset: Offset(0, 4))
+                                        ]),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                                  left: 20,
+                                                  right: 10,
+                                                ),
+                                                child: Text(
+                                                  'Attacks',
+                                                  style: TextStyle(
+                                                      fontSize: 25,
+                                                      color: Colors.white,
+                                                      fontFamily: 'Mechanismo'),
+                                                )),
+                                            Icon(Icons.arrow_forward),
+                                          ],
+                                        ),
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: SingleChildScrollView(
+                                            physics: BouncingScrollPhysics(
+                                                parent:
+                                                    AlwaysScrollableScrollPhysics()),
+                                            scrollDirection: Axis.horizontal,
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10),
+                                                    child: AttackButton(
+                                                      dialogColor:
+                                                          Color(0xFF383838),
+                                                      buttonColor:
+                                                          Color(0xff35455d),
+                                                      heading: Text(
+                                                          'Malware attacks'),
+                                                      image:
+                                                          'assets/images/ransomware.png',
+                                                      smallImage:
+                                                          'assets/images/malware.png',
+                                                      attackDefinition: Text(
+                                                          "One of the most used type of malware is Ransomware. Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid.\n"),
+                                                      finalParagraph: Text(
+                                                          "\nRansomware is often spread through phishing emails that contain malicious attachments or through drive-by downloading. Drive-by downloading occurs when a user unknowingly visits an infected website and then malware is downloaded and installed without the user’s knowledge. Crypto ransomware, a malware variant that encrypts files, is spread through similar methods and has also been spread through social media, such as Web-based instant messaging applications. Additionally, newer methods of ransomware infection have been observed. For example, vulnerable Web servers have been exploited as an entry point to gain access to an organization’s network."),
+                                                      subtitle: Text(
+                                                          'Malware usage is up almost 800% since early 2020.\n'),
+                                                    )),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10),
+                                                    child: AttackButton(
+                                                        dialogColor:
+                                                            Color(0xFF383838),
+                                                        buttonColor:
+                                                            Color(0xff144c64),
+                                                        heading:
+                                                            Text('Phishing'),
+                                                        image:
+                                                            'assets/images/amazon.png',
+                                                        smallImage:
+                                                            'assets/images/phishing.PNG',
+                                                        subtitle: Text(
+                                                            'Phishing attacks are the most common cause of data breaches globally and have'
+                                                            ' been the root cause of notable instances of cybercrime in the last decade.\n'),
+                                                        attackDefinition: Text(
+                                                            'Phishing attacks attempt to steal information from users or trick them into downloading malware by'
+                                                            'sending malicious emails or text messages (SMS) that look like real requests but are, in fact, a Scam.\n'),
+                                                        finalParagraph: Text(
+                                                            '\nIt occurs when an attacker, masquerading as a trusted entity, dupes a victim into opening '
+                                                            'an email, instant message, or text message. The recipient is then tricked into clicking a malicious link, '
+                                                            'which can lead to the installation of malware, the freezing of the system as part of a ransomware attack '
+                                                            'or the revealing of sensitive information.'
+                                                            'An attack can have devastating results. For individuals, this includes unauthorized purchases, the stealing of funds, or identify theft.'))),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10),
+                                                    child: AttackButton(
+                                                        dialogColor:
+                                                            Color(0xFF383838),
+                                                        buttonColor:
+                                                            Color(0xff35746c),
+                                                        heading: Text('DDoS'),
+                                                        image:
+                                                            'assets/images/ddos.png',
+                                                        smallImage:
+                                                            'assets/images/ddosGood.png',
+                                                        subtitle: Text(
+                                                            'DDoS attacks are carried out with networks of Internet-connected machines.\n'
+                                                            'These networks consist of computers and other devices (such as IoT devices)which have been infected with malware, allowing them to be controlled remotely by an attacker.'),
+                                                        attackDefinition: Text(
+                                                            '\nDistributed denial of service (DDoS) attacks disrupt the traffic'
+                                                            'to a website, application, server, service, or network by overwhelming it with a flood of traffic from compromised computer networks'
+                                                            '(botnets) that prevents real users from accessing it. In 2018, GitHub experienced the largest DDoS'
+                                                            'attack ever when it was hit with 1.35 terabits of traffic per second and was offline for almost 20 minutes as a result.'
+                                                            'DDoS attacks are common and increased by 50% in 2020 compared to 2019, with a large surge occurring in early 2020 during the pandemic, according to security company Kaspersky.\n'),
+                                                        finalParagraph: Text(
+                                                            '\nThe most obvious symptom of a DDoS attack is a site or service '
+                                                            'performance issues, further investigation is usually required. Traffic analytics tools '
+                                                            'can help you spot some of these telltale signs of a DDoS attack:'
+                                                            '\n 1. Suspicious amounts of traffic originating from a single IP address or IP range'
+                                                            '\n 2. A flood of traffic from users who share a single behavioral profile, such as device type, geolocation, or web browser version'
+                                                            '\n 3. An unexplained surge in requests to a single page or endpoint'
+                                                            '\n 4. Odd traffic patterns such as spikes at odd hours of the day or patterns that appear to be unnatural (e.g. a spike every 10 minutes)'
+                                                            '\n 5. There are other, more specific signs of DDoS attack that can vary depending on the type of attack.'))),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10),
+                                                    child: AttackButton(
+                                                        heading: Text(
+                                                            'Computer Worm'),
+                                                        image:
+                                                            'assets/images/worm_large.png',
+                                                        smallImage:
+                                                            'assets/images/worm_small.png',
+                                                        subtitle: Text(
+                                                            'A computer worm is a standalone malware computer program that replicates itself in order to spread to other computers.\n'),
+                                                        attackDefinition: Text(
+                                                            'It often uses a computer network to spread itself, relying on security failures on the target computer to access it. It will use this machine as a host to scan and infect other computers. When these new worm-invaded computers are controlled,'
+                                                            ' the worm will continue to scan and infect other computers using these computers as hosts, and this behavior will continue.'
+                                                            ' Computer worms use recursive methods to copy themselves without host programs and distribute themselves based on the law of exponential growth, thus controlling and infecting more and more computers in a short time.'
+                                                            ' Worms almost always cause at least some harm to the network, even if only by consuming bandwidth, whereas viruses almost always corrupt or modify files on a targeted computer.'
+                                                            'Many worms are designed only to spread, and do not attempt to change the systems they pass through. However, as the Morris worm and Mydoom showed, even these "payload-free" worms can cause major'
+                                                            'disruption by increasing network traffic and other unintended effects.\n'),
+                                                        finalParagraph: Text(
+                                                            "\nYou can avoid being infected by a worm using common anti-malware advice. Use antivirus software,"
+                                                            "keep your computer up to date, and never open links or files which you don't completely trust. "),
+                                                        buttonColor:
+                                                            Color(0xff88bcbc),
+                                                        dialogColor:
+                                                            Color(0xFF383838))),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10),
+                                                    child: AttackButton(
+                                                        heading: Text(
+                                                            'Brute Force Attack'),
+                                                        image:
+                                                            'assets/images/brute_large.png',
+                                                        smallImage:
+                                                            'assets/images/brute_small.png',
+                                                        subtitle: Text(
+                                                            "A brute force attack uses trial-and-error to guess login info, encryption keys, or find a hidden web page. Hackers work through all possible combinations hoping to guess correctly."),
+                                                        attackDefinition: Text(
+                                                            "These attacks are done by ‘brute force’ meaning they use excessive forceful attempts to try and ‘force’ their way into your private account(s)."
+                                                            "This is an old attack method, but it's"
+                                                            "still effective and popular with hackers. Because"
+                                                            "depending on the length and complexity of the password,"
+                                                            "cracking it can take anywhere from a few seconds to many years."),
+                                                        finalParagraph: Text(
+                                                            "How to protect yourself from this attack?"
+                                                            "\nUse an advanced username and password. "
+                                                            "Protect yourself with credentials that are stronger "
+                                                            "than admin and password1234 to keep out these attackers. "
+                                                            "The stronger this combination is, the harder it will be"
+                                                            " for anyone to penetrate it."
+                                                            " \nRemove any unused accounts with high-level permissions. These are the cyber"
+                                                            "equivalent of doors with weak locks that make breaking in easy."
+                                                            "Unmaintained accounts are a vulnerability you can’t risk."
+                                                            "Throw them away as soon as possible. "),
+                                                        buttonColor:
+                                                            Color(0xffab933c),
+                                                        dialogColor:
+                                                            Color(0xFF383838))),
+                                                SizedBox(
+                                                  height: 150,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )))),
                         SizedBox(
                           height: 30,
                         ),
-                        Container(
-                          width: 500,
-                          height: 600,
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15)),
-                              color: Colors.grey),
-                          child: Column(
-                            children: [
-                              Container(
-                                  width: 500,
-                                  height: 300,
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(15)),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black,
-                                          spreadRadius: 2,
-                                          blurRadius: 3,
-                                          offset: Offset(0, 4),
-                                        )
-                                      ],
-                                      color: Colors.white),
-                                  child: Column(children: [
-                                    Center(
-                                      child: Text(
-                                        'Useful Resources',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.white,
-                                            fontFamily: 'Mechanismo'),
+                        media.width > 600
+                            ? Padding(
+                                padding: EdgeInsets.only(left: 20),
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color:
+                                                  Colors.black.withOpacity(0.5),
+                                              spreadRadius: 2,
+                                              blurRadius: 3,
+                                              offset: Offset(0, 4))
+                                        ],
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(15)),
+                                        color:
+                                            Color(0xff6e7f80).withOpacity(0.8)),
+                                    child: Column(children: [
+                                      Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 20),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    'Tips',
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 25,
+                                                        fontFamily:
+                                                            'Mechanismo'),
+                                                  ),
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                          left: 10),
+                                                      child: Icon(
+                                                          Icons.arrow_forward))
+                                                ],
+                                              ))),
+                                      SizedBox(
+                                        height: 20,
                                       ),
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.only(top: 20),
-                                        child: Image.asset(
-                                            'assets/images/book.png'))
-                                  ])),
-                            ],
-                          ),
-                        )
+                                      SingleChildScrollView(
+                                          physics: BouncingScrollPhysics(
+                                              parent:
+                                                  AlwaysScrollableScrollPhysics()),
+                                          scrollDirection: Axis.horizontal,
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: [
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: 20,
+                                                        left: 20,
+                                                      ),
+                                                      child: CyberTips(
+                                                        image:
+                                                            'assets/images/update.png',
+                                                        backColor:
+                                                            Color(0xFF383c40),
+                                                        title:
+                                                            'Up-to-date devices!',
+                                                        content:
+                                                            'update_device',
+                                                        colorTop:
+                                                            Color(0xfffbb35a),
+                                                      )),
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: 20,
+                                                        left: 20,
+                                                      ),
+                                                      child: CyberTips(
+                                                        colorTop:
+                                                            Color(0xff46edc8),
+                                                        image:
+                                                            'assets/images/password.png',
+                                                        backColor:
+                                                            Color(0xFF383c40),
+                                                        title:
+                                                            'Use strong passwords!',
+                                                        content: 'password',
+                                                      )),
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: 20,
+                                                        left: 20,
+                                                      ),
+                                                      child: CyberTips(
+                                                        colorTop:
+                                                            Color(0xfff9ac82),
+                                                        image:
+                                                            'assets/images/wifi.png',
+                                                        backColor:
+                                                            Color(0xFF383c40),
+                                                        title: 'Public Wi-Fi!',
+                                                        content: 'wifi',
+                                                      )),
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: 20,
+                                                        left: 20,
+                                                      ),
+                                                      child: CyberTips(
+                                                        colorTop:
+                                                            Color(0xffdbe6eb),
+                                                        image:
+                                                            'assets/images/backup.png',
+                                                        backColor:
+                                                            Color(0xFF383c40),
+                                                        title: 'Back-up Data!',
+                                                        content: 'backup',
+                                                      )),
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: 20,
+                                                        left: 20,
+                                                      ),
+                                                      child: CyberTips(
+                                                        colorTop:
+                                                            Color(0xfffff99b),
+                                                        image:
+                                                            'assets/images/family.png',
+                                                        backColor:
+                                                            Color(0xFF383c40),
+                                                        title:
+                                                            'Educate your family!',
+                                                        content: 'family',
+                                                      )),
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: 20,
+                                                        left: 20,
+                                                      ),
+                                                      child: CyberTips(
+                                                        colorTop:
+                                                            Color(0xffb0f6ff),
+                                                        image:
+                                                            'assets/images/personal.png',
+                                                        backColor:
+                                                            Color(0xFF383c40),
+                                                        title:
+                                                            'Sharing personal data!',
+                                                        content:
+                                                            'personal_information',
+                                                      )),
+                                                  SizedBox(
+                                                    width: 20,
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 30,
+                                              ),
+                                            ],
+                                          )),
+                                    ])))
+                            :
+                            //Optimised for phone users
+                            Align(
+                                alignment: Alignment.topLeft,
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 20),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        width: media.width / 1.2,
+                                        height: 800,
+                                        decoration: BoxDecoration(
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: Colors.black
+                                                      .withOpacity(0.5),
+                                                  spreadRadius: 2,
+                                                  blurRadius: 3,
+                                                  offset: Offset(0, 4))
+                                            ],
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(15)),
+                                            color: Color(0xff6e7f80)
+                                                .withOpacity(0.8)),
+                                        child: Column(
+                                          children: [
+                                            Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 20),
+                                                    child: Row(
+                                                      children: [
+                                                        Text(
+                                                          'Tips',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 25,
+                                                              fontFamily:
+                                                                  'Mechanismo'),
+                                                        ),
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: 10),
+                                                            child: Icon(Icons
+                                                                .arrow_forward))
+                                                      ],
+                                                    ))),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            SingleChildScrollView(
+                                              controller: scrollController,
+                                              physics: BouncingScrollPhysics(
+                                                  parent:
+                                                      AlwaysScrollableScrollPhysics()),
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: [
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: 20,
+                                                        left: 10,
+                                                      ),
+                                                      child: CyberTips(
+                                                        key: key1,
+                                                        image:
+                                                            'assets/images/update.png',
+                                                        backColor:
+                                                            Color(0xFF383c40),
+                                                        title:
+                                                            'Up-to-date devices!',
+                                                        content:
+                                                            'update_device',
+                                                        colorTop:
+                                                            Color(0xfffbb35a),
+                                                      )),
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: 20,
+                                                        left: 20,
+                                                      ),
+                                                      child: CyberTips(
+                                                        key: key2,
+                                                        colorTop:
+                                                            Color(0xff46edc8),
+                                                        image:
+                                                            'assets/images/password.png',
+                                                        backColor:
+                                                            Color(0xFF383c40),
+                                                        title:
+                                                            'Use strong passwords!',
+                                                        content: 'password',
+                                                      )),
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: 20,
+                                                        left: 20,
+                                                      ),
+                                                      child: CyberTips(
+                                                        key: key3,
+                                                        colorTop:
+                                                            Color(0xfff9ac82),
+                                                        image:
+                                                            'assets/images/wifi.png',
+                                                        backColor:
+                                                            Color(0xFF383c40),
+                                                        title: 'Public Wi-Fi!',
+                                                        content: 'wifi',
+                                                      )),
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: 20,
+                                                        left: 20,
+                                                      ),
+                                                      child: CyberTips(
+                                                        key: key4,
+                                                        colorTop:
+                                                            Color(0xffdbe6eb),
+                                                        image:
+                                                            'assets/images/backup.png',
+                                                        backColor:
+                                                            Color(0xFF383c40),
+                                                        title: 'Back-up Data!',
+                                                        content: 'backup',
+                                                      )),
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: 20,
+                                                        left: 20,
+                                                      ),
+                                                      child: CyberTips(
+                                                        key: key5,
+                                                        colorTop:
+                                                            Color(0xfffff99b),
+                                                        image:
+                                                            'assets/images/family.png',
+                                                        backColor:
+                                                            Color(0xFF383c40),
+                                                        title:
+                                                            'Educate your family!',
+                                                        content: 'family',
+                                                      )),
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: 20,
+                                                        left: 20,
+                                                      ),
+                                                      child: CyberTips(
+                                                        key: key6,
+                                                        colorTop:
+                                                            Color(0xffb0f6ff),
+                                                        image:
+                                                            'assets/images/personal.png',
+                                                        backColor:
+                                                            Color(0xFF383c40),
+                                                        title:
+                                                            'Sharing personal data!',
+                                                        content:
+                                                            'personal_information',
+                                                      )),
+                                                  SizedBox(
+                                                    width: 20,
+                                                  ),
+                                                  SizedBox(
+                                                    height: 30,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                              right: 30, top: 400),
+                                          child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: Container(
+                                                  height: 40,
+                                                  width: 40,
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.orange,
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  15))),
+                                                  child: IconButton(
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          buttonTap++;
+                                                          print(buttonTap);
+
+                                                          if (buttonTap == 1) {
+                                                            scroll(key2);
+                                                          } else if (buttonTap ==
+                                                              2) {
+                                                            scroll(key3);
+                                                          } else if (buttonTap ==
+                                                              3) {
+                                                            scroll(key4);
+                                                          } else if (buttonTap ==
+                                                              4) {
+                                                            scroll(key5);
+                                                          } else if (buttonTap ==
+                                                              5) {
+                                                            scroll(key6);
+                                                          } else if (buttonTap ==
+                                                              6) {
+                                                            scroll(key1);
+                                                            buttonTap = 0;
+                                                          }
+                                                        });
+                                                      },
+                                                      icon: Icon(
+                                                        Icons.arrow_forward,
+                                                        color: Colors.white,
+                                                      )))))
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Padding(
+                            padding: EdgeInsets.only(left: 20),
+                            child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Container(
+                                    width: media.width,
+                                    height: media.width > 600 ? 600 : 650,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(15)),
+                                        color:
+                                            Color(0xFF383c40).withOpacity(0.8)),
+                                    child: Column(children: [
+                                      Container(
+                                          width: media.width,
+                                          height: 300,
+                                          decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    spreadRadius: 2,
+                                                    blurRadius: 3,
+                                                    offset: Offset(0, 4))
+                                              ],
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(15)),
+                                              color: Color(0xfffcbf49)),
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                'Resources',
+                                                style: TextStyle(
+                                                    fontSize: 25,
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              Image.asset(
+                                                  'assets/images/book.png'),
+                                            ],
+                                          )),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      media.width > 600
+                                          ? Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 20),
+                                                        child: Align(
+                                                          alignment:
+                                                              Alignment.topLeft,
+                                                          child: Text(
+                                                            'External Links',
+                                                            style: TextStyle(
+                                                                fontSize:
+                                                                    media.width >
+                                                                            600
+                                                                        ? 23
+                                                                        : 18,
+                                                                color: Colors
+                                                                    .white,
+                                                                decoration:
+                                                                    TextDecoration
+                                                                        .underline),
+                                                          ),
+                                                        )),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 20,
+                                                                left: 20),
+                                                        child: Align(
+                                                            alignment: Alignment
+                                                                .topLeft,
+                                                            child: InkWell(
+                                                              child: Text(
+                                                                " * NCSC's Website",
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        media.width >
+                                                                                600
+                                                                            ? 20
+                                                                            : 15),
+                                                              ),
+                                                              onTap: () => launch(
+                                                                  'https://www.ncsc.gov.uk/'),
+                                                            ))),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 20,
+                                                                left: 20),
+                                                        child: Align(
+                                                            alignment: Alignment
+                                                                .topLeft,
+                                                            child: InkWell(
+                                                              child: Text(
+                                                                  " * Cyber threats 2021",
+                                                                  style: TextStyle(
+                                                                      fontSize: media.width >
+                                                                              600
+                                                                          ? 20
+                                                                          : 15)),
+                                                              onTap: () => launch(
+                                                                  'https://umbrella.cisco.com/info/2021-cyber-security-threat-trends-phishing-crypto-top-the-list?utm_medium=search-paid&utm_source=google&utm_campaign=UMB_22Q2_UK_EN_GS_Nonbrand_Threats&utm_term=pgm&utm_content=UMB-FY21-Q4-content-ebook-2021-cyber-security-threat-trends&_bt=531345123570&_bk=top%20cybersecurity%20threats%202021&_bm=p&_bn=g&_bg=122332509075&gclid=Cj0KCQiA8vSOBhCkARIsAGdp6RQwN_Q9sGL9gpJi_L5Ccv2C8wCEf4ENlBaZhzmL6q5YJGHaGBdjqEUaAgFuEALw_wcB'),
+                                                            ))),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 20,
+                                                                left: 20),
+                                                        child: Align(
+                                                            alignment: Alignment
+                                                                .topLeft,
+                                                            child: InkWell(
+                                                              child: Text(
+                                                                  " * Cyber Security Newsletter",
+                                                                  style: TextStyle(
+                                                                      fontSize: media.width >
+                                                                              600
+                                                                          ? 20
+                                                                          : 15)),
+                                                              onTap: () => launch(
+                                                                  'https://www.infosecurity-magazine.com/news/'),
+                                                            )))
+                                                  ],
+                                                ),
+                                                Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                right: 20),
+                                                        child: Align(
+                                                          alignment:
+                                                              Alignment.topLeft,
+                                                          child: Text(
+                                                            'Cyber Games',
+                                                            style: TextStyle(
+                                                                fontSize:
+                                                                    media.width >
+                                                                            600
+                                                                        ? 23
+                                                                        : 18,
+                                                                color: Colors
+                                                                    .white,
+                                                                decoration:
+                                                                    TextDecoration
+                                                                        .underline),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  top: 20,
+                                                                  right: 20),
+                                                          child: Align(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .topLeft,
+                                                              child: InkWell(
+                                                                child: Text(
+                                                                    " * Cyber Games UK",
+                                                                    style: TextStyle(
+                                                                        fontSize: media.width >
+                                                                                600
+                                                                            ? 20
+                                                                            : 15)),
+                                                                onTap: () => launch(
+                                                                    'https://cybergamesuk.com/'),
+                                                              ))),
+                                                      Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  top: 20,
+                                                                  right: 20),
+                                                          child: Align(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .topLeft,
+                                                              child: InkWell(
+                                                                child: Text(
+                                                                    " * Craft a Phish",
+                                                                    style: TextStyle(
+                                                                        fontSize: media.width >
+                                                                                600
+                                                                            ? 20
+                                                                            : 15)),
+                                                                onTap: () => launch(
+                                                                    'https://phishing.livingsecurity.com/'),
+                                                              ))),
+                                                      Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  top: 20,
+                                                                  right: 20),
+                                                          child: Align(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .topLeft,
+                                                              child: InkWell(
+                                                                child: Text(
+                                                                    " * Targeted Attack",
+                                                                    style: TextStyle(
+                                                                        fontSize: media.width >
+                                                                                600
+                                                                            ? 20
+                                                                            : 15)),
+                                                                onTap: () => launch(
+                                                                    'http://targetedattacks.trendmicro.com/'),
+                                                              )))
+                                                    ]),
+                                              ],
+                                            )
+                                          //If accessed on phone => display links in a column
+                                          : Column(
+                                              children: [
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 20),
+                                                    child: Align(
+                                                      alignment:
+                                                          Alignment.topLeft,
+                                                      child: Text(
+                                                        'External Links',
+                                                        style: TextStyle(
+                                                            fontSize:
+                                                                media.width >
+                                                                        600
+                                                                    ? 23
+                                                                    : 18,
+                                                            color: Colors.white,
+                                                            decoration:
+                                                                TextDecoration
+                                                                    .underline),
+                                                      ),
+                                                    )),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 20, left: 20),
+                                                    child: Align(
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        child: InkWell(
+                                                          child: Text(
+                                                            " * NCSC's Website",
+                                                            style: TextStyle(
+                                                                fontSize:
+                                                                    media.width >
+                                                                            600
+                                                                        ? 20
+                                                                        : 15),
+                                                          ),
+                                                          onTap: () => launch(
+                                                              'https://www.ncsc.gov.uk/'),
+                                                        ))),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 20, left: 20),
+                                                    child: Align(
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        child: InkWell(
+                                                          child: Text(
+                                                              " * Cyber threats 2021",
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                      media.width >
+                                                                              600
+                                                                          ? 20
+                                                                          : 15)),
+                                                          onTap: () => launch(
+                                                              'https://umbrella.cisco.com/info/2021-cyber-security-threat-trends-phishing-crypto-top-the-list?utm_medium=search-paid&utm_source=google&utm_campaign=UMB_22Q2_UK_EN_GS_Nonbrand_Threats&utm_term=pgm&utm_content=UMB-FY21-Q4-content-ebook-2021-cyber-security-threat-trends&_bt=531345123570&_bk=top%20cybersecurity%20threats%202021&_bm=p&_bn=g&_bg=122332509075&gclid=Cj0KCQiA8vSOBhCkARIsAGdp6RQwN_Q9sGL9gpJi_L5Ccv2C8wCEf4ENlBaZhzmL6q5YJGHaGBdjqEUaAgFuEALw_wcB'),
+                                                        ))),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 20, left: 20),
+                                                    child: Align(
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        child: InkWell(
+                                                          child: Text(
+                                                              " * Cyber Security Newsletter",
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                      media.width >
+                                                                              600
+                                                                          ? 20
+                                                                          : 15)),
+                                                          onTap: () => launch(
+                                                              'https://www.infosecurity-magazine.com/news/'),
+                                                        ))),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 20, left: 20),
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text(
+                                                      'Cyber Games',
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                              media.width > 600
+                                                                  ? 23
+                                                                  : 18,
+                                                          color: Colors.white,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 20, left: 20),
+                                                    child: Align(
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        child: InkWell(
+                                                          child: Text(
+                                                              " * Cyber Games UK",
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                      media.width >
+                                                                              600
+                                                                          ? 20
+                                                                          : 15)),
+                                                          onTap: () => launch(
+                                                              'https://cybergamesuk.com/'),
+                                                        ))),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 20, left: 20),
+                                                    child: Align(
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        child: InkWell(
+                                                          child: Text(
+                                                              " * Craft a Phish",
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                      media.width >
+                                                                              600
+                                                                          ? 20
+                                                                          : 15)),
+                                                          onTap: () => launch(
+                                                              'https://phishing.livingsecurity.com/'),
+                                                        ))),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 20, left: 20),
+                                                    child: Align(
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        child: InkWell(
+                                                          child: Text(
+                                                              " * Targeted Attack",
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                      media.width >
+                                                                              600
+                                                                          ? 20
+                                                                          : 15)),
+                                                          onTap: () => launch(
+                                                              'http://targetedattacks.trendmicro.com/'),
+                                                        )))
+                                              ],
+                                            )
+                                    ])))),
+                        SizedBox(
+                          height: 30,
+                        ),
                       ]),
-                    )),
-              ],
-            )
-            //add old body here
-            ));
+                    ),
+
+                    //add old body here
+                  )
+                ])));
   }
 }
 
@@ -535,13 +1237,15 @@ class CyberTips extends StatefulWidget {
 class _CyberTipsState extends State<CyberTips> {
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
+
     return Container(
         padding: EdgeInsets.only(
           top: 0,
           left: 0,
         ),
-        width: 350,
-        height: 650,
+        width: media.width > 600 ? 350 : 250,
+        height: media.width > 600 ? 650 : 720,
         decoration: BoxDecoration(
           border: Border.all(width: 0, color: Colors.black),
           borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -578,8 +1282,8 @@ class _CyberTipsState extends State<CyberTips> {
                             widget.title,
                             style: TextStyle(
                               fontSize: 20,
-                              color: Colors.white,
-                              decoration: TextDecoration.underline,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
                             ),
                           )),
                       Image.asset(
@@ -622,13 +1326,19 @@ class _CyberTipsState extends State<CyberTips> {
 }
 
 //Hamburger Menu
-class Menu extends StatelessWidget {
+
+class Menu extends StatefulWidget {
+  Menu({Key? key}) : super(key: key);
+
   DocumentReference userName = FirebaseFirestore.instance
       .collection('users')
       .doc(FirebaseAuth.instance.currentUser!.uid);
 
-  Menu({Key? key}) : super(key: key);
+  @override
+  _MenuState createState() => _MenuState();
+}
 
+class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -645,7 +1355,7 @@ class Menu extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       FutureBuilder<DocumentSnapshot>(
-                        future: userName.get(),
+                        future: widget.userName.get(),
                         builder: (BuildContext context,
                             AsyncSnapshot<DocumentSnapshot> snapshot) {
                           if (snapshot.hasError) {
