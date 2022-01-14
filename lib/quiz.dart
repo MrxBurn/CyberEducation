@@ -99,6 +99,7 @@ class _QuizState extends State<Quiz> {
                     fit: BoxFit.cover,
                     image: AssetImage('assets/images/background.jpg'))),
             child: ListView(
+                addAutomaticKeepAlives: false,
                 scrollDirection: Axis.vertical,
                 controller: Score.scrollController,
                 shrinkWrap: true,
@@ -476,8 +477,10 @@ class _QuestionsState extends State<Questions> {
   }
 
   scroll() {
-    Scrollable.ensureVisible(widget.moveToWidgetKey.currentContext!,
-        duration: Duration(seconds: 1));
+    Scrollable.ensureVisible(
+      widget.moveToWidgetKey.currentContext!,
+      duration: Duration(seconds: 1),
+    );
   }
 
   @override
