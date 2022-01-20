@@ -60,10 +60,12 @@ class _HomepageState extends State<Homepage> {
   GlobalKey key5_attack = GlobalKey();
 
   scroll(GlobalKey pKey) {
-    Scrollable.ensureVisible(pKey.currentContext!,
-        duration: Duration(seconds: 1),
-        curve: Curves.fastOutSlowIn,
-        alignment: 0.5);
+    Scrollable.ensureVisible(
+      pKey.currentContext!,
+      duration: Duration(seconds: 1),
+      curve: Curves.fastOutSlowIn,
+      alignment: 0.3,
+    );
   }
 
   @override
@@ -390,9 +392,8 @@ class _HomepageState extends State<Homepage> {
                                               Align(
                                                 alignment: Alignment.topLeft,
                                                 child: SingleChildScrollView(
-                                                  physics: BouncingScrollPhysics(
-                                                      parent:
-                                                          AlwaysScrollableScrollPhysics()),
+                                                  physics:
+                                                      NeverScrollableScrollPhysics(),
                                                   scrollDirection:
                                                       Axis.horizontal,
                                                   child: Row(
@@ -820,9 +821,8 @@ class _HomepageState extends State<Homepage> {
                                             ),
                                             SingleChildScrollView(
                                               controller: scrollController,
-                                              physics: BouncingScrollPhysics(
-                                                  parent:
-                                                      AlwaysScrollableScrollPhysics()),
+                                              physics:
+                                                  NeverScrollableScrollPhysics(),
                                               scrollDirection: Axis.horizontal,
                                               child: Row(
                                                 children: [
@@ -1731,26 +1731,29 @@ class _MenuState extends State<Menu> {
                                         ),
                                         child: Text(
                                           "Welcome ${data['firstName']}",
-                                          style: const TextStyle(
-                                            fontSize: 20,
+                                          style: TextStyle(
+                                            fontSize:
+                                                media.width > 600 ? 18 : 20,
                                           ),
                                         )),
                                     Padding(
                                         padding:
                                             EdgeInsets.only(top: 10, left: 10),
                                         child: Text(
-                                          "1st score: ${data['score_quiz']}",
-                                          style: const TextStyle(
-                                            fontSize: 18,
+                                          "1st score: ${data['score_one']}",
+                                          style: TextStyle(
+                                            fontSize:
+                                                media.width > 600 ? 18 : 16,
                                           ),
                                         )),
                                     Padding(
                                         padding:
                                             EdgeInsets.only(top: 10, left: 10),
                                         child: Text(
-                                          "2nd score: ${data['score_test']}",
-                                          style: const TextStyle(
-                                            fontSize: 18,
+                                          "2nd score: ${data['score_two']}",
+                                          style: TextStyle(
+                                            fontSize:
+                                                media.width > 600 ? 18 : 16,
                                           ),
                                         ))
                                   ],

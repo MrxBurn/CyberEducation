@@ -27,8 +27,8 @@ class _RegisterState extends State<Register> {
   String email = '';
   String password = '';
   String firstName = '';
-  int scoreQuiz = 0;
-  int scoreTest = 0;
+  int scoreOne = 0;
+  int scoreTwo = 0;
   String uid = '';
 
   final _formKey = GlobalKey<FormState>();
@@ -45,8 +45,8 @@ class _RegisterState extends State<Register> {
 
     ref.doc(uid).set({
       'firstName': firstName,
-      'score_quiz': scoreQuiz,
-      'score_test': scoreTest,
+      'score_one': scoreOne,
+      'score_two': scoreTwo,
     });
 
     Navigator.push(
