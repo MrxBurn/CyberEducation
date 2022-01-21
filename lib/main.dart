@@ -6,7 +6,6 @@ import 'package:cyber_education/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,9 +13,9 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  static final auth = FirebaseAuth.instance;
 
   // This widget is the root of your application.
   @override
@@ -28,23 +27,16 @@ class MyApp extends StatelessWidget {
           PointerDeviceKind.mouse,
           PointerDeviceKind.touch,
         }),
-        home: FutureBuilder(
-          future: _initialization,
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              print("Error");
-            }
-            if (snapshot.connectionState == ConnectionState.done) {
-              if (FirebaseAuth.instance.currentUser != null) {
+        home: StreamBuilder<User?>(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (BuildContext context, snapshot) {
+              if (ConnectionState.active == snapshot.connectionState) {}
+              if (snapshot.hasData) {
                 return Homepage();
               } else {
                 return Login();
               }
-            }
-
-            return CircularProgressIndicator();
-          },
-        ));
+            }));
   }
 }
 
@@ -81,110 +73,141 @@ class _LoginState extends State<Login> {
         context, MaterialPageRoute(builder: (context) => Homepage()));
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Login'),
         ),
-        body: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 50,
-              ),
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    top: 30,
-                  ),
-                  child: SizedBox(
-                    width: 300,
-                    child: TextFormField(
-                      controller: cEmail,
-                      validator: (text) {
-                        if (text == null || text.isEmpty) {
-                          return 'Email field empty';
-                        }
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        hintText: 'Email',
-                      ),
-                      onChanged: (value) => email = value,
-                    ),
-                  ),
-                ),
-              ),
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    top: 20,
-                  ),
-                  child: SizedBox(
-                    width: 300,
-                    child: TextFormField(
-                      obscureText: true,
-                      controller: cPassword,
-                      validator: (text) {
-                        if (text == null || text.isEmpty) {
-                          return 'Password field empty';
-                        }
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        hintText: 'Password',
-                      ),
-                      onChanged: (value) => password = value,
-                    ),
-                  ),
-                ),
-              ),
-              Center(
-                  child: Padding(
-                padding: EdgeInsets.only(
-                  top: 20,
-                ),
-                child: SizedBox(
-                  width: 70,
-                  height: 40,
-                  child: ElevatedButton(
-                    child: Text('Login'),
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.orange),
-                    ),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        cEmail.clear();
-                        cPassword.clear();
+        body: Padding(
+            padding: EdgeInsets.only(top: 100),
+            child: Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                    width: 400,
+                    height: 400,
+                    decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(0.7),
+                              spreadRadius: 3,
+                              blurRadius: 2,
+                              offset: Offset(0, 4))
+                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        color: Color(0xff6e7f80).withOpacity(0.8)),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 50,
+                          ),
+                          Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                top: 30,
+                              ),
+                              child: SizedBox(
+                                width: 300,
+                                child: TextFormField(
+                                  controller: cEmail,
+                                  validator: (text) {
+                                    if (text == null || text.isEmpty) {
+                                      return 'Email field empty';
+                                    }
+                                  },
+                                  keyboardType: TextInputType.emailAddress,
+                                  decoration: InputDecoration(
+                                    enabledBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.white)),
+                                    hintStyle: TextStyle(color: Colors.white),
+                                    hintText: 'Email',
+                                  ),
+                                  onChanged: (value) => email = value,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                top: 20,
+                              ),
+                              child: SizedBox(
+                                width: 300,
+                                child: TextFormField(
+                                  obscureText: true,
+                                  controller: cPassword,
+                                  validator: (text) {
+                                    if (text == null || text.isEmpty) {
+                                      return 'Password field empty';
+                                    }
+                                  },
+                                  keyboardType: TextInputType.emailAddress,
+                                  decoration: InputDecoration(
+                                      enabledBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.white)),
+                                      hintText: 'Password',
+                                      hintStyle:
+                                          TextStyle(color: Colors.white)),
+                                  onChanged: (value) => password = value,
+                                ),
+                              ),
+                            ),
+                          ),
+                          ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                              child: Center(
+                                  child: Padding(
+                                padding: EdgeInsets.only(
+                                  top: 20,
+                                ),
+                                child: SizedBox(
+                                  width: 70,
+                                  height: 40,
+                                  child: ElevatedButton(
+                                    child: Text('Login'),
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              Colors.orange),
+                                    ),
+                                    onPressed: () {
+                                      if (_formKey.currentState!.validate()) {
+                                        cEmail.clear();
+                                        cPassword.clear();
 
-                        loginUser();
-                      }
-                    },
-                  ),
-                ),
-              )),
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    top: 20,
-                  ),
-                  child: TextButton(
-                    child: Text(
-                      'Not a user? Register!',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Register()));
-                    },
-                  ),
-                ),
-              )
-            ],
-          ),
-        ));
+                                        loginUser();
+                                      }
+                                    },
+                                  ),
+                                ),
+                              ))),
+                          Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                top: 20,
+                              ),
+                              child: TextButton(
+                                child: Text(
+                                  'Not a user? Register!',
+                                  style: TextStyle(
+                                      color: Colors.white.withOpacity(0.7)),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Register()));
+                                },
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    )))));
   }
 }

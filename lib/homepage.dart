@@ -1948,8 +1948,9 @@ class _MenuState extends State<Menu> {
                     // Update the state of the app.
                     FirebaseAuth.instance.signOut();
 
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Login()));
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (context) => Login()),
+                        (Route<dynamic> route) => false);
                   },
                 ),
               ],

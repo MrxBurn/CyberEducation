@@ -59,102 +59,135 @@ class _RegisterState extends State<Register> {
         appBar: AppBar(
           title: const Text('Register'),
         ),
-        body: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              Center(
-                  child: Padding(
-                padding: EdgeInsets.only(
-                  top: 30,
-                ),
-                child: SizedBox(
-                  width: 300,
-                  child: TextFormField(
-                    validator: (text) {
-                      if (text == null || text.isEmpty) {
-                        return 'Enter your first name';
-                      }
-                    },
-                    controller: cFirstName,
-                    autocorrect: false,
-                    decoration: InputDecoration(
-                      hintText: 'First name',
-                    ),
-                    onChanged: (value) => firstName = value,
-                  ),
-                ),
-              )),
-              Center(
-                  child: Padding(
-                padding: EdgeInsets.only(
-                  top: 20,
-                ),
-                child: SizedBox(
-                  width: 300,
-                  child: TextFormField(
-                    validator: (text) {
-                      if (text == null || text.isEmpty) {
-                        return 'Enter your email';
-                      }
-                    },
-                    controller: cEmail,
-                    autocorrect: false,
-                    decoration: InputDecoration(
-                      hintText: 'Email',
-                    ),
-                    onChanged: (value) => email = value,
-                  ),
-                ),
-              )),
-              Center(
-                  child: Padding(
-                padding: EdgeInsets.only(
-                  top: 20,
-                ),
-                child: SizedBox(
-                  width: 300,
-                  child: TextFormField(
-                    validator: (text) {
-                      if (text == null || text.isEmpty) {
-                        return 'Enter a password';
-                      }
-                    },
-                    controller: cPassword,
-                    autocorrect: false,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: 'Password',
-                    ),
-                    onChanged: (value) => password = value,
-                  ),
-                ),
-              )),
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    top: 20,
-                  ),
-                  child: ElevatedButton(
-                    child: const Text('Register'),
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.orange),
-                    ),
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        await registerUser();
+        body: Padding(
+            padding: EdgeInsets.only(top: 100),
+            child: Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                    width: 400,
+                    height: 400,
+                    decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(0.7),
+                              spreadRadius: 3,
+                              blurRadius: 2,
+                              offset: Offset(0, 4))
+                        ],
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        color: Color(0xff6e7f80).withOpacity(0.8)),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          Center(
+                              child: Padding(
+                            padding: EdgeInsets.only(
+                              top: 30,
+                            ),
+                            child: SizedBox(
+                              width: 300,
+                              child: TextFormField(
+                                validator: (text) {
+                                  if (text == null || text.isEmpty) {
+                                    return 'Enter your first name';
+                                  }
+                                },
+                                controller: cFirstName,
+                                autocorrect: false,
+                                decoration: InputDecoration(
+                                    hintText: 'First name',
+                                    enabledBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.white)),
+                                    hintStyle: TextStyle(color: Colors.white)),
+                                onChanged: (value) => firstName = value,
+                              ),
+                            ),
+                          )),
+                          Center(
+                              child: Padding(
+                            padding: EdgeInsets.only(
+                              top: 20,
+                            ),
+                            child: SizedBox(
+                              width: 300,
+                              child: TextFormField(
+                                validator: (text) {
+                                  if (text == null || text.isEmpty) {
+                                    return 'Enter your email';
+                                  }
+                                },
+                                controller: cEmail,
+                                autocorrect: false,
+                                decoration: InputDecoration(
+                                    hintText: 'Email',
+                                    enabledBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.white)),
+                                    hintStyle: TextStyle(color: Colors.white)),
+                                onChanged: (value) => email = value,
+                              ),
+                            ),
+                          )),
+                          Center(
+                              child: Padding(
+                            padding: EdgeInsets.only(
+                              top: 20,
+                            ),
+                            child: SizedBox(
+                              width: 300,
+                              child: TextFormField(
+                                validator: (text) {
+                                  if (text == null || text.isEmpty) {
+                                    return 'Enter a password';
+                                  }
+                                },
+                                controller: cPassword,
+                                autocorrect: false,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    hintText: 'Password',
+                                    enabledBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.white)),
+                                    hintStyle: TextStyle(color: Colors.white)),
+                                onChanged: (value) => password = value,
+                              ),
+                            ),
+                          )),
+                          ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                              child: Center(
+                                  child: Padding(
+                                padding: EdgeInsets.only(
+                                  top: 50,
+                                ),
+                                child: SizedBox(
+                                  width: 90,
+                                  height: 50,
+                                  child: ElevatedButton(
+                                    child: const Text('Register'),
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              Colors.orange),
+                                    ),
+                                    onPressed: () async {
+                                      if (_formKey.currentState!.validate()) {
+                                        await registerUser();
 
-                        cEmail.clear();
-                        cPassword.clear();
-                        cFirstName.clear();
-                      }
-                    },
-                  ),
-                ),
-              )
-            ],
-          ),
-        ));
+                                        cEmail.clear();
+                                        cPassword.clear();
+                                        cFirstName.clear();
+                                      }
+                                    },
+                                  ),
+                                ),
+                              )))
+                        ],
+                      ),
+                    )))));
   }
 }
