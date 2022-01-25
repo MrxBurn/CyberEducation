@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables, must_be_immutable, non_constant_identifier_names
+// ignore_for_file: avoid_print, prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables, must_be_immutable, non_constant_identifier_names, import_of_legacy_library_into_null_safe
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cyber_education/main.dart';
@@ -111,7 +111,7 @@ class _HomepageState extends State<Homepage> {
                     fit: FlexFit.loose,
                     flex: 4,
                     child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
+                      controller: ScrollController(),
                       child: Column(children: [
                         Center(
                             child: Text(
