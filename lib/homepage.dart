@@ -819,124 +819,119 @@ class _HomepageState extends State<Homepage> {
                                             SizedBox(
                                               height: 20,
                                             ),
-                                            SingleChildScrollView(
-                                              controller: scrollController,
-                                              physics:
-                                                  NeverScrollableScrollPhysics(),
+                                            Expanded(
+                                                child: PageView(
                                               scrollDirection: Axis.horizontal,
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                        top: 20,
-                                                        left: 10,
-                                                      ),
-                                                      child: CyberTips(
-                                                        key: key1,
-                                                        image:
-                                                            'assets/images/update.png',
-                                                        backColor:
-                                                            Color(0xFF383c40),
-                                                        title:
-                                                            'Up-to-date devices!',
-                                                        content:
-                                                            'update_device',
-                                                        colorTop:
-                                                            Color(0xfffbb35a),
-                                                      )),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                        top: 20,
-                                                        left: 20,
-                                                      ),
-                                                      child: CyberTips(
-                                                        key: key2,
-                                                        colorTop:
-                                                            Color(0xff46edc8),
-                                                        image:
-                                                            'assets/images/password.png',
-                                                        backColor:
-                                                            Color(0xFF383c40),
-                                                        title:
-                                                            'Use strong passwords!',
-                                                        content: 'password',
-                                                      )),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                        top: 20,
-                                                        left: 20,
-                                                      ),
-                                                      child: CyberTips(
-                                                        key: key3,
-                                                        colorTop:
-                                                            Color(0xfff9ac82),
-                                                        image:
-                                                            'assets/images/wifi.png',
-                                                        backColor:
-                                                            Color(0xFF383c40),
-                                                        title: 'Public Wi-Fi!',
-                                                        content: 'wifi',
-                                                      )),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                        top: 20,
-                                                        left: 20,
-                                                      ),
-                                                      child: CyberTips(
-                                                        key: key4,
-                                                        colorTop:
-                                                            Color(0xffdbe6eb),
-                                                        image:
-                                                            'assets/images/backup.png',
-                                                        backColor:
-                                                            Color(0xFF383c40),
-                                                        title: 'Back-up Data!',
-                                                        content: 'backup',
-                                                      )),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                        top: 20,
-                                                        left: 20,
-                                                      ),
-                                                      child: CyberTips(
-                                                        key: key5,
-                                                        colorTop:
-                                                            Color(0xfffff99b),
-                                                        image:
-                                                            'assets/images/family.png',
-                                                        backColor:
-                                                            Color(0xFF383c40),
-                                                        title:
-                                                            'Educate your family!',
-                                                        content: 'family',
-                                                      )),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                        top: 20,
-                                                        left: 20,
-                                                      ),
-                                                      child: CyberTips(
-                                                        key: key6,
-                                                        colorTop:
-                                                            Color(0xffb0f6ff),
-                                                        image:
-                                                            'assets/images/personal.png',
-                                                        backColor:
-                                                            Color(0xFF383c40),
-                                                        title:
-                                                            'Sharing personal data!',
-                                                        content:
-                                                            'personal_information',
-                                                      )),
-                                                  SizedBox(
-                                                    width: 20,
-                                                  ),
-                                                  SizedBox(
-                                                    height: 30,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
+                                              children: [
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                      top: 20,
+                                                      left: 10,
+                                                    ),
+                                                    child: CyberTips(
+                                                      key: key1,
+                                                      image:
+                                                          'assets/images/update.png',
+                                                      backColor:
+                                                          Color(0xFF383c40),
+                                                      title:
+                                                          'Up-to-date devices!',
+                                                      content: 'update_device',
+                                                      colorTop:
+                                                          Color(0xfffbb35a),
+                                                    )),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                      top: 20,
+                                                      left: 20,
+                                                    ),
+                                                    child: CyberTips(
+                                                      key: key2,
+                                                      colorTop:
+                                                          Color(0xff46edc8),
+                                                      image:
+                                                          'assets/images/password.png',
+                                                      backColor:
+                                                          Color(0xFF383c40),
+                                                      title:
+                                                          'Use strong passwords!',
+                                                      content: 'password',
+                                                    )),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                      top: 20,
+                                                      left: 20,
+                                                    ),
+                                                    child: CyberTips(
+                                                      key: key3,
+                                                      colorTop:
+                                                          Color(0xfff9ac82),
+                                                      image:
+                                                          'assets/images/wifi.png',
+                                                      backColor:
+                                                          Color(0xFF383c40),
+                                                      title: 'Public Wi-Fi!',
+                                                      content: 'wifi',
+                                                    )),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                      top: 20,
+                                                      left: 20,
+                                                    ),
+                                                    child: CyberTips(
+                                                      key: key4,
+                                                      colorTop:
+                                                          Color(0xffdbe6eb),
+                                                      image:
+                                                          'assets/images/backup.png',
+                                                      backColor:
+                                                          Color(0xFF383c40),
+                                                      title: 'Back-up Data!',
+                                                      content: 'backup',
+                                                    )),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                      top: 20,
+                                                      left: 20,
+                                                    ),
+                                                    child: CyberTips(
+                                                      key: key5,
+                                                      colorTop:
+                                                          Color(0xfffff99b),
+                                                      image:
+                                                          'assets/images/family.png',
+                                                      backColor:
+                                                          Color(0xFF383c40),
+                                                      title:
+                                                          'Educate your family!',
+                                                      content: 'family',
+                                                    )),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                      top: 20,
+                                                      left: 20,
+                                                    ),
+                                                    child: CyberTips(
+                                                      key: key6,
+                                                      colorTop:
+                                                          Color(0xffb0f6ff),
+                                                      image:
+                                                          'assets/images/personal.png',
+                                                      backColor:
+                                                          Color(0xFF383c40),
+                                                      title:
+                                                          'Sharing personal data!',
+                                                      content:
+                                                          'personal_information',
+                                                    )),
+                                                SizedBox(
+                                                  width: 20,
+                                                ),
+                                                SizedBox(
+                                                  height: 30,
+                                                ),
+                                              ],
+                                            )),
                                           ],
                                         ),
                                       ),
