@@ -9,6 +9,7 @@ import 'package:webviewx/webviewx.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'quiz.dart';
+import 'content.dart';
 
 class QuizNumber {
   static bool isFirstQuiz = false;
@@ -190,6 +191,7 @@ class _HomepageState extends State<Homepage> {
                                                 scrollDirection:
                                                     Axis.horizontal,
                                                 child: Row(
+<<<<<<< HEAD
                                                     mainAxisSize:
                                                         MainAxisSize.min,
                                                     children: [
@@ -202,11 +204,94 @@ class _HomepageState extends State<Homepage> {
                                                                 0xFF383838),
                                                             buttonColor: Color(
                                                                 0xff35455d),
+=======
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 10),
+                                                        child: AttackButton(
+                                                          dialogColor:
+                                                              Color(0xFF383838),
+                                                          buttonColor:
+                                                              Color(0xff35455d),
+                                                          heading: Text(
+                                                              'Malware attacks'),
+                                                          image:
+                                                              'assets/images/ransomware.png',
+                                                          smallImage:
+                                                              'assets/images/malware.png',
+                                                          attackDefinition: Text(
+                                                              AttacksContent
+                                                                  .malware_AD),
+                                                          finalParagraph: Text(
+                                                              AttacksContent
+                                                                  .malware_P),
+                                                          subtitle: Text(
+                                                              'Malware usage is up almost 800% since early 2020.\n'),
+                                                        )),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 10),
+                                                        child: AttackButton(
+                                                            dialogColor: Color(
+                                                                0xFF383838),
+                                                            buttonColor: Color(
+                                                                0xff144c64),
+                                                            heading: Text(
+                                                                'Phishing'),
+                                                            image:
+                                                                'assets/images/amazon.png',
+                                                            smallImage:
+                                                                'assets/images/phishing.PNG',
+                                                            subtitle: Text(
+                                                                AttacksContent
+                                                                    .phishing_S),
+                                                            attackDefinition: Text(
+                                                                AttacksContent
+                                                                    .phishing_AD),
+                                                            finalParagraph: Text(
+                                                                AttacksContent
+                                                                    .phishing_P))),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 10),
+                                                        child: AttackButton(
+                                                            dialogColor: Color(
+                                                                0xFF383838),
+                                                            buttonColor: Color(
+                                                                0xff35746c),
+                                                            heading:
+                                                                Text('DDoS'),
+                                                            image:
+                                                                'assets/images/ddos.png',
+                                                            smallImage:
+                                                                'assets/images/ddosGood.png',
+                                                            subtitle: Text(
+                                                                AttacksContent
+                                                                    .ddos_S),
+                                                            attackDefinition: Text(
+                                                                AttacksContent
+                                                                    .ddos_AD),
+                                                            finalParagraph: Text(
+                                                                AttacksContent
+                                                                    .ddos_P))),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 10),
+                                                        child: AttackButton(
+>>>>>>> 8332146f6f3b42972a325c358cf6494aabd1a6af
                                                             heading: Text(
                                                                 'Malware attacks'),
                                                             image:
                                                                 'assets/images/ransomware.png',
                                                             smallImage:
+<<<<<<< HEAD
                                                                 'assets/images/malware.png',
                                                             attackDefinition: Text(
                                                                 "One of the most used type of malware is Ransomware. Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid.\n"),
@@ -340,265 +425,228 @@ class _HomepageState extends State<Homepage> {
                                                         height: 150,
                                                       ),
                                                     ]),
+=======
+                                                                'assets/images/worm_small.png',
+                                                            subtitle: Text(
+                                                                AttacksContent
+                                                                    .worm_S),
+                                                            attackDefinition: Text(
+                                                                AttacksContent
+                                                                    .worm_AD),
+                                                            finalParagraph: Text(
+                                                                AttacksContent
+                                                                    .worm_P),
+                                                            buttonColor: Color(
+                                                                0xff88bcbc),
+                                                            dialogColor: Color(
+                                                                0xFF383838))),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 10),
+                                                        child: AttackButton(
+                                                            heading: Text(
+                                                                'Brute Force Attack'),
+                                                            image:
+                                                                'assets/images/brute_large.png',
+                                                            smallImage:
+                                                                'assets/images/brute_small.png',
+                                                            subtitle: Text(
+                                                                AttacksContent
+                                                                    .brute_S),
+                                                            attackDefinition: Text(
+                                                                AttacksContent
+                                                                    .brute_AD),
+                                                            finalParagraph: Text(
+                                                                AttacksContent
+                                                                    .brute_P),
+                                                            buttonColor: Color(
+                                                                0xffab933c),
+                                                            dialogColor: Color(
+                                                                0xFF383838))),
+                                                    SizedBox(
+                                                      height: 150,
+                                                    ),
+                                                  ],
+                                                ),
+>>>>>>> 8332146f6f3b42972a325c358cf6494aabd1a6af
                                               ),
                                             ),
                                           ],
                                         ))))
                             : Align(
                                 alignment: Alignment.topLeft,
-                                child: Stack(children: [
-                                  Padding(
-                                      padding: EdgeInsets.only(
-                                        left: 20,
-                                      ),
-                                      child: Container(
-                                          width: media.width / 1.2,
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(15)),
-                                              color: Color(0xff6e7f80)
-                                                  .withOpacity(0.8),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                    color: Colors.black
-                                                        .withOpacity(0.5),
-                                                    spreadRadius: 2,
-                                                    blurRadius: 3,
-                                                    offset: Offset(0, 4))
-                                              ]),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                        left: 20,
-                                                        right: 10,
-                                                      ),
-                                                      child: Text(
-                                                        'Attacks',
-                                                        style: TextStyle(
-                                                            fontSize: 25,
-                                                            color: Colors.white,
-                                                            fontFamily:
-                                                                'Mechanismo'),
-                                                      )),
-                                                  Icon(Icons.arrow_forward),
-                                                ],
-                                              ),
-                                              Align(
-                                                alignment: Alignment.topLeft,
-                                                child: SingleChildScrollView(
-                                                  physics:
-                                                      NeverScrollableScrollPhysics(),
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 10),
-                                                          child: AttackButton(
-                                                            key: key1_attack,
-                                                            dialogColor: Color(
-                                                                0xFF383838),
-                                                            buttonColor: Color(
-                                                                0xff35455d),
-                                                            heading: Text(
-                                                                'Malware attacks'),
-                                                            image:
-                                                                'assets/images/ransomware.png',
-                                                            smallImage:
-                                                                'assets/images/malware.png',
-                                                            attackDefinition: Text(
-                                                                "One of the most used type of malware is Ransomware. Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid.\n"),
-                                                            finalParagraph: Text(
-                                                                "\nRansomware is often spread through phishing emails that contain malicious attachments or through drive-by downloading. Drive-by downloading occurs when a user unknowingly visits an infected website and then malware is downloaded and installed without the user’s knowledge. Crypto ransomware, a malware variant that encrypts files, is spread through similar methods and has also been spread through social media, such as Web-based instant messaging applications. Additionally, newer methods of ransomware infection have been observed. For example, vulnerable Web servers have been exploited as an entry point to gain access to an organization’s network."),
-                                                            subtitle: Text(
-                                                                'Malware usage is up almost 800% since early 2020.\n'),
-                                                          )),
-                                                      Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 10),
-                                                          child: AttackButton(
-                                                              key: key2_attack,
-                                                              dialogColor: Color(
-                                                                  0xFF383838),
-                                                              buttonColor: Color(
-                                                                  0xff144c64),
-                                                              heading: Text(
-                                                                  'Phishing'),
-                                                              image:
-                                                                  'assets/images/amazon.png',
-                                                              smallImage:
-                                                                  'assets/images/phishing.PNG',
-                                                              subtitle: Text(
-                                                                  'Phishing attacks are the most common cause of data breaches globally and have'
-                                                                  ' been the root cause of notable instances of cybercrime in the last decade.\n'),
-                                                              attackDefinition: Text(
-                                                                  'Phishing attacks attempt to steal information from users or trick them into downloading malware by'
-                                                                  'sending malicious emails or text messages (SMS) that look like real requests but are, in fact, a Scam.\n'),
-                                                              finalParagraph: Text(
-                                                                  '\nIt occurs when an attacker, masquerading as a trusted entity, dupes a victim into opening '
-                                                                  'an email, instant message, or text message. The recipient is then tricked into clicking a malicious link, '
-                                                                  'which can lead to the installation of malware, the freezing of the system as part of a ransomware attack '
-                                                                  'or the revealing of sensitive information.'
-                                                                  'An attack can have devastating results. For individuals, this includes unauthorized purchases, the stealing of funds, or identify theft.'))),
-                                                      Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 10),
-                                                          child: AttackButton(
-                                                              key: key3_attack,
-                                                              dialogColor: Color(
-                                                                  0xFF383838),
-                                                              buttonColor: Color(
-                                                                  0xff35746c),
-                                                              heading:
-                                                                  Text('DDoS'),
-                                                              image:
-                                                                  'assets/images/ddos.png',
-                                                              smallImage:
-                                                                  'assets/images/ddosGood.png',
-                                                              subtitle: Text(
-                                                                  'DDoS attacks are carried out with networks of Internet-connected machines.\n'
-                                                                  'These networks consist of computers and other devices (such as IoT devices)which have been infected with malware, allowing them to be controlled remotely by an attacker.'),
-                                                              attackDefinition: Text(
-                                                                  '\nDistributed denial of service (DDoS) attacks disrupt the traffic'
-                                                                  'to a website, application, server, service, or network by overwhelming it with a flood of traffic from compromised computer networks'
-                                                                  '(botnets) that prevents real users from accessing it. In 2018, GitHub experienced the largest DDoS'
-                                                                  'attack ever when it was hit with 1.35 terabits of traffic per second and was offline for almost 20 minutes as a result.'
-                                                                  'DDoS attacks are common and increased by 50% in 2020 compared to 2019, with a large surge occurring in early 2020 during the pandemic, according to security company Kaspersky.\n'),
-                                                              finalParagraph: Text(
-                                                                  '\nThe most obvious symptom of a DDoS attack is a site or service '
-                                                                  'performance issues, further investigation is usually required. Traffic analytics tools '
-                                                                  'can help you spot some of these telltale signs of a DDoS attack:'
-                                                                  '\n 1. Suspicious amounts of traffic originating from a single IP address or IP range'
-                                                                  '\n 2. A flood of traffic from users who share a single behavioral profile, such as device type, geolocation, or web browser version'
-                                                                  '\n 3. An unexplained surge in requests to a single page or endpoint'
-                                                                  '\n 4. Odd traffic patterns such as spikes at odd hours of the day or patterns that appear to be unnatural (e.g. a spike every 10 minutes)'
-                                                                  '\n 5. There are other, more specific signs of DDoS attack that can vary depending on the type of attack.'))),
-                                                      Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 10),
-                                                          child: AttackButton(
-                                                              key: key4_attack,
-                                                              heading: Text(
-                                                                  'Computer Worm'),
-                                                              image:
-                                                                  'assets/images/worm_large.png',
-                                                              smallImage:
-                                                                  'assets/images/worm_small.png',
-                                                              subtitle: Text(
-                                                                  'A computer worm is a standalone malware computer program that replicates itself in order to spread to other computers.\n'),
-                                                              attackDefinition: Text(
-                                                                  'It often uses a computer network to spread itself, relying on security failures on the target computer to access it. It will use this machine as a host to scan and infect other computers. When these new worm-invaded computers are controlled,'
-                                                                  ' the worm will continue to scan and infect other computers using these computers as hosts, and this behavior will continue.'
-                                                                  ' Computer worms use recursive methods to copy themselves without host programs and distribute themselves based on the law of exponential growth, thus controlling and infecting more and more computers in a short time.'
-                                                                  ' Worms almost always cause at least some harm to the network, even if only by consuming bandwidth, whereas viruses almost always corrupt or modify files on a targeted computer.'
-                                                                  'Many worms are designed only to spread, and do not attempt to change the systems they pass through. However, as the Morris worm and Mydoom showed, even these "payload-free" worms can cause major'
-                                                                  'disruption by increasing network traffic and other unintended effects.\n'),
-                                                              finalParagraph: Text(
-                                                                  "\nYou can avoid being infected by a worm using common anti-malware advice. Use antivirus software,"
-                                                                  "keep your computer up to date, and never open links or files which you don't completely trust. "),
-                                                              buttonColor: Color(
-                                                                  0xff88bcbc),
-                                                              dialogColor: Color(
-                                                                  0xFF383838))),
-                                                      Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 10),
-                                                          child: AttackButton(
-                                                              key: key5_attack,
-                                                              heading: Text(
-                                                                  'Brute Force Attack'),
-                                                              image:
-                                                                  'assets/images/brute_large.png',
-                                                              smallImage:
-                                                                  'assets/images/brute_small.png',
-                                                              subtitle: Text(
-                                                                  "A brute force attack uses trial-and-error to guess login info, encryption keys, or find a hidden web page. Hackers work through all possible combinations hoping to guess correctly."),
-                                                              attackDefinition: Text(
-                                                                  "These attacks are done by ‘brute force’ meaning they use excessive forceful attempts to try and ‘force’ their way into your private account(s)."
-                                                                  "This is an old attack method, but it's"
-                                                                  "still effective and popular with hackers. Because"
-                                                                  "depending on the length and complexity of the password,"
-                                                                  "cracking it can take anywhere from a few seconds to many years."),
-                                                              finalParagraph: Text(
-                                                                  "How to protect yourself from this attack?"
-                                                                  "\nUse an advanced username and password. "
-                                                                  "Protect yourself with credentials that are stronger "
-                                                                  "than admin and password1234 to keep out these attackers. "
-                                                                  "The stronger this combination is, the harder it will be"
-                                                                  " for anyone to penetrate it."
-                                                                  " \nRemove any unused accounts with high-level permissions. These are the cyber"
-                                                                  "equivalent of doors with weak locks that make breaking in easy."
-                                                                  "Unmaintained accounts are a vulnerability you can’t risk."
-                                                                  "Throw them away as soon as possible. "),
-                                                              buttonColor: Color(
-                                                                  0xffab933c),
-                                                              dialogColor: Color(
-                                                                  0xFF383838))),
-                                                      SizedBox(
-                                                        height: 150,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ))),
-                                  Padding(
-                                      padding:
-                                          EdgeInsets.only(right: 20, top: 85),
-                                      child: Align(
-                                          alignment: Alignment.centerRight,
-                                          child: Container(
-                                              height: 40,
-                                              width: 40,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.orange,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(15))),
-                                              child: IconButton(
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      buttonTapAttacks++;
-                                                      print(buttonTapAttacks);
-
-                                                      if (buttonTapAttacks ==
-                                                          1) {
-                                                        scroll(key2_attack);
-                                                      } else if (buttonTapAttacks ==
-                                                          2) {
-                                                        scroll(key3_attack);
-                                                      } else if (buttonTapAttacks ==
-                                                          3) {
-                                                        scroll(key4_attack);
-                                                      } else if (buttonTapAttacks ==
-                                                          4) {
-                                                        scroll(key5_attack);
-                                                      } else if (buttonTapAttacks ==
-                                                          5) {
-                                                        scroll(key1_attack);
-                                                        buttonTapAttacks = 0;
-                                                      }
-                                                    });
-                                                  },
-                                                  icon: Icon(
-                                                    Icons.arrow_forward,
-                                                    color: Colors.white,
-                                                  )))))
-                                ])),
+                                child: Padding(
+                                    padding: EdgeInsets.only(
+                                      left: 20,
+                                    ),
+                                    child: Container(
+                                        width: media.width / 1.2,
+                                        height: 150,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(15)),
+                                            color: Color(0xff6e7f80)
+                                                .withOpacity(0.8),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: Colors.black
+                                                      .withOpacity(0.5),
+                                                  spreadRadius: 2,
+                                                  blurRadius: 3,
+                                                  offset: Offset(0, 4))
+                                            ]),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                      left: 20,
+                                                      right: 10,
+                                                    ),
+                                                    child: Text(
+                                                      'Attacks',
+                                                      style: TextStyle(
+                                                          fontSize: 25,
+                                                          color: Colors.white,
+                                                          fontFamily:
+                                                              'Mechanismo'),
+                                                    )),
+                                                Icon(Icons.arrow_forward),
+                                              ],
+                                            ),
+                                            Expanded(
+                                                child: PageView(
+                                              scrollDirection: Axis.horizontal,
+                                              children: <Widget>[
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10),
+                                                    child: AttackButton(
+                                                      key: key1_attack,
+                                                      dialogColor:
+                                                          Color(0xFF383838),
+                                                      buttonColor:
+                                                          Color(0xff35455d),
+                                                      heading: Text(
+                                                          'Malware attacks'),
+                                                      image:
+                                                          'assets/images/ransomware.png',
+                                                      smallImage:
+                                                          'assets/images/malware.png',
+                                                      attackDefinition: Text(
+                                                          AttacksContent
+                                                              .malware_AD),
+                                                      finalParagraph: Text(
+                                                          AttacksContent
+                                                              .malware_P),
+                                                      subtitle: Text(
+                                                          AttacksContent
+                                                              .malware_S),
+                                                    )),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10),
+                                                    child: AttackButton(
+                                                        key: key2_attack,
+                                                        dialogColor:
+                                                            Color(0xFF383838),
+                                                        buttonColor:
+                                                            Color(0xff144c64),
+                                                        heading:
+                                                            Text('Phishing'),
+                                                        image:
+                                                            'assets/images/amazon.png',
+                                                        smallImage:
+                                                            'assets/images/phishing.PNG',
+                                                        subtitle: Text(
+                                                            AttacksContent
+                                                                .phishing_S),
+                                                        attackDefinition: Text(
+                                                            AttacksContent
+                                                                .phishing_AD),
+                                                        finalParagraph: Text(
+                                                            AttacksContent
+                                                                .phishing_P))),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10),
+                                                    child: AttackButton(
+                                                        key: key3_attack,
+                                                        dialogColor:
+                                                            Color(0xFF383838),
+                                                        buttonColor:
+                                                            Color(0xff35746c),
+                                                        heading: Text('DDoS'),
+                                                        image:
+                                                            'assets/images/ddos.png',
+                                                        smallImage:
+                                                            'assets/images/ddosGood.png',
+                                                        subtitle: Text(
+                                                            AttacksContent
+                                                                .ddos_S),
+                                                        attackDefinition: Text(
+                                                            AttacksContent
+                                                                .ddos_AD),
+                                                        finalParagraph: Text(
+                                                            AttacksContent
+                                                                .ddos_P))),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10),
+                                                    child: AttackButton(
+                                                        key: key4_attack,
+                                                        heading: Text(
+                                                            'Computer Worm'),
+                                                        image:
+                                                            'assets/images/worm_large.png',
+                                                        smallImage:
+                                                            'assets/images/worm_small.png',
+                                                        subtitle: Text(
+                                                            AttacksContent
+                                                                .worm_S),
+                                                        attackDefinition: Text(
+                                                            AttacksContent
+                                                                .worm_AD),
+                                                        finalParagraph: Text(
+                                                            AttacksContent
+                                                                .worm_P),
+                                                        buttonColor:
+                                                            Color(0xff88bcbc),
+                                                        dialogColor:
+                                                            Color(0xFF383838))),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 10),
+                                                    child: AttackButton(
+                                                        key: key5_attack,
+                                                        heading: Text(
+                                                            'Brute Force Attack'),
+                                                        image:
+                                                            'assets/images/brute_large.png',
+                                                        smallImage:
+                                                            'assets/images/brute_small.png',
+                                                        subtitle: Text(
+                                                            AttacksContent
+                                                                .brute_S),
+                                                        attackDefinition: Text(
+                                                            AttacksContent
+                                                                .brute_AD),
+                                                        finalParagraph: Text(
+                                                            AttacksContent
+                                                                .brute_P),
+                                                        buttonColor:
+                                                            Color(0xffab933c),
+                                                        dialogColor:
+                                                            Color(0xFF383838))),
+                                              ],
+                                            )),
+                                          ],
+                                        ))),
+                              ),
                         SizedBox(
                           height: 30,
                         ),
@@ -670,8 +718,8 @@ class _HomepageState extends State<Homepage> {
                                                             Color(0xFF383c40),
                                                         title:
                                                             'Up-to-date devices!',
-                                                        content:
-                                                            'update_device',
+                                                        content: TipsContent
+                                                            .update_device,
                                                         colorTop:
                                                             Color(0xfffbb35a),
                                                       )),
@@ -689,7 +737,8 @@ class _HomepageState extends State<Homepage> {
                                                             Color(0xFF383c40),
                                                         title:
                                                             'Use strong passwords!',
-                                                        content: 'password',
+                                                        content: TipsContent
+                                                            .password,
                                                       )),
                                                   Padding(
                                                       padding: EdgeInsets.only(
@@ -704,7 +753,8 @@ class _HomepageState extends State<Homepage> {
                                                         backColor:
                                                             Color(0xFF383c40),
                                                         title: 'Public Wi-Fi!',
-                                                        content: 'wifi',
+                                                        content:
+                                                            TipsContent.wifi,
                                                       )),
                                                   Padding(
                                                       padding: EdgeInsets.only(
@@ -719,7 +769,8 @@ class _HomepageState extends State<Homepage> {
                                                         backColor:
                                                             Color(0xFF383c40),
                                                         title: 'Back-up Data!',
-                                                        content: 'backup',
+                                                        content:
+                                                            TipsContent.backup,
                                                       )),
                                                   Padding(
                                                       padding: EdgeInsets.only(
@@ -735,7 +786,8 @@ class _HomepageState extends State<Homepage> {
                                                             Color(0xFF383c40),
                                                         title:
                                                             'Educate your family!',
-                                                        content: 'family',
+                                                        content:
+                                                            TipsContent.family,
                                                       )),
                                                   Padding(
                                                       padding: EdgeInsets.only(
@@ -751,8 +803,8 @@ class _HomepageState extends State<Homepage> {
                                                             Color(0xFF383c40),
                                                         title:
                                                             'Sharing personal data!',
-                                                        content:
-                                                            'personal_information',
+                                                        content: TipsContent
+                                                            .personal_information,
                                                       )),
                                                   SizedBox(
                                                     width: 20,
@@ -771,217 +823,144 @@ class _HomepageState extends State<Homepage> {
                                 alignment: Alignment.topLeft,
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 20),
-                                  child: Stack(
-                                    children: [
-                                      Container(
-                                        width: media.width / 1.2,
-                                        height: 900,
-                                        decoration: BoxDecoration(
-                                            boxShadow: [
-                                              BoxShadow(
-                                                  color: Colors.black
-                                                      .withOpacity(0.5),
-                                                  spreadRadius: 2,
-                                                  blurRadius: 3,
-                                                  offset: Offset(0, 4))
-                                            ],
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(15)),
-                                            color: Color(0xff6e7f80)
-                                                .withOpacity(0.8)),
-                                        child: Column(
-                                          children: [
-                                            Align(
-                                                alignment: Alignment.topLeft,
-                                                child: Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 20),
-                                                    child: Row(
-                                                      children: [
-                                                        Text(
-                                                          'Tips',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 25,
-                                                              fontFamily:
-                                                                  'Mechanismo'),
-                                                        ),
-                                                        Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    left: 10),
-                                                            child: Icon(Icons
-                                                                .arrow_forward))
-                                                      ],
-                                                    ))),
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                            Expanded(
-                                                child: PageView(
-                                              scrollDirection: Axis.horizontal,
-                                              children: [
-                                                Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: 20,
-                                                      left: 10,
-                                                    ),
-                                                    child: CyberTips(
-                                                      key: key1,
-                                                      image:
-                                                          'assets/images/update.png',
-                                                      backColor:
-                                                          Color(0xFF383c40),
-                                                      title:
-                                                          'Up-to-date devices!',
-                                                      content: 'update_device',
-                                                      colorTop:
-                                                          Color(0xfffbb35a),
-                                                    )),
-                                                Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: 20,
-                                                      left: 20,
-                                                    ),
-                                                    child: CyberTips(
-                                                      key: key2,
-                                                      colorTop:
-                                                          Color(0xff46edc8),
-                                                      image:
-                                                          'assets/images/password.png',
-                                                      backColor:
-                                                          Color(0xFF383c40),
-                                                      title:
-                                                          'Use strong passwords!',
-                                                      content: 'password',
-                                                    )),
-                                                Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: 20,
-                                                      left: 20,
-                                                    ),
-                                                    child: CyberTips(
-                                                      key: key3,
-                                                      colorTop:
-                                                          Color(0xfff9ac82),
-                                                      image:
-                                                          'assets/images/wifi.png',
-                                                      backColor:
-                                                          Color(0xFF383c40),
-                                                      title: 'Public Wi-Fi!',
-                                                      content: 'wifi',
-                                                    )),
-                                                Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: 20,
-                                                      left: 20,
-                                                    ),
-                                                    child: CyberTips(
-                                                      key: key4,
-                                                      colorTop:
-                                                          Color(0xffdbe6eb),
-                                                      image:
-                                                          'assets/images/backup.png',
-                                                      backColor:
-                                                          Color(0xFF383c40),
-                                                      title: 'Back-up Data!',
-                                                      content: 'backup',
-                                                    )),
-                                                Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: 20,
-                                                      left: 20,
-                                                    ),
-                                                    child: CyberTips(
-                                                      key: key5,
-                                                      colorTop:
-                                                          Color(0xfffff99b),
-                                                      image:
-                                                          'assets/images/family.png',
-                                                      backColor:
-                                                          Color(0xFF383c40),
-                                                      title:
-                                                          'Educate your family!',
-                                                      content: 'family',
-                                                    )),
-                                                Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: 20,
-                                                      left: 20,
-                                                    ),
-                                                    child: CyberTips(
-                                                      key: key6,
-                                                      colorTop:
-                                                          Color(0xffb0f6ff),
-                                                      image:
-                                                          'assets/images/personal.png',
-                                                      backColor:
-                                                          Color(0xFF383c40),
-                                                      title:
-                                                          'Sharing personal data!',
-                                                      content:
-                                                          'personal_information',
-                                                    )),
-                                                SizedBox(
-                                                  width: 20,
-                                                ),
-                                                SizedBox(
-                                                  height: 30,
-                                                ),
-                                              ],
-                                            )),
+                                  child: Container(
+                                      width: media.width / 1.2,
+                                      height: 600,
+                                      decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: Colors.black
+                                                    .withOpacity(0.5),
+                                                spreadRadius: 2,
+                                                blurRadius: 3,
+                                                offset: Offset(0, 4))
                                           ],
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(15)),
+                                          color: Color(0xff6e7f80)
+                                              .withOpacity(0.8)),
+                                      child: Column(children: [
+                                        Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 20),
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      'Tips',
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 25,
+                                                          fontFamily:
+                                                              'Mechanismo'),
+                                                    ),
+                                                    Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 10),
+                                                        child: Icon(Icons
+                                                            .arrow_forward))
+                                                  ],
+                                                ))),
+                                        SizedBox(
+                                          height: 20,
                                         ),
-                                      ),
-                                      Padding(
-                                          padding: EdgeInsets.only(
-                                              right: 30, top: 400),
-                                          child: Align(
-                                              alignment: Alignment.centerRight,
-                                              child: Container(
-                                                  height: 40,
-                                                  width: 40,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.orange,
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  15))),
-                                                  child: IconButton(
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          buttonTapTips++;
-                                                          print(buttonTapTips);
-
-                                                          if (buttonTapTips ==
-                                                              1) {
-                                                            scroll(key2);
-                                                          } else if (buttonTapTips ==
-                                                              2) {
-                                                            scroll(key3);
-                                                          } else if (buttonTapTips ==
-                                                              3) {
-                                                            scroll(key4);
-                                                          } else if (buttonTapTips ==
-                                                              4) {
-                                                            scroll(key5);
-                                                          } else if (buttonTapTips ==
-                                                              5) {
-                                                            scroll(key6);
-                                                          } else if (buttonTapTips ==
-                                                              6) {
-                                                            scroll(key1);
-                                                            buttonTapTips = 0;
-                                                          }
-                                                        });
-                                                      },
-                                                      icon: Icon(
-                                                        Icons.arrow_forward,
-                                                        color: Colors.white,
-                                                      )))))
-                                    ],
-                                  ),
+                                        Expanded(
+                                            child: PageView(
+                                          scrollDirection: Axis.horizontal,
+                                          children: <Widget>[
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                                  top: 20,
+                                                  left: 0,
+                                                ),
+                                                child: CyberTips(
+                                                  key: key1,
+                                                  image:
+                                                      'assets/images/update.png',
+                                                  backColor: Color(0xFF383c40),
+                                                  title: 'Up-to-date devices!',
+                                                  content:
+                                                      TipsContent.update_device,
+                                                  colorTop: Color(0xfffbb35a),
+                                                )),
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                                  top: 20,
+                                                  left: 0,
+                                                ),
+                                                child: CyberTips(
+                                                  key: key2,
+                                                  colorTop: Color(0xff46edc8),
+                                                  image:
+                                                      'assets/images/password.png',
+                                                  backColor: Color(0xFF383c40),
+                                                  title:
+                                                      'Use strong passwords!',
+                                                  content: TipsContent.password,
+                                                )),
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                                  top: 20,
+                                                  left: 0,
+                                                ),
+                                                child: CyberTips(
+                                                  key: key3,
+                                                  colorTop: Color(0xfff9ac82),
+                                                  image:
+                                                      'assets/images/wifi.png',
+                                                  backColor: Color(0xFF383c40),
+                                                  title: 'Public Wi-Fi!',
+                                                  content: TipsContent.wifi,
+                                                )),
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                                  top: 20,
+                                                  left: 0,
+                                                ),
+                                                child: CyberTips(
+                                                  key: key4,
+                                                  colorTop: Color(0xffdbe6eb),
+                                                  image:
+                                                      'assets/images/backup.png',
+                                                  backColor: Color(0xFF383c40),
+                                                  title: 'Back-up Data!',
+                                                  content: TipsContent.backup,
+                                                )),
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                                  top: 20,
+                                                  left: 0,
+                                                ),
+                                                child: CyberTips(
+                                                  key: key5,
+                                                  colorTop: Color(0xfffff99b),
+                                                  image:
+                                                      'assets/images/family.png',
+                                                  backColor: Color(0xFF383c40),
+                                                  title: 'Educate your family!',
+                                                  content: TipsContent.family,
+                                                )),
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                                  top: 20,
+                                                  left: 0,
+                                                ),
+                                                child: CyberTips(
+                                                  key: key6,
+                                                  colorTop: Color(0xffb0f6ff),
+                                                  image:
+                                                      'assets/images/personal.png',
+                                                  backColor: Color(0xFF383c40),
+                                                  title:
+                                                      'Sharing personal data!',
+                                                  content: TipsContent
+                                                      .personal_information,
+                                                )),
+                                          ],
+                                        ))
+                                      ])),
                                 ),
                               ),
 
@@ -1582,7 +1561,7 @@ class _CyberTipsState extends State<CyberTips> {
           left: 0,
         ),
         width: media.width > 600 ? 350 : 250,
-        height: media.width > 600 ? 650 : 800,
+        height: media.width > 600 ? 650 : 400,
         decoration: BoxDecoration(
           border: Border.all(width: 0, color: Colors.black),
           borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -1633,30 +1612,7 @@ class _CyberTipsState extends State<CyberTips> {
               height: 20,
             ),
             Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: FutureBuilder<DocumentSnapshot>(
-                  future: widget.docRef.get(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<DocumentSnapshot> snapshot) {
-                    if (snapshot.hasError) {
-                      return const Text("Something went wrong");
-                    }
-
-                    if (snapshot.hasData && !snapshot.data!.exists) {
-                      return const Text("Document does not exist");
-                    }
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      Map<String, dynamic> data =
-                          snapshot.data!.data() as Map<String, dynamic>;
-                      return Text(
-                        data[widget.content],
-                        style: TextStyle(fontSize: 20),
-                      );
-                    }
-
-                    return CircularProgressIndicator();
-                  }),
-            )
+                padding: EdgeInsets.only(left: 10), child: Text(widget.content))
           ],
         ));
   }
