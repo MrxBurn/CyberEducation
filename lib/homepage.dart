@@ -191,7 +191,6 @@ class _HomepageState extends State<Homepage> {
                                                 scrollDirection:
                                                     Axis.horizontal,
                                                 child: Row(
-<<<<<<< HEAD
                                                     mainAxisSize:
                                                         MainAxisSize.min,
                                                     children: [
@@ -204,94 +203,11 @@ class _HomepageState extends State<Homepage> {
                                                                 0xFF383838),
                                                             buttonColor: Color(
                                                                 0xff35455d),
-=======
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  children: [
-                                                    Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 10),
-                                                        child: AttackButton(
-                                                          dialogColor:
-                                                              Color(0xFF383838),
-                                                          buttonColor:
-                                                              Color(0xff35455d),
-                                                          heading: Text(
-                                                              'Malware attacks'),
-                                                          image:
-                                                              'assets/images/ransomware.png',
-                                                          smallImage:
-                                                              'assets/images/malware.png',
-                                                          attackDefinition: Text(
-                                                              AttacksContent
-                                                                  .malware_AD),
-                                                          finalParagraph: Text(
-                                                              AttacksContent
-                                                                  .malware_P),
-                                                          subtitle: Text(
-                                                              'Malware usage is up almost 800% since early 2020.\n'),
-                                                        )),
-                                                    Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 10),
-                                                        child: AttackButton(
-                                                            dialogColor: Color(
-                                                                0xFF383838),
-                                                            buttonColor: Color(
-                                                                0xff144c64),
-                                                            heading: Text(
-                                                                'Phishing'),
-                                                            image:
-                                                                'assets/images/amazon.png',
-                                                            smallImage:
-                                                                'assets/images/phishing.PNG',
-                                                            subtitle: Text(
-                                                                AttacksContent
-                                                                    .phishing_S),
-                                                            attackDefinition: Text(
-                                                                AttacksContent
-                                                                    .phishing_AD),
-                                                            finalParagraph: Text(
-                                                                AttacksContent
-                                                                    .phishing_P))),
-                                                    Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 10),
-                                                        child: AttackButton(
-                                                            dialogColor: Color(
-                                                                0xFF383838),
-                                                            buttonColor: Color(
-                                                                0xff35746c),
-                                                            heading:
-                                                                Text('DDoS'),
-                                                            image:
-                                                                'assets/images/ddos.png',
-                                                            smallImage:
-                                                                'assets/images/ddosGood.png',
-                                                            subtitle: Text(
-                                                                AttacksContent
-                                                                    .ddos_S),
-                                                            attackDefinition: Text(
-                                                                AttacksContent
-                                                                    .ddos_AD),
-                                                            finalParagraph: Text(
-                                                                AttacksContent
-                                                                    .ddos_P))),
-                                                    Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 10),
-                                                        child: AttackButton(
->>>>>>> 8332146f6f3b42972a325c358cf6494aabd1a6af
                                                             heading: Text(
                                                                 'Malware attacks'),
                                                             image:
                                                                 'assets/images/ransomware.png',
                                                             smallImage:
-<<<<<<< HEAD
                                                                 'assets/images/malware.png',
                                                             attackDefinition: Text(
                                                                 "One of the most used type of malware is Ransomware. Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid.\n"),
@@ -425,51 +341,6 @@ class _HomepageState extends State<Homepage> {
                                                         height: 150,
                                                       ),
                                                     ]),
-=======
-                                                                'assets/images/worm_small.png',
-                                                            subtitle: Text(
-                                                                AttacksContent
-                                                                    .worm_S),
-                                                            attackDefinition: Text(
-                                                                AttacksContent
-                                                                    .worm_AD),
-                                                            finalParagraph: Text(
-                                                                AttacksContent
-                                                                    .worm_P),
-                                                            buttonColor: Color(
-                                                                0xff88bcbc),
-                                                            dialogColor: Color(
-                                                                0xFF383838))),
-                                                    Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 10),
-                                                        child: AttackButton(
-                                                            heading: Text(
-                                                                'Brute Force Attack'),
-                                                            image:
-                                                                'assets/images/brute_large.png',
-                                                            smallImage:
-                                                                'assets/images/brute_small.png',
-                                                            subtitle: Text(
-                                                                AttacksContent
-                                                                    .brute_S),
-                                                            attackDefinition: Text(
-                                                                AttacksContent
-                                                                    .brute_AD),
-                                                            finalParagraph: Text(
-                                                                AttacksContent
-                                                                    .brute_P),
-                                                            buttonColor: Color(
-                                                                0xffab933c),
-                                                            dialogColor: Color(
-                                                                0xFF383838))),
-                                                    SizedBox(
-                                                      height: 150,
-                                                    ),
-                                                  ],
-                                                ),
->>>>>>> 8332146f6f3b42972a325c358cf6494aabd1a6af
                                               ),
                                             ),
                                           ],
