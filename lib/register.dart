@@ -31,6 +31,9 @@ class _RegisterState extends State<Register> {
   int scoreTwo = 0;
   String uid = '';
 
+  String pattern =
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+
   final _formKey = GlobalKey<FormState>();
 
   Future<void> registerUser() async {
@@ -140,7 +143,13 @@ class _RegisterState extends State<Register> {
                               child: TextFormField(
                                 validator: (text) {
                                   if (text == null || text.isEmpty) {
-                                    return 'Enter a password';
+                                    return 'Enter a password!';
+                                  } else {
+                                    RegExp regExp = RegExp(pattern);
+
+                                    if (!regExp.hasMatch(text)) {
+                                      return 'Password must include !,@,#, 0-9, A-a';
+                                    }
                                   }
                                 },
                                 controller: cPassword,

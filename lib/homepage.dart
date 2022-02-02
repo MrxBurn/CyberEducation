@@ -190,157 +190,156 @@ class _HomepageState extends State<Homepage> {
                                                 scrollDirection:
                                                     Axis.horizontal,
                                                 child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  children: [
-                                                    Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 10),
-                                                        child: AttackButton(
-                                                          dialogColor:
-                                                              Color(0xFF383838),
-                                                          buttonColor:
-                                                              Color(0xff35455d),
-                                                          heading: Text(
-                                                              'Malware attacks'),
-                                                          image:
-                                                              'assets/images/ransomware.png',
-                                                          smallImage:
-                                                              'assets/images/malware.png',
-                                                          attackDefinition: Text(
-                                                              "One of the most used type of malware is Ransomware. Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid.\n"),
-                                                          finalParagraph: Text(
-                                                              "\nRansomware is often spread through phishing emails that contain malicious attachments or through drive-by downloading. Drive-by downloading occurs when a user unknowingly visits an infected website and then malware is downloaded and installed without the user’s knowledge. Crypto ransomware, a malware variant that encrypts files, is spread through similar methods and has also been spread through social media, such as Web-based instant messaging applications. Additionally, newer methods of ransomware infection have been observed. For example, vulnerable Web servers have been exploited as an entry point to gain access to an organization’s network."),
-                                                          subtitle: Text(
-                                                              'Malware usage is up almost 800% since early 2020.\n'),
-                                                        )),
-                                                    Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 10),
-                                                        child: AttackButton(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 10),
+                                                          child: AttackButton(
                                                             dialogColor: Color(
                                                                 0xFF383838),
                                                             buttonColor: Color(
-                                                                0xff144c64),
+                                                                0xff35455d),
                                                             heading: Text(
-                                                                'Phishing'),
+                                                                'Malware attacks'),
                                                             image:
-                                                                'assets/images/amazon.png',
+                                                                'assets/images/ransomware.png',
                                                             smallImage:
-                                                                'assets/images/phishing.PNG',
-                                                            subtitle: Text(
-                                                                'Phishing attacks are the most common cause of data breaches globally and have'
-                                                                ' been the root cause of notable instances of cybercrime in the last decade.\n'),
+                                                                'assets/images/malware.png',
                                                             attackDefinition: Text(
-                                                                'Phishing attacks attempt to steal information from users or trick them into downloading malware by'
-                                                                'sending malicious emails or text messages (SMS) that look like real requests but are, in fact, a Scam.\n'),
+                                                                "One of the most used type of malware is Ransomware. Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid.\n"),
                                                             finalParagraph: Text(
-                                                                '\nIt occurs when an attacker, masquerading as a trusted entity, dupes a victim into opening '
-                                                                'an email, instant message, or text message. The recipient is then tricked into clicking a malicious link, '
-                                                                'which can lead to the installation of malware, the freezing of the system as part of a ransomware attack '
-                                                                'or the revealing of sensitive information.'
-                                                                'An attack can have devastating results. For individuals, this includes unauthorized purchases, the stealing of funds, or identify theft.'))),
-                                                    Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 10),
-                                                        child: AttackButton(
-                                                            dialogColor: Color(
-                                                                0xFF383838),
-                                                            buttonColor: Color(
-                                                                0xff35746c),
-                                                            heading:
-                                                                Text('DDoS'),
-                                                            image:
-                                                                'assets/images/ddos.png',
-                                                            smallImage:
-                                                                'assets/images/ddosGood.png',
+                                                                "\nRansomware is often spread through phishing emails that contain malicious attachments or through drive-by downloading. Drive-by downloading occurs when a user unknowingly visits an infected website and then malware is downloaded and installed without the user’s knowledge. Crypto ransomware, a malware variant that encrypts files, is spread through similar methods and has also been spread through social media, such as Web-based instant messaging applications. Additionally, newer methods of ransomware infection have been observed. For example, vulnerable Web servers have been exploited as an entry point to gain access to an organization’s network."),
                                                             subtitle: Text(
-                                                                'DDoS attacks are carried out with networks of Internet-connected machines.\n'
-                                                                'These networks consist of computers and other devices (such as IoT devices)which have been infected with malware, allowing them to be controlled remotely by an attacker.'),
-                                                            attackDefinition: Text(
-                                                                '\nDistributed denial of service (DDoS) attacks disrupt the traffic'
-                                                                'to a website, application, server, service, or network by overwhelming it with a flood of traffic from compromised computer networks'
-                                                                '(botnets) that prevents real users from accessing it. In 2018, GitHub experienced the largest DDoS'
-                                                                'attack ever when it was hit with 1.35 terabits of traffic per second and was offline for almost 20 minutes as a result.'
-                                                                'DDoS attacks are common and increased by 50% in 2020 compared to 2019, with a large surge occurring in early 2020 during the pandemic, according to security company Kaspersky.\n'),
-                                                            finalParagraph: Text(
-                                                                '\nThe most obvious symptom of a DDoS attack is a site or service '
-                                                                'performance issues, further investigation is usually required. Traffic analytics tools '
-                                                                'can help you spot some of these telltale signs of a DDoS attack:'
-                                                                '\n 1. Suspicious amounts of traffic originating from a single IP address or IP range'
-                                                                '\n 2. A flood of traffic from users who share a single behavioral profile, such as device type, geolocation, or web browser version'
-                                                                '\n 3. An unexplained surge in requests to a single page or endpoint'
-                                                                '\n 4. Odd traffic patterns such as spikes at odd hours of the day or patterns that appear to be unnatural (e.g. a spike every 10 minutes)'
-                                                                '\n 5. There are other, more specific signs of DDoS attack that can vary depending on the type of attack.'))),
-                                                    Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 10),
-                                                        child: AttackButton(
-                                                            heading: Text(
-                                                                'Computer Worm'),
-                                                            image:
-                                                                'assets/images/worm_large.png',
-                                                            smallImage:
-                                                                'assets/images/worm_small.png',
-                                                            subtitle: Text(
-                                                                'A computer worm is a standalone malware computer program that replicates itself in order to spread to other computers.\n'),
-                                                            attackDefinition: Text(
-                                                                'It often uses a computer network to spread itself, relying on security failures on the target computer to access it. It will use this machine as a host to scan and infect other computers. When these new worm-invaded computers are controlled,'
-                                                                ' the worm will continue to scan and infect other computers using these computers as hosts, and this behavior will continue.'
-                                                                ' Computer worms use recursive methods to copy themselves without host programs and distribute themselves based on the law of exponential growth, thus controlling and infecting more and more computers in a short time.'
-                                                                ' Worms almost always cause at least some harm to the network, even if only by consuming bandwidth, whereas viruses almost always corrupt or modify files on a targeted computer.'
-                                                                'Many worms are designed only to spread, and do not attempt to change the systems they pass through. However, as the Morris worm and Mydoom showed, even these "payload-free" worms can cause major'
-                                                                'disruption by increasing network traffic and other unintended effects.\n'),
-                                                            finalParagraph: Text(
-                                                                "\nYou can avoid being infected by a worm using common anti-malware advice. Use antivirus software,"
-                                                                "keep your computer up to date, and never open links or files which you don't completely trust. "),
-                                                            buttonColor: Color(
-                                                                0xff88bcbc),
-                                                            dialogColor: Color(
-                                                                0xFF383838))),
-                                                    Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                left: 10),
-                                                        child: AttackButton(
-                                                            heading: Text(
-                                                                'Brute Force Attack'),
-                                                            image:
-                                                                'assets/images/brute_large.png',
-                                                            smallImage:
-                                                                'assets/images/brute_small.png',
-                                                            subtitle: Text(
-                                                                "A brute force attack uses trial-and-error to guess login info, encryption keys, or find a hidden web page. Hackers work through all possible combinations hoping to guess correctly."),
-                                                            attackDefinition: Text(
-                                                                "These attacks are done by ‘brute force’ meaning they use excessive forceful attempts to try and ‘force’ their way into your private account(s)."
-                                                                "This is an old attack method, but it's"
-                                                                "still effective and popular with hackers. Because"
-                                                                "depending on the length and complexity of the password,"
-                                                                "cracking it can take anywhere from a few seconds to many years."),
-                                                            finalParagraph: Text(
-                                                                "How to protect yourself from this attack?"
-                                                                "\nUse an advanced username and password. "
-                                                                "Protect yourself with credentials that are stronger "
-                                                                "than admin and password1234 to keep out these attackers. "
-                                                                "The stronger this combination is, the harder it will be"
-                                                                " for anyone to penetrate it."
-                                                                " \nRemove any unused accounts with high-level permissions. These are the cyber"
-                                                                "equivalent of doors with weak locks that make breaking in easy."
-                                                                "Unmaintained accounts are a vulnerability you can’t risk."
-                                                                "Throw them away as soon as possible. "),
-                                                            buttonColor: Color(
-                                                                0xffab933c),
-                                                            dialogColor: Color(
-                                                                0xFF383838))),
-                                                    SizedBox(
-                                                      height: 150,
-                                                    ),
-                                                  ],
-                                                ),
+                                                                'Malware usage is up almost 800% since early 2020.\n'),
+                                                          )),
+                                                      Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 10),
+                                                          child: AttackButton(
+                                                              dialogColor: Color(
+                                                                  0xFF383838),
+                                                              buttonColor: Color(
+                                                                  0xff144c64),
+                                                              heading: Text(
+                                                                  'Phishing'),
+                                                              image:
+                                                                  'assets/images/amazon.png',
+                                                              smallImage:
+                                                                  'assets/images/phishing.PNG',
+                                                              subtitle: Text(
+                                                                  'Phishing attacks are the most common cause of data breaches globally and have'
+                                                                  ' been the root cause of notable instances of cybercrime in the last decade.\n'),
+                                                              attackDefinition: Text(
+                                                                  'Phishing attacks attempt to steal information from users or trick them into downloading malware by'
+                                                                  'sending malicious emails or text messages (SMS) that look like real requests but are, in fact, a Scam.\n'),
+                                                              finalParagraph: Text(
+                                                                  '\nIt occurs when an attacker, masquerading as a trusted entity, dupes a victim into opening '
+                                                                  'an email, instant message, or text message. The recipient is then tricked into clicking a malicious link, '
+                                                                  'which can lead to the installation of malware, the freezing of the system as part of a ransomware attack '
+                                                                  'or the revealing of sensitive information.'
+                                                                  'An attack can have devastating results. For individuals, this includes unauthorized purchases, the stealing of funds, or identify theft.'))),
+                                                      Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 10),
+                                                          child: AttackButton(
+                                                              dialogColor: Color(
+                                                                  0xFF383838),
+                                                              buttonColor: Color(
+                                                                  0xff35746c),
+                                                              heading:
+                                                                  Text('DDoS'),
+                                                              image:
+                                                                  'assets/images/ddos.png',
+                                                              smallImage:
+                                                                  'assets/images/ddosGood.png',
+                                                              subtitle: Text(
+                                                                  'DDoS attacks are carried out with networks of Internet-connected machines.\n'
+                                                                  'These networks consist of computers and other devices (such as IoT devices)which have been infected with malware, allowing them to be controlled remotely by an attacker.'),
+                                                              attackDefinition: Text(
+                                                                  '\nDistributed denial of service (DDoS) attacks disrupt the traffic'
+                                                                  'to a website, application, server, service, or network by overwhelming it with a flood of traffic from compromised computer networks'
+                                                                  '(botnets) that prevents real users from accessing it. In 2018, GitHub experienced the largest DDoS'
+                                                                  'attack ever when it was hit with 1.35 terabits of traffic per second and was offline for almost 20 minutes as a result.'
+                                                                  'DDoS attacks are common and increased by 50% in 2020 compared to 2019, with a large surge occurring in early 2020 during the pandemic, according to security company Kaspersky.\n'),
+                                                              finalParagraph: Text(
+                                                                  '\nThe most obvious symptom of a DDoS attack is a site or service '
+                                                                  'performance issues, further investigation is usually required. Traffic analytics tools '
+                                                                  'can help you spot some of these telltale signs of a DDoS attack:'
+                                                                  '\n 1. Suspicious amounts of traffic originating from a single IP address or IP range'
+                                                                  '\n 2. A flood of traffic from users who share a single behavioral profile, such as device type, geolocation, or web browser version'
+                                                                  '\n 3. An unexplained surge in requests to a single page or endpoint'
+                                                                  '\n 4. Odd traffic patterns such as spikes at odd hours of the day or patterns that appear to be unnatural (e.g. a spike every 10 minutes)'
+                                                                  '\n 5. There are other, more specific signs of DDoS attack that can vary depending on the type of attack.'))),
+                                                      Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 10),
+                                                          child: AttackButton(
+                                                              heading: Text(
+                                                                  'Computer Worm'),
+                                                              image:
+                                                                  'assets/images/worm_large.png',
+                                                              smallImage:
+                                                                  'assets/images/worm_small.png',
+                                                              subtitle: Text(
+                                                                  'A computer worm is a standalone malware computer program that replicates itself in order to spread to other computers.\n'),
+                                                              attackDefinition: Text(
+                                                                  'It often uses a computer network to spread itself, relying on security failures on the target computer to access it. It will use this machine as a host to scan and infect other computers. When these new worm-invaded computers are controlled,'
+                                                                  ' the worm will continue to scan and infect other computers using these computers as hosts, and this behavior will continue.'
+                                                                  ' Computer worms use recursive methods to copy themselves without host programs and distribute themselves based on the law of exponential growth, thus controlling and infecting more and more computers in a short time.'
+                                                                  ' Worms almost always cause at least some harm to the network, even if only by consuming bandwidth, whereas viruses almost always corrupt or modify files on a targeted computer.'
+                                                                  'Many worms are designed only to spread, and do not attempt to change the systems they pass through. However, as the Morris worm and Mydoom showed, even these "payload-free" worms can cause major'
+                                                                  'disruption by increasing network traffic and other unintended effects.\n'),
+                                                              finalParagraph: Text(
+                                                                  "\nYou can avoid being infected by a worm using common anti-malware advice. Use antivirus software,"
+                                                                  "keep your computer up to date, and never open links or files which you don't completely trust. "),
+                                                              buttonColor: Color(
+                                                                  0xff88bcbc),
+                                                              dialogColor: Color(
+                                                                  0xFF383838))),
+                                                      Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 10),
+                                                          child: AttackButton(
+                                                              heading: Text(
+                                                                  'Brute Force Attack'),
+                                                              image:
+                                                                  'assets/images/brute_large.png',
+                                                              smallImage:
+                                                                  'assets/images/brute_small.png',
+                                                              subtitle: Text(
+                                                                  "A brute force attack uses trial-and-error to guess login info, encryption keys, or find a hidden web page. Hackers work through all possible combinations hoping to guess correctly."),
+                                                              attackDefinition: Text(
+                                                                  "These attacks are done by ‘brute force’ meaning they use excessive forceful attempts to try and ‘force’ their way into your private account(s)."
+                                                                  "This is an old attack method, but it's"
+                                                                  "still effective and popular with hackers. Because"
+                                                                  "depending on the length and complexity of the password,"
+                                                                  "cracking it can take anywhere from a few seconds to many years."),
+                                                              finalParagraph: Text(
+                                                                  "How to protect yourself from this attack?"
+                                                                  "\nUse an advanced username and password. "
+                                                                  "Protect yourself with credentials that are stronger "
+                                                                  "than admin and password1234 to keep out these attackers. "
+                                                                  "The stronger this combination is, the harder it will be"
+                                                                  " for anyone to penetrate it."
+                                                                  " \nRemove any unused accounts with high-level permissions. These are the cyber"
+                                                                  "equivalent of doors with weak locks that make breaking in easy."
+                                                                  "Unmaintained accounts are a vulnerability you can’t risk."
+                                                                  "Throw them away as soon as possible. "),
+                                                              buttonColor: Color(
+                                                                  0xffab933c),
+                                                              dialogColor: Color(
+                                                                  0xFF383838))),
+                                                      SizedBox(
+                                                        height: 150,
+                                                      ),
+                                                    ]),
                                               ),
                                             ),
                                           ],
