@@ -64,12 +64,13 @@ class _LoginState extends State<Login> {
 
   final _formKey = GlobalKey<FormState>();
 
+  //Method to log in the user
   Future<void> loginUser() async {
     await _auth.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
-
+    //Navigate to home page after logging in
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => Homepage()));
   }
@@ -83,12 +84,6 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     super.initState();
-    FutureBuilder<bool>(
-      future: autoLogin(),
-      builder: (context, snapshot) {
-        return snapshot.data == true ? Homepage() : Login();
-      },
-    );
   }
 
   @override
