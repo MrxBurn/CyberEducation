@@ -31,31 +31,38 @@ class _RegisterState extends State<Register> {
   int scoreTwo = 0;
   String uid = '';
 
+  //RegEx Pattern to make the user create a stronger password
   String pattern =
       r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
 
   final _formKey = GlobalKey<FormState>();
 
+  //Register User function with the email and password provided from the registration form
   Future<void> registerUser() async {
     await _auth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
 
+    //Get the user's registered id
     uid = FirebaseAuth.instance.currentUser!.uid;
 
+    //Debug to check the actual ID
     print('ID USER: ' + uid);
 
+    //Set pre-defined scores and the firstname in the database
     ref.doc(uid).set({
       'firstName': firstName,
       'score_one': scoreOne,
       'score_two': scoreTwo,
     });
 
+    //Automatically navigate to the home page
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => Homepage()));
   }
 
+  //Register Form
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -72,22 +72,12 @@ class _QuizState extends State<Quiz> {
     Score.score = 0;
   }
 
+  //Quiz Page setup
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
 
-    scroll() {
-      Scrollable.ensureVisible(Keys.key11.currentContext!,
-          duration: Duration(seconds: 1));
-    }
-
     return Scaffold(
-        floatingActionButton: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-          ),
-          onPressed: () => scroll(),
-        ),
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back_rounded),
@@ -482,12 +472,15 @@ class Questions extends StatefulWidget {
 }
 
 class _QuestionsState extends State<Questions> {
+  //Function that disables the answers buttons
+  //Once the user answers a question
   disableButton() {
     setState(() {
       widget.questionsAnswered = true;
     });
   }
 
+  //Function that scrolls automatically to the next widget
   scroll() {
     Scrollable.ensureVisible(
       widget.moveToWidgetKey.currentContext!,

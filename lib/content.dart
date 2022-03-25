@@ -1,5 +1,8 @@
 // ignore_for_file: non_constant_identifier_names
 
+//This file is used to add the data on each of the sections located on the home page
+//Classes have been created for each section of the home page
+
 class AttacksContent {
   //Malware
   static String malware_AD =
@@ -82,6 +85,7 @@ class AttacksContent {
       "A brute force attack uses trial-and-error to guess login info, encryption keys, or find a hidden web page. Hackers work through all possible combinations hoping to guess correctly.";
 }
 
+//Class created for Tips' Content
 class TipsContent {
   static String backup =
       "If you become a victim of malware, such as ransomware, you might not be able to get your data back. That is, unless you’ve backed up your data. When you back up your data, you can make certain kinds of security breaches less problematic. If a hacker encrypts your data and demands a ransom to unencrypt it, it’s not going to be that big of a deal if you backed it up a week ago.";

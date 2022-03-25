@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print, prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors_in_immutables, must_be_immutable, non_constant_identifier_names, import_of_legacy_library_into_null_safe
 
+//Imports used for all libraries
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cyber_education/main.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,8 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   //Firestore
+  //Make a reference in the database
+  //Find the userID from the database
   DocumentReference userName = FirebaseFirestore.instance
       .collection('users')
       .doc(FirebaseAuth.instance.currentUser!.uid);
@@ -60,15 +63,6 @@ class _HomepageState extends State<Homepage> {
   GlobalKey key4_attack = GlobalKey();
   GlobalKey key5_attack = GlobalKey();
 
-  scroll(GlobalKey pKey) {
-    Scrollable.ensureVisible(
-      pKey.currentContext!,
-      duration: Duration(seconds: 1),
-      curve: Curves.fastOutSlowIn,
-      alignment: 0.3,
-    );
-  }
-
   @override
   void initState() {
     super.initState();
@@ -78,6 +72,9 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
 
+    //Development for mobile
+    //If screen width < 600 then create a hamburger menu
+    //Else, have a menu on the left side of the screen
     return Scaffold(
         appBar: media.width < 600
             ? AppBar(
@@ -90,7 +87,7 @@ class _HomepageState extends State<Homepage> {
               )
             : null,
 
-        //BODY
+        //BODY - whole content of the home page
         body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -160,6 +157,8 @@ class _HomepageState extends State<Homepage> {
                                                   blurRadius: 3,
                                                   offset: Offset(0, 4))
                                             ]),
+
+                                        //Attacks Section Content
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -210,11 +209,14 @@ class _HomepageState extends State<Homepage> {
                                                             smallImage:
                                                                 'assets/images/malware.png',
                                                             attackDefinition: Text(
-                                                                "One of the most used type of malware is Ransomware. Ransomware is a type of malware from cryptovirology that threatens to publish the victim's personal data or perpetually block access to it unless a ransom is paid.\n"),
+                                                                AttacksContent
+                                                                    .malware_AD),
                                                             finalParagraph: Text(
-                                                                "\nRansomware is often spread through phishing emails that contain malicious attachments or through drive-by downloading. Drive-by downloading occurs when a user unknowingly visits an infected website and then malware is downloaded and installed without the user’s knowledge. Crypto ransomware, a malware variant that encrypts files, is spread through similar methods and has also been spread through social media, such as Web-based instant messaging applications. Additionally, newer methods of ransomware infection have been observed. For example, vulnerable Web servers have been exploited as an entry point to gain access to an organization’s network."),
+                                                                AttacksContent
+                                                                    .malware_P),
                                                             subtitle: Text(
-                                                                'Malware usage is up almost 800% since early 2020.\n'),
+                                                                AttacksContent
+                                                                    .malware_S),
                                                           )),
                                                       Padding(
                                                           padding:
@@ -232,17 +234,14 @@ class _HomepageState extends State<Homepage> {
                                                               smallImage:
                                                                   'assets/images/phishing.PNG',
                                                               subtitle: Text(
-                                                                  'Phishing attacks are the most common cause of data breaches globally and have'
-                                                                  ' been the root cause of notable instances of cybercrime in the last decade.\n'),
+                                                                  AttacksContent
+                                                                      .phishing_S),
                                                               attackDefinition: Text(
-                                                                  'Phishing attacks attempt to steal information from users or trick them into downloading malware by'
-                                                                  'sending malicious emails or text messages (SMS) that look like real requests but are, in fact, a Scam.\n'),
+                                                                  AttacksContent
+                                                                      .phishing_AD),
                                                               finalParagraph: Text(
-                                                                  '\nIt occurs when an attacker, masquerading as a trusted entity, dupes a victim into opening '
-                                                                  'an email, instant message, or text message. The recipient is then tricked into clicking a malicious link, '
-                                                                  'which can lead to the installation of malware, the freezing of the system as part of a ransomware attack '
-                                                                  'or the revealing of sensitive information.'
-                                                                  'An attack can have devastating results. For individuals, this includes unauthorized purchases, the stealing of funds, or identify theft.'))),
+                                                                  AttacksContent
+                                                                      .phishing_P))),
                                                       Padding(
                                                           padding:
                                                               EdgeInsets.only(
@@ -259,23 +258,14 @@ class _HomepageState extends State<Homepage> {
                                                               smallImage:
                                                                   'assets/images/ddosGood.png',
                                                               subtitle: Text(
-                                                                  'DDoS attacks are carried out with networks of Internet-connected machines.\n'
-                                                                  'These networks consist of computers and other devices (such as IoT devices)which have been infected with malware, allowing them to be controlled remotely by an attacker.'),
+                                                                  AttacksContent
+                                                                      .ddos_S),
                                                               attackDefinition: Text(
-                                                                  '\nDistributed denial of service (DDoS) attacks disrupt the traffic'
-                                                                  'to a website, application, server, service, or network by overwhelming it with a flood of traffic from compromised computer networks'
-                                                                  '(botnets) that prevents real users from accessing it. In 2018, GitHub experienced the largest DDoS'
-                                                                  'attack ever when it was hit with 1.35 terabits of traffic per second and was offline for almost 20 minutes as a result.'
-                                                                  'DDoS attacks are common and increased by 50% in 2020 compared to 2019, with a large surge occurring in early 2020 during the pandemic, according to security company Kaspersky.\n'),
+                                                                  AttacksContent
+                                                                      .ddos_AD),
                                                               finalParagraph: Text(
-                                                                  '\nThe most obvious symptom of a DDoS attack is a site or service '
-                                                                  'performance issues, further investigation is usually required. Traffic analytics tools '
-                                                                  'can help you spot some of these telltale signs of a DDoS attack:'
-                                                                  '\n 1. Suspicious amounts of traffic originating from a single IP address or IP range'
-                                                                  '\n 2. A flood of traffic from users who share a single behavioral profile, such as device type, geolocation, or web browser version'
-                                                                  '\n 3. An unexplained surge in requests to a single page or endpoint'
-                                                                  '\n 4. Odd traffic patterns such as spikes at odd hours of the day or patterns that appear to be unnatural (e.g. a spike every 10 minutes)'
-                                                                  '\n 5. There are other, more specific signs of DDoS attack that can vary depending on the type of attack.'))),
+                                                                  AttacksContent
+                                                                      .ddos_P))),
                                                       Padding(
                                                           padding:
                                                               EdgeInsets.only(
@@ -288,17 +278,14 @@ class _HomepageState extends State<Homepage> {
                                                               smallImage:
                                                                   'assets/images/worm_small.png',
                                                               subtitle: Text(
-                                                                  'A computer worm is a standalone malware computer program that replicates itself in order to spread to other computers.\n'),
+                                                                  AttacksContent
+                                                                      .worm_S),
                                                               attackDefinition: Text(
-                                                                  'It often uses a computer network to spread itself, relying on security failures on the target computer to access it. It will use this machine as a host to scan and infect other computers. When these new worm-invaded computers are controlled,'
-                                                                  ' the worm will continue to scan and infect other computers using these computers as hosts, and this behavior will continue.'
-                                                                  ' Computer worms use recursive methods to copy themselves without host programs and distribute themselves based on the law of exponential growth, thus controlling and infecting more and more computers in a short time.'
-                                                                  ' Worms almost always cause at least some harm to the network, even if only by consuming bandwidth, whereas viruses almost always corrupt or modify files on a targeted computer.'
-                                                                  'Many worms are designed only to spread, and do not attempt to change the systems they pass through. However, as the Morris worm and Mydoom showed, even these "payload-free" worms can cause major'
-                                                                  'disruption by increasing network traffic and other unintended effects.\n'),
+                                                                  AttacksContent
+                                                                      .worm_AD),
                                                               finalParagraph: Text(
-                                                                  "\nYou can avoid being infected by a worm using common anti-malware advice. Use antivirus software,"
-                                                                  "keep your computer up to date, and never open links or files which you don't completely trust. "),
+                                                                  AttacksContent
+                                                                      .worm_P),
                                                               buttonColor: Color(
                                                                   0xff88bcbc),
                                                               dialogColor: Color(
@@ -315,24 +302,14 @@ class _HomepageState extends State<Homepage> {
                                                               smallImage:
                                                                   'assets/images/brute_small.png',
                                                               subtitle: Text(
-                                                                  "A brute force attack uses trial-and-error to guess login info, encryption keys, or find a hidden web page. Hackers work through all possible combinations hoping to guess correctly."),
+                                                                  AttacksContent
+                                                                      .brute_S),
                                                               attackDefinition: Text(
-                                                                  "These attacks are done by ‘brute force’ meaning they use excessive forceful attempts to try and ‘force’ their way into your private account(s)."
-                                                                  "This is an old attack method, but it's"
-                                                                  "still effective and popular with hackers. Because"
-                                                                  "depending on the length and complexity of the password,"
-                                                                  "cracking it can take anywhere from a few seconds to many years."),
+                                                                  AttacksContent
+                                                                      .brute_AD),
                                                               finalParagraph: Text(
-                                                                  "How to protect yourself from this attack?"
-                                                                  "\nUse an advanced username and password. "
-                                                                  "Protect yourself with credentials that are stronger "
-                                                                  "than admin and password1234 to keep out these attackers. "
-                                                                  "The stronger this combination is, the harder it will be"
-                                                                  " for anyone to penetrate it."
-                                                                  " \nRemove any unused accounts with high-level permissions. These are the cyber"
-                                                                  "equivalent of doors with weak locks that make breaking in easy."
-                                                                  "Unmaintained accounts are a vulnerability you can’t risk."
-                                                                  "Throw them away as soon as possible. "),
+                                                                  AttacksContent
+                                                                      .brute_P),
                                                               buttonColor: Color(
                                                                   0xffab933c),
                                                               dialogColor: Color(
@@ -544,6 +521,7 @@ class _HomepageState extends State<Homepage> {
                                           child: Padding(
                                               padding:
                                                   EdgeInsets.only(left: 20),
+                                              //Tips Section Content
                                               child: Row(
                                                 children: [
                                                   Text(
@@ -867,6 +845,7 @@ class _HomepageState extends State<Homepage> {
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(15)),
                                               color: Color(0xfffcbf49)),
+                                          //Resources section content
                                           child: Column(
                                             children: [
                                               Text(
@@ -1288,8 +1267,6 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ]),
                     ),
-
-                    //add old body here
                   )
                 ])));
   }
@@ -1398,6 +1375,7 @@ class AttackButton extends StatelessWidget {
   }
 }
 
+//Custom widget to create the Tips Section
 class CyberTips extends StatefulWidget {
   final String image;
   final String content;
@@ -1413,9 +1391,6 @@ class CyberTips extends StatefulWidget {
     required this.backColor,
     required this.title,
   }) : super(key: key);
-
-  DocumentReference docRef =
-      FirebaseFirestore.instance.collection('content').doc('tips');
 
   @override
   _CyberTipsState createState() => _CyberTipsState();
@@ -1436,13 +1411,6 @@ class _CyberTipsState extends State<CyberTips> {
         decoration: BoxDecoration(
           border: Border.all(width: 0, color: Colors.black),
           borderRadius: BorderRadius.all(Radius.circular(15)),
-          // boxShadow: [
-          //   BoxShadow(
-          //       color: Colors.grey.withOpacity(0.5),
-          //       spreadRadius: 4,
-          //       blurRadius: 10,
-          //       offset: Offset(0, 0)),
-          // ],
           color: widget.backColor.withOpacity(0.8),
         ),
         child: Column(

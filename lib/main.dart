@@ -6,7 +6,6 @@ import 'package:cyber_education/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -75,17 +74,12 @@ class _LoginState extends State<Login> {
         context, MaterialPageRoute(builder: (context) => Homepage()));
   }
 
-  Future<bool> autoLogin() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool accessToken = prefs.containsKey('accessToken');
-    return accessToken;
-  }
-
   @override
   void initState() {
     super.initState();
   }
 
+  //App's login form
   @override
   Widget build(BuildContext context) {
     return Scaffold(
